@@ -20,7 +20,10 @@ function Navbar() {
           </Link>
 
           <Link to="/SignUp" className="menu-bars">
-            <button className="button">SignUp</button>
+            <button className="nav-item button">SignUp</button>
+          </Link>
+          <Link to="/SignIn" className="menu-bars">
+            <button className=" nav-item2 button ">Sign In</button>
           </Link>
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
