@@ -6,10 +6,12 @@ import SignIn from "./Components/SignIn/SignIn";
 import { Signup } from "./Components/SignUp/SignUp.js";
 import "./App.css";
 
+
 export default function App() {
   return (
     <div className="App ">
       <Navbar />
+     
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -20,3 +22,9 @@ export default function App() {
     </div>
   );
 }
+
+/*  position: absolute;
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;*/

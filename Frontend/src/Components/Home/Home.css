@@ -1,0 +1,40 @@
+:root{
+    --primary-orange:#f9ab00;
+    --primary-dark:white;
+}
+
+.Home{
+    position: relative;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.911);
+    background-position: center;
+    height: 90vh;
+}
+
+.main-info{
+    display: flex;
+    position: absolute;
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+font-family: "Roboto Condesed" ,sans-serif;
+}
+
+
+
+.main-info{
+    color:var(--primary-dark);
+    text-transform: uppercase;
+}
+
+.typed-text{
+    font-size: 2rem;
+    color: var(--primary-orange);
+    
+}
+
