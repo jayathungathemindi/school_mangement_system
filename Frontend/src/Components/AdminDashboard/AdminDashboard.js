@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "../Nav/Navbar";
 import "../../App.css";
-
-function Home() {
-  const login = false;
+export default function AdminDashboard() {
+  const login = true;
   return (
-    <>
+    <div>
       <Navbar login={login} />
       <div className="container">
-        <h1>Home</h1>
+        <h1>Admin</h1>
       </div>
-    </>
+    </div>
   );
 }
-
-export default Home;

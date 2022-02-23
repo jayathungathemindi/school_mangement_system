@@ -112,31 +112,28 @@ module.exports = {
       });
   },
   login: async (req, res) => {
-    console.log(req.body);
-    User.find({ email: req.body.email })
+    User.findOne({ email: req.body.email })
       .exec()
       .then((user) => {
+        console.log(user);
         if (user.length < 1) {
           return res.status(401).json({
             message: "Auth failed",
           });
         }
-        bcrypt.compare(req.body.password, user[0].password, (err, result) => {
-          if (err) {
-            return res.status(401).json({
-              message: "Auth failed",
-            });
-          }
+
+        bcrypt.compare(req.body.password, user.password, (err, result) => {
           if (result) {
+            console.log(result);
             // console.log(user[0]);
             // console.log(user[0]._id);
             const token = jwt.sign(
               {
-                firstName: user[0].firstName,
-                lastName: user[0].lastName,
-                role: user[0].role,
-                email: user[0].email,
-                userId: user[0]._id,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                role: user.role,
+                email: user.email,
+                userId: user._id,
               },
               process.env.SECRET_KEY,
               {
@@ -147,6 +144,11 @@ module.exports = {
             return res.status(200).json({
               message: "Auth successful",
               token: token,
+              user: user,
+            });
+          } else {
+            return res.status(401).json({
+              message: "Auth failed",
             });
           }
         });

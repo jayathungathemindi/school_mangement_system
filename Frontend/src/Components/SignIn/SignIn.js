@@ -1,9 +1,15 @@
 import { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./SignIn.css";
+import { connect, ConnectedProps } from "react-redux";
+import * as Action from "../../Action";
+import { bindActionCreators } from "redux";
+import Navbar from "../Nav/Navbar";
+import "../../App.css";
 
-const SignIn = () => {
+const SignIn = (props) => {
+  const login = false;
   const [data, setData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
@@ -13,12 +19,17 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const url = "http://localhost:3000/user/login";
-      const { data: res } = await axios.post(url, data);
-      localStorage.setItem("token", res.data);
 
-      window.location = "/";
+    try {
+      props.login(data);
+
+      // setTimeout(() => {
+      //   console.log("World!");
+      // }, 5000);
+
+      // if (props.loginSucess()) {
+      //   window.location = "/admin";
+      // }
     } catch (error) {
       if (
         error.response &&
@@ -31,46 +42,66 @@ const SignIn = () => {
   };
 
   return (
-    <div className={styles.login_container}>
-      <div className={styles.login_form_container}>
-        <div className={styles.left}>
-          <form className={styles.form_container} onSubmit={handleSubmit}>
-            <h1>Login to Your Account</h1>
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
-              onChange={handleChange}
-              value={data.email}
-              required
-              className={styles.input}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              onChange={handleChange}
-              value={data.password}
-              required
-              className={styles.input}
-            />
-            {error && <div className={styles.error_msg}>{error}</div>}
-            <button type="submit" className={styles.green_btn}>
-              Sing In
-            </button>
-          </form>
-        </div>
-        <div className={styles.right}>
-          <h1>New Here ?</h1>
-          <Link to="/signup">
-            <button type="button" className={styles.white_btn}>
-              Sing Up
-            </button>
-          </Link>
+    <div>
+      {" "}
+      <Navbar login={login} />
+      <div className="container">
+        <div className={styles.login_container}>
+          <div className={styles.login_form_container}>
+            <div className={styles.left}>
+              <form className={styles.form_container} onSubmit={handleSubmit}>
+                <h1>Login to Your Account</h1>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  onChange={handleChange}
+                  value={data.email}
+                  required
+                  className={styles.input}
+                />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  onChange={handleChange}
+                  value={data.password}
+                  required
+                  className={styles.input}
+                />
+                {error && <div className={styles.error_msg}>{error}</div>}
+                <button type="submit" className={styles.green_btn}>
+                  Sing In
+                </button>
+              </form>
+            </div>
+            <div className={styles.right}>
+              <h1>New Here ?</h1>
+              <Link to="/signup">
+                <button type="button" className={styles.white_btn}>
+                  Sing Up
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default SignIn;
+const { LoginAction } = Action;
+
+const mapStateToProps = (state) => {
+  //no need this component
+  const { LoginReducer } = state;
+
+  return {
+    LoginReducer,
+  };
+};
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ login: LoginAction.Login.get }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
