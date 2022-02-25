@@ -6,6 +6,7 @@ process.env.SECRET_KEY = "secret";
 
 module.exports = {
   addStudent: async (req, res) => {
+    console.log(req.body.date);
     var userData = new User({
       //t_id: mongoose.Schema.Types.ObjectId(),
       _id: new mongoose.Types.ObjectId(),
@@ -14,6 +15,7 @@ module.exports = {
       email: req.body.email,
       password: req.body.password,
       role: "Student",
+      date: req.body.date,
     });
 
     User.find({ email: req.body.email })
@@ -59,6 +61,7 @@ module.exports = {
       email: req.body.email,
       password: req.body.password,
       role: "Teacher",
+      date: req.body.date,
     });
 
     User.find({ email: req.body.email })
@@ -103,6 +106,7 @@ module.exports = {
       email: req.body.email,
       password: req.body.password,
       role: "Admin",
+      date: req.body.date,
     });
 
     User.find({ email: req.body.email })

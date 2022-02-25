@@ -45,7 +45,7 @@ function Navbar() {
                 </Link>
 
                 <Link to="/logout" className="menu-bars">
-                  <button className="nav-item2 ">Logout</button>
+                  <button className="nav-item1 ">Logout</button>
                 </Link>
               </div>
               <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
@@ -87,7 +87,7 @@ function Navbar() {
               </Link>
 
               <Link to="/SignIn" className="menu-bars">
-                <button className=" nav-item  ">Sign In</button>
+                <button className=" nav-item2  ">Sign In</button>
               </Link>
             </div>
             {/* </IconContext.Provider> */}
