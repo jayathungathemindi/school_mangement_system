@@ -1,12 +1,11 @@
-import React from "react";
-import { Formik, Form, Field } from "formik";
+import React, { useEffect, useState } from "react";
+import { Formik, Form } from "formik";
 import { TextField } from "./TextField";
 import * as Yup from "yup";
 import axios from "axios";
-import Navbar from "../Nav/Navbar";
 import "../../App.css";
-export const SignUp = () => {
-  const login = false;
+
+export const AddTeacher = () => {
   const validate = Yup.object({
     firstName: Yup.string()
       .max(15, "Must be 15 characters or less")
@@ -24,7 +23,6 @@ export const SignUp = () => {
   });
   return (
     <>
-      <Navbar login={login} />
       <div className="container">
         <Formik
           initialValues={{
@@ -37,7 +35,7 @@ export const SignUp = () => {
           validationSchema={validate}
           onSubmit={(values) => {
             console.log(values);
-            axios.post("http://localhost:3000/user/addnewUser", values).then(
+            axios.post("http://localhost:3000/user/addTeacher", values).then(
               (response) => {
                 console.log(response);
               },
@@ -46,12 +44,12 @@ export const SignUp = () => {
               }
             );
 
-            window.location = `/`;
+            window.location = `/admin`;
           }}
         >
           {(formik) => (
             <div>
-              <h1 className="my-4 font-weight-bold .display-4">Sign Up</h1>
+              <h1 className="my-4 font-weight-bold .display-4">Add Teacher</h1>
               <Form>
                 <TextField label="First Name" name="firstName" type="text" />
                 <TextField label="last Name" name="lastName" type="text" />
@@ -63,25 +61,8 @@ export const SignUp = () => {
                   type="password"
                 />
 
-                <label>
-                  <Field type="checkbox" name="role" value="Teacher" />
-                  Teacher
-                </label>
-                <label>
-                  <Field
-                    type="checkbox"
-                    name="role"
-                    value="Student"
-                    className="ml-3"
-                  />
-                  Student
-                </label>
-
                 <button className="btn btn-dark mt-5 " type="submit">
                   Register
-                </button>
-                <button className="btn btn-danger  mt-5" type="reset">
-                  Reset
                 </button>
               </Form>
             </div>

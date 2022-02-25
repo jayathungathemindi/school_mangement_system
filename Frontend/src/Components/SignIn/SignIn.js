@@ -5,11 +5,9 @@ import styles from "./SignIn.css";
 import { connect, ConnectedProps } from "react-redux";
 import * as Action from "../../Action";
 import { bindActionCreators } from "redux";
-import Navbar from "../Nav/Navbar";
 import "../../App.css";
 
 const SignIn = (props) => {
-  const login = false;
   const [data, setData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
@@ -44,7 +42,6 @@ const SignIn = (props) => {
   return (
     <div>
       {" "}
-      <Navbar login={login} />
       <div className="container">
         <div className={styles.login_container}>
           <div className={styles.login_form_container}>

@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router-dom";
 
 export default function Logout() {
-  const history = useHistory();
   useEffect(() => {
-    //api
-    history.push("/SignIn");
+    localStorage.setItem("login", false);
+    window.location = `/`;
   });
 
-  return <div>Logout</div>;
+  return <div></div>;
 }

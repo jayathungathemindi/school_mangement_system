@@ -14,10 +14,10 @@ export const EditProfile = () => {
     firstName: "",
     lastName: "",
     email: "",
+    role: "",
   });
-  const [Name, SetName] = useState("");
-  const login = true;
 
+  console.log(localStorage);
   const validate = Yup.object({
     firstName: Yup.string()
       .max(15, "Must be 15 characters or less")
@@ -43,6 +43,7 @@ export const EditProfile = () => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        role: user.role,
       });
     });
   }, []);
@@ -55,7 +56,6 @@ export const EditProfile = () => {
 
   return (
     <>
-      <Navbar login={login} />
       <div className="container">
         <Formik
           initialValues={{ ...User }}
@@ -72,6 +72,20 @@ export const EditProfile = () => {
                   console.log(error);
                 }
               );
+            switch (User.role) {
+              case "Admin": {
+                window.location = `/admin`;
+                break;
+              }
+              case "Teacher": {
+                window.location = `/teacher`;
+                break;
+              }
+              case "Student": {
+                window.location = `/student`;
+                break;
+              }
+            }
           }}
         >
           {(fomik) => (

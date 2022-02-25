@@ -5,77 +5,100 @@ import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "./Navbar.css";
 import { IconContext } from "react-icons";
+import axios from "axios";
 
 function Navbar(props) {
+  const [isLog, SetLog] = useState("false");
+  const [User, SetUser] = useState({
+    role: "",
+    id: "",
+  });
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/user/getById/${localStorage.getItem("id")}`)
+      .then((res) => {
+        const user = res.data.user;
+        SetUser({ ...User, role: user.role, id: user._id });
+      });
+    SetLog({ ...isLog, login: localStorage.getItem("login") });
+  }, []);
+
   const [sidebar, setSidebar] = useState(false);
-  const [role, setRole] = useState("Admin");
 
   const showSidebar = () => {
     setSidebar(!sidebar);
-    setRole(props.role);
   };
-  console.log(role);
+  console.log(isLog);
   const Nav = () => {
-    if (props.login) {
-      return (
-        <div>
-          <IconContext.Provider value={{ color: "#fff" }}>
+    switch (isLog.login) {
+      case "true": {
+        return (
+          <div>
+            <IconContext.Provider value={{ color: "#fff" }}>
+              <div className="navbar">
+                <Link to="#" className="menu-bars">
+                  <FaIcons.FaBars onClick={showSidebar} />
+                </Link>
+
+                <Link to={`/editProfile/${User.id}`} className="menu-bars">
+                  <button className="nav-item ">Edit Profile</button>
+                </Link>
+
+                <Link to="/logout" className="menu-bars">
+                  <button className="nav-item2 ">Logout</button>
+                </Link>
+              </div>
+              <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+                <ul className="nav-menu-items" onClick={showSidebar}>
+                  <li className="navbar-toggle">
+                    <Link to="#" className="menu-bars">
+                      <AiIcons.AiOutlineClose />
+                    </Link>
+                  </li>
+                  {SidebarData.map((item, index) => {
+                    switch (item.role) {
+                      case User.role: {
+                        return (
+                          <li key={index} className={item.cName}>
+                            <Link to={item.path}>
+                              {item.icon}
+                              <span>{item.title}</span>
+                            </Link>
+                          </li>
+                        );
+                      }
+                    }
+                  })}
+                </ul>
+              </nav>
+            </IconContext.Provider>
+          </div>
+        );
+      }
+
+      case "false": {
+        return (
+          <div>
+            {/* <IconContext.Provider value={{ color: "#fff" }}> */}
             <div className="navbar">
-              <Link to="#" className="menu-bars">
-                <FaIcons.FaBars onClick={showSidebar} />
+              <Link to="/SignUp" className="menu-bars">
+                <button className="nav-item ">SignUp</button>
               </Link>
-
-              <Link to={`/editProfile/${props.userid}`} className="menu-bars">
-                <button className="nav-item ">Edit Profile</button>
-              </Link>
-
-              <Link to="/" className="menu-bars">
-                <button className="nav-item2 ">Logout</button>
+              <Link to="/SignIn" className="menu-bars">
+                <button className=" nav-item2  ">Sign In</button>
               </Link>
             </div>
-            <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-              <ul className="nav-menu-items" onClick={showSidebar}>
-                <li className="navbar-toggle">
-                  <Link to="#" className="menu-bars">
-                    <AiIcons.AiOutlineClose />
-                  </Link>
-                </li>
-                {SidebarData.map((item, index) => {
-                  switch (item.role) {
-                    case role: {
-                      return (
-                        <li key={index} className={item.cName}>
-                          <Link to={item.path}>
-                            {item.icon}
-                            <span>{item.title}</span>
-                          </Link>
-                        </li>
-                      );
-                      break;
-                    }
-                  }
-                })}
-              </ul>
-            </nav>
-          </IconContext.Provider>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          {/* <IconContext.Provider value={{ color: "#fff" }}> */}
-          <div className="navbar">
-            <Link to="/SignUp" className="menu-bars">
-              <button className="nav-item ">SignUp</button>
-            </Link>
-            <Link to="/SignIn" className="menu-bars">
-              <button className=" nav-item2  ">Sign In</button>
-            </Link>
+            {/* </IconContext.Provider> */}
           </div>
-          {/* </IconContext.Provider> */}
-        </div>
-      );
+        );
+      }
     }
+
+    // if ((isLog = "true")) {
+
+    // } else {
+
+    // }
   };
 
   return <>{Nav()}</>;
