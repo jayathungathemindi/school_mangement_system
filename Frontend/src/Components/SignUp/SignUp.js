@@ -25,7 +25,9 @@ export const Signup = () => {
   return (
     <>
       <Navbar login={login} />
-      <div className="container">
+      <div className="cont">
+      <img src="/image/online-user.png" alt=""/>
+     <div className="img">  
         <Formik
           initialValues={{
             firstName: "",
@@ -49,8 +51,11 @@ export const Signup = () => {
         >
           {(formik) => (
             <div>
+
+              
               <h1 className="my-4 font-weight-bold .display-4">Sign Up</h1>
               <Form>
+             
                 <TextField label="First Name" name="firstName" type="text" />
                 <TextField label="last Name" name="lastName" type="text" />
                 <TextField label="Email" name="email" type="email" />
@@ -63,14 +68,15 @@ export const Signup = () => {
                 <button className="btn btn-dark mt-3" type="submit">
                   Register
                 </button>
-                <button className="btn btn-danger mt-3 ml-3" type="reset">
-                  Reset
-                </button>
+             
+               
               </Form>
+              
             </div>
           )}
         </Formik>
       </div>
+      </div>  
     </>
   );
 };

@@ -23,13 +23,7 @@ const SignIn = (props) => {
     try {
       props.login(data);
 
-      // setTimeout(() => {
-      //   console.log("World!");
-      // }, 5000);
-
-      // if (props.loginSucess()) {
-      //   window.location = "/admin";
-      // }
+     
     } catch (error) {
       if (
         error.response &&
@@ -42,15 +36,22 @@ const SignIn = (props) => {
   };
 
   return (
-    <div>
+    <div className="main">
+      
       {" "}
       <Navbar login={login} />
+      <div className="sub-main">
+      <img src="/image/signup.png" alt=""  />
       <div className="container">
+      
         <div className={styles.login_container}>
           <div className={styles.login_form_container}>
             <div className={styles.left}>
               <form className={styles.form_container} onSubmit={handleSubmit}>
                 <h1>Login to Your Account</h1>
+                <div className="form-inner">
+                <div className="form-group">
+                  <label htmlFor="email">E-mail</label>
                 <input
                   type="email"
                   placeholder="Email"
@@ -59,7 +60,9 @@ const SignIn = (props) => {
                   value={data.email}
                   required
                   className={styles.input}
-                />
+                /></div>
+                <div className="form-group">
+                  <label htmlFor="password">Password</label>
                 <input
                   type="password"
                   placeholder="Password"
@@ -68,25 +71,20 @@ const SignIn = (props) => {
                   value={data.password}
                   required
                   className={styles.input}
-                />
+                /></div>  </div>
                 {error && <div className={styles.error_msg}>{error}</div>}
                 <button type="submit" className={styles.green_btn}>
                   Sing In
                 </button>
               </form>
             </div>
-            <div className={styles.right}>
-              <h1>New Here ?</h1>
-              <Link to="/signup">
-                <button type="button" className={styles.white_btn}>
-                  Sing Up
-                </button>
-              </Link>
+            </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+  
+   
   );
 };
 

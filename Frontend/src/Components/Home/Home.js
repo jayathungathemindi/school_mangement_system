@@ -20,14 +20,24 @@ const Home = () => {
             loop
           />
 
+
           <h3>Themindi Hansani</h3>
+
+          <img src="/image/login.png" alt=""  width="500px"
+          height="400px" class="vert-move"  />
+
+
+
         </div>
 
+        
+ 
+
         <img
-          src="/image/pencils-g61821c5c4_1280.jpg"
+          src="/image/book.jpg"
           alt=""
-          width="1535px"
-          height="670px"
+          width="1515px"
+          height="650px"
         />
       </div>
     </>
@@ -36,13 +46,3 @@ const Home = () => {
 
 export default Home;
 
-// <img src="/image/schl.jpg" alt=""/>
-
-/*
-.tsparticles-canvas-el{
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  z-index: 1;
-}
-*/

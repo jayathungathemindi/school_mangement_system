@@ -1,6 +1,6 @@
 .navbar {
   background-color: #060b26;
-  height: 80px;
+  height: 100px;
   width: 100%;
   display: flex;
   justify-content: start;
@@ -77,4 +77,35 @@ span {
 }
 .nav-item2 {
   margin-left: 20px;
+}
+
+.nav-item{
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #060b26;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  
+}
+
+.nav-item2{
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #060b26;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
 }

@@ -96,3 +96,34 @@
   color: white;
   margin: 10px;
 }
+.sub-main{
+
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  padding: 90px 0 90px 0;
+  background-color: white;
+
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  height: 550px;
+  width: 35%;
+  box-shadow: 11px 12px 13px white;
+  padding-top: 30px;
+  border-radius: 60px;
+  background-color: #CCCCFF;
+
+}
+
+.form-group   h2{
+  color: black;
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 30px;
+
+
+
+}
