@@ -81,11 +81,8 @@ function Navbar(props) {
           <div>
             {/* <IconContext.Provider value={{ color: "#fff" }}> */}
             <div className="navbar">
-              <Link to="/SignUp" className="menu-bars">
-                <button className="nav-item ">SignUp</button>
-              </Link>
               <Link to="/SignIn" className="menu-bars">
-                <button className=" nav-item2  ">Sign In</button>
+                <button className=" nav-item  ">Sign In</button>
               </Link>
             </div>
             {/* </IconContext.Provider> */}

@@ -72,14 +72,6 @@ const SignIn = (props) => {
                 </button>
               </form>
             </div>
-            <div className={styles.right}>
-              <h1>New Here ?</h1>
-              <Link to="/SignUp">
-                <button type="button" className={styles.white_btn}>
-                  Sing Up
-                </button>
-              </Link>
-            </div>
           </div>
         </div>
       </div>

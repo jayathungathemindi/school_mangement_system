@@ -77,9 +77,6 @@ export const SignUp = () => {
                 <button className="btn btn-dark mt-5 " type="submit">
                   Register
                 </button>
-                <button className="btn btn-danger  mt-5" type="reset">
-                  Reset
-                </button>
               </Form>
             </div>
           )}
