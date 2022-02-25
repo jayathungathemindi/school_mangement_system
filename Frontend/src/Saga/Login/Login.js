@@ -15,9 +15,24 @@ const Loginsaga = {
       const { data, status } = yield call(getUserDetails, params);
 
       if (status === 200) {
-        localStorage.setItem("token", data);
+        localStorage.setItem("id", data.user._id);
+        localStorage.setItem("login", true);
         yield put(Login.sucess(data, true));
-        window.location = `/admin/${data.user._id}`;
+
+        switch (data.user.role) {
+          case "Admin": {
+            window.location = `/admin`;
+            break;
+          }
+          case "Teacher": {
+            window.location = `/teacher`;
+            break;
+          }
+          case "Student": {
+            window.location = `/student`;
+            break;
+          }
+        }
       }
     } catch (error) {
       window.location = "/";

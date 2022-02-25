@@ -1,14 +1,11 @@
 import React from "react";
 import "./Home.css";
 import Typed from "react-typed";
-import Navbar from "../Nav/Navbar";
 import "../../App.css";
 
 const Home = () => {
-  const login = false;
   return (
     <>
-      <Navbar login={login} />
       <div className="Home">
         <div className="main-info">
           <h1>Online School Management System</h1>

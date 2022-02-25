@@ -1,15 +1,12 @@
 import { useState } from "react";
 // import axios from "axios";
-import { Link } from "react-router-dom";
 import styles from "./SignIn.css";
-import { connect, ConnectedProps } from "react-redux";
+import { connect } from "react-redux";
 import * as Action from "../../Action";
 import { bindActionCreators } from "redux";
-import Navbar from "../Nav/Navbar";
 import "../../App.css";
 
 const SignIn = (props) => {
-  const login = false;
   const [data, setData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
 
@@ -39,8 +36,7 @@ const SignIn = (props) => {
     <div className="main">
       
       {" "}
-      <Navbar login={login} />
-      <div className="sub-main">
+<div className="sub-main">
       <img src="/image/signup.png" alt=""  />
       <div className="container">
       
@@ -93,7 +89,7 @@ const { LoginAction } = Action;
 const mapStateToProps = (state) => {
   //no need this component
   const { LoginReducer } = state;
-
+  console.log(state);
   return {
     LoginReducer,
   };
