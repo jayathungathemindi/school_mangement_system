@@ -8,9 +8,13 @@ import { IconContext } from "react-icons";
 
 function Navbar(props) {
   const [sidebar, setSidebar] = useState(false);
+  const [role, setRole] = useState("Admin");
 
-  const showSidebar = () => setSidebar(!sidebar);
-
+  const showSidebar = () => {
+    setSidebar(!sidebar);
+    setRole(props.role);
+  };
+  console.log(role);
   const Nav = () => {
     if (props.login) {
       return (
@@ -21,9 +25,10 @@ function Navbar(props) {
                 <FaIcons.FaBars onClick={showSidebar} />
               </Link>
 
-              <Link to="/editProfile" className="menu-bars">
+              <Link to={`/editProfile/${props.userid}`} className="menu-bars">
                 <button className="nav-item ">Edit Profile</button>
               </Link>
+
               <Link to="/" className="menu-bars">
                 <button className="nav-item2 ">Logout</button>
               </Link>
@@ -36,14 +41,19 @@ function Navbar(props) {
                   </Link>
                 </li>
                 {SidebarData.map((item, index) => {
-                  return (
-                    <li key={index} className={item.cName}>
-                      <Link to={item.path}>
-                        {item.icon}
-                        <span>{item.title}</span>
-                      </Link>
-                    </li>
-                  );
+                  switch (item.role) {
+                    case role: {
+                      return (
+                        <li key={index} className={item.cName}>
+                          <Link to={item.path}>
+                            {item.icon}
+                            <span>{item.title}</span>
+                          </Link>
+                        </li>
+                      );
+                      break;
+                    }
+                  }
                 })}
               </ul>
             </nav>

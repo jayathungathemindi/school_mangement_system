@@ -77,7 +77,7 @@ const SignIn = (props) => {
             </div>
             <div className={styles.right}>
               <h1>New Here ?</h1>
-              <Link to="/signup">
+              <Link to="/SignUp">
                 <button type="button" className={styles.white_btn}>
                   Sing Up
                 </button>
@@ -95,7 +95,7 @@ const { LoginAction } = Action;
 const mapStateToProps = (state) => {
   //no need this component
   const { LoginReducer } = state;
-
+  console.log(state);
   return {
     LoginReducer,
   };
