@@ -1,8 +1,7 @@
 import { useState } from "react";
 // import axios from "axios";
-import { Link } from "react-router-dom";
 import styles from "./SignIn.css";
-import { connect, ConnectedProps } from "react-redux";
+import { connect } from "react-redux";
 import * as Action from "../../Action";
 import { bindActionCreators } from "redux";
 import "../../App.css";

@@ -7,7 +7,7 @@ import "./Navbar.css";
 import { IconContext } from "react-icons";
 import axios from "axios";
 
-function Navbar(props) {
+function Navbar() {
   const [isLog, SetLog] = useState("false");
   const [User, SetUser] = useState({
     role: "",
@@ -81,6 +81,11 @@ function Navbar(props) {
           <div>
             {/* <IconContext.Provider value={{ color: "#fff" }}> */}
             <div className="navbar">
+              <Link to="/">
+                {" "}
+                <AiIcons.AiFillHome className="home-icon"></AiIcons.AiFillHome>
+              </Link>
+
               <Link to="/SignIn" className="menu-bars">
                 <button className=" nav-item  ">Sign In</button>
               </Link>
