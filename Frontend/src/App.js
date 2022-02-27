@@ -12,6 +12,7 @@ import { AddTeacher } from "./Components/AddTeacher/AddTeacher";
 import { AddStudent } from "./Components/AddStudent/AddStudent";
 import Navbar from "./Components/Nav/Navbar";
 import Logout from "./Components/Logout/Logout";
+import Test from "./Components/Test/Test";
 
 const App = () => {
   return (
@@ -28,6 +29,8 @@ const App = () => {
         <Route path="/teacher" element={<TeacherDashboard />}></Route>
         <Route path="/student" element={<StudentDashboard />}></Route>
         <Route path="/editProfile/:id" element={<EditProfile />}></Route>
+
+        <Route path="/test" element={<Test />}></Route>
       </Routes>
     </div>
   );

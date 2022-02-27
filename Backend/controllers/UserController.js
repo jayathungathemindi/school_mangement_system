@@ -1,4 +1,6 @@
 const User = require("../models/User");
+const Teacher = require("../models/Teacher");
+const Student = require("../models/Student");
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
@@ -6,9 +8,8 @@ process.env.SECRET_KEY = "secret";
 
 module.exports = {
   addStudent: async (req, res) => {
-    console.log(req.body.date);
+    console.log(req.body);
     var userData = new User({
-      //t_id: mongoose.Schema.Types.ObjectId(),
       _id: new mongoose.Types.ObjectId(),
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -16,6 +17,9 @@ module.exports = {
       password: req.body.password,
       role: "Student",
       date: req.body.date,
+      registerNo: req.body.registerNo,
+      address: req.body.address,
+      gender: req.body.gender,
     });
 
     User.find({ email: req.body.email })
@@ -24,17 +28,34 @@ module.exports = {
         if (user.length >= 1) {
           res.json({
             success: false,
-            message: "*** A Student already registered for this email ***",
+            message: "*** A User already registered for this email ***",
           });
         } else {
           const hash = bcrypt.hashSync(userData.password, 10);
           userData.password = hash;
-          console.log(userData);
           userData.save((err, doc) => {
             if (!err) {
+              var student = new Student({
+                _id: userData._id,
+                grade: req.body.grade,
+                NameOfTrustee: req.body.trust,
+                Nic_Trust: req.body.nic,
+                TP: req.body.telephone,
+              });
+              student.save((err, doc) => {
+                if (!err) {
+                  // res.json({
+                  //   success: true,
+                  // });
+                } else {
+                  // res.json({
+                  //   success: false,
+                  // });
+                }
+              });
               res.json({
                 success: true,
-                message: "Student registered successfully",
+                message: "User registered successfully",
               });
             } else {
               res.json({
@@ -49,12 +70,13 @@ module.exports = {
         res.json({
           success: false,
           message: "*** Student register failed ***",
+          err: err,
         });
       });
   },
   addTeacher: async (req, res) => {
+    console.log(req.body);
     var userData = new User({
-      //t_id: mongoose.Schema.Types.ObjectId(),
       _id: new mongoose.Types.ObjectId(),
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -62,6 +84,10 @@ module.exports = {
       password: req.body.password,
       role: "Teacher",
       date: req.body.date,
+      date: req.body.date,
+      registerNo: req.body.registerNo,
+      address: req.body.address,
+      gender: req.body.gender,
     });
 
     User.find({ email: req.body.email })
@@ -75,9 +101,34 @@ module.exports = {
         } else {
           const hash = bcrypt.hashSync(userData.password, 10);
           userData.password = hash;
-          console.log(userData);
+
           userData.save((err, doc) => {
             if (!err) {
+              const myArray = new Array({});
+              let j = req.body.grade.length;
+              console.log(j);
+
+              for (let i = 0; i < j; i++) {
+                (grade = req.body.grade[i]), (myArray[i] = { grade });
+                console.log(myArray);
+              }
+              var teacher = new Teacher({
+                _id: userData._id,
+                Nic: req.body.nic,
+                grades: myArray,
+              });
+              teacher.save((err, doc) => {
+                if (!err) {
+                  // res.json({
+                  //   success: true,
+                  // });
+                } else {
+                  // res.json({
+                  //   success: false,
+                  //   err: err,
+                  // });
+                }
+              });
               res.json({
                 success: true,
                 message: "Teacher registered successfully",
@@ -86,6 +137,7 @@ module.exports = {
               res.json({
                 success: false,
                 message: "*** Teacher register failed ***",
+                err: err,
               });
             }
           });
@@ -95,6 +147,7 @@ module.exports = {
         res.json({
           success: false,
           message: "*** Teacher register failed ***",
+          err: err,
         });
       });
   },
@@ -128,7 +181,6 @@ module.exports = {
                 message: "Admin registered successfully ",
               });
             } else {
-              console.log("Error is :" + err);
               res.json({
                 success: false,
                 message: "*** Admin register failed ***",
@@ -138,7 +190,7 @@ module.exports = {
         }
       })
       .catch((err) => {
-        console.log("Error is :" + err);
+        console.log(err);
         res.json({ success: false, message: "*** Admin register failed ***" });
       });
   },
@@ -162,7 +214,6 @@ module.exports = {
     User.findOne({ email: req.body.email })
       .exec()
       .then((user) => {
-        console.log(user);
         if (user.length < 1) {
           return res.status(401).json({
             message: "Auth failed",
@@ -171,7 +222,6 @@ module.exports = {
 
         bcrypt.compare(req.body.password, user.password, (err, result) => {
           if (result) {
-            console.log(result);
             // console.log(user[0]);
             // console.log(user[0]._id);
             const token = jwt.sign(
@@ -208,10 +258,45 @@ module.exports = {
         .exec()
         .then((user) => {
           console.log(user);
-          return res.status(200).json({
-            message: "User find",
-            user: user,
-          });
+
+          switch (user.role) {
+            case "Admin": {
+              return res.status(200).json({
+                message: "User find",
+                user: user,
+              });
+            }
+            case "Student": {
+              Student.findOne({ _id: user._id })
+                .exec()
+                .then((student) => {
+                  console.log(student);
+                  return res.status(200).json({
+                    message: "User find",
+                    user: user,
+                    student: student,
+                  });
+                });
+              break;
+            }
+
+            case "Teacher": {
+              Teacher.findOne({ _id: user._id })
+                .exec()
+                .then((teacher) => {
+                  console.log(teacher);
+                  return res.status(200).json({
+                    message: "User find",
+                    user: user,
+                    teacher: teacher,
+                  });
+                });
+              break;
+            }
+            default: {
+              break;
+            }
+          }
         });
     } catch (error) {
       res.json({
@@ -222,8 +307,6 @@ module.exports = {
   },
   editProfile: async (req, res) => {
     try {
-      console.log(req.body);
-      console.log("id" + req.params);
       User.findOne({ _id: req.params.userId })
         .exec()
         .then((user) => {
@@ -243,6 +326,48 @@ module.exports = {
               });
             }
           });
+
+          switch (user.role) {
+            case "Admin": {
+              break;
+            }
+            case "Student": {
+              Student.findOne({ _id: user._id })
+                .exec()
+                .then((student) => {
+                  student.class = req.body.class;
+                  student.save((err) => {
+                    if (!err) {
+                      res.json({
+                        success: true,
+                        message: "Student Updated ",
+                      });
+                    }
+                  });
+                });
+              break;
+            }
+            case "Teacher": {
+              Teacher.findOne({ _id: user._id })
+                .exec()
+                .then((teacher) => {
+                  teacher.class = req.body.class;
+                  teacher.save((err) => {
+                    if (!err) {
+                      res.json({
+                        success: true,
+                        message: "Student Updated ",
+                      });
+                    }
+                  });
+                });
+              break;
+            }
+
+            default: {
+              break;
+            }
+          }
         });
     } catch (error) {
       res.json({
