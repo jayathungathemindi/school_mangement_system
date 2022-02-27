@@ -13,6 +13,7 @@ import { AddTeacher } from "./Components/AddTeacher/AddTeacher";
 import { AddStudent } from "./Components/AddStudent/AddStudent";
 import Navbar from "./Components/Nav/Navbar";
 import Logout from "./Components/Logout/Logout";
+import Test from "./Components/Test/Test";
 import StudentList from "./Components/StudentList/StudentList";
 import StudentListGrade from "./Components/StudentListGrade/StudentListGrade";
 import TeacherList from "./Components/TeacherList/TeacherList";
@@ -35,8 +36,9 @@ const App = () => {
         <Route path="/teacher" element={<TeacherDashboard />}></Route>
         <Route path="/student" element={<StudentDashboard />}></Route>
         <Route path="/editProfile/:id" element={<EditProfile />}></Route>
+
+        <Route path="/test" element={<Test />}></Route>
         <Route path="/teacherList" element={<TeacherList/>}></Route>
-        
       </Routes>
     </div>
   );

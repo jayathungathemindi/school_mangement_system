@@ -15,10 +15,12 @@ function Navbar() {
     id: "",
   });
   useEffect(() => {
+    console.log(localStorage.getItem("id"));
     axios
       .get(`http://localhost:3000/user/getById/${localStorage.getItem("id")}`)
       .then((res) => {
         const user = res.data.user;
+        console.log(user);
         SetUser({ ...User, role: user.role, id: user._id });
       });
     SetLog({ ...isLog, login: localStorage.getItem("login") });

@@ -1,5 +1,12 @@
 import React from "react";
-import { Formik, Form, useField, useFormikContext } from "formik";
+import {
+  Formik,
+  Form,
+  useField,
+  useFormikContext,
+  Field,
+  FieldArray,
+} from "formik";
 import { TextField } from "./TextField";
 import * as Yup from "yup";
 import axios from "axios";
@@ -10,12 +17,11 @@ import "react-datepicker/dist/react-datepicker.css";
 const DatePickerField = ({ ...props }) => {
   const { setFieldValue } = useFormikContext();
   const [field] = useField(props);
-
   return (
     <DatePicker
       {...field}
       {...props}
-      selected={field.value}
+      selected={(field.value && new Date(field.value)) || null}
       onChange={(val) => {
         setFieldValue(field.name, val);
       }}
@@ -39,6 +45,7 @@ export const AddStudent = () => {
       .oneOf([Yup.ref("password"), null], "Password must match")
       .required("Confirm password is required"),
   });
+
   return (
     <>
       <div className="container">
@@ -64,42 +71,57 @@ export const AddStudent = () => {
 
             window.location = `/admin`;
           }}
-        >
-          {(props) => {
-            // const { dirty, isSubmitting, handleReset } = props;
-            return (
-              <div>
-                <h1 className="my-4 font-weight-bold .display-4">
-                  Add Student
-                </h1>
-                <Form>
-                  <TextField label="First Name" name="firstName" type="text" />
-                  <TextField label="last Name" name="lastName" type="text" />
-                  <TextField label="Email" name="email" type="email" />
-                  <TextField label="password" name="password" type="password" />
-                  <TextField
-                    label="Confirm Password"
-                    name="confirmPassword"
-                    type="password"
-                  />
-                  <label htmlFor="birthday">Birthday</label>
-                  <DatePickerField name="date" format="yyyy-MM-dd" />
-                  {/* <button
-                    type="button"
-                    className="outline"
-                    onClick={handleReset}
-                    disabled={!dirty || isSubmitting}
-                  >
-                    Reset
-                  </button> */}
-                  <button className="btn btn-dark mt-5 " type="submit">
-                    Register
-                  </button>
-                </Form>
-              </div>
-            );
-          }}
-        </Formik>
+          render={({ values }) => (
+            <div>
+              <h1 className="my-4 font-weight-bold .display-4">Add Student</h1>
+              <Form>
+                <TextField label="First Name" name="firstName" type="text" />
+                <TextField label="last Name" name="lastName" type="text" />
+                <TextField label="Email" name="email" type="email" />
+                <TextField label="Register No" name="registerNo" type="text" />
+                <TextField label="Address" name="address" type="text" />
+                <TextField label="password" name="password" type="password" />
+                <TextField
+                  label="Confirm Password"
+                  name="confirmPassword"
+                  type="password"
+                />
+                <label htmlFor="birthday">Birthday</label>
+                <DatePickerField name="date" />
+                <br></br>
+                <label>Grade</label>
+                <br></br>
+                <Field as="select" name="grade">
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                </Field>
+                <br></br>
+                <label> Gender</label>
+
+                <Field as="select" name="gender">
+                  <option value="Female">Female</option>
+                  <option value="Male">Male</option>
+                </Field>
+                <br></br>
+                <br></br>
+                <TextField label="Name of Trust" name="trust" type="text" />
+                <TextField label="Trust NIC" name="nic" type="text" />
+                <TextField
+                  label="Trust Telephone"
+                  name="telephone"
+                  type="text"
+                />
+                <button className="btn btn-dark mt-5 " type="submit">
+                  Register
+                </button>
+              </Form>
+            </div>
+          )}
+        />
       </div>
     </>
   );
