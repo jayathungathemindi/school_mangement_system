@@ -13,6 +13,7 @@ import { AddStudent } from "./Components/AddStudent/AddStudent";
 import Navbar from "./Components/Nav/Navbar";
 import Logout from "./Components/Logout/Logout";
 import Test from "./Components/Test/Test";
+import StudentList from "./Components/StudentList/StudentList";
 
 const App = () => {
   return (
@@ -24,6 +25,8 @@ const App = () => {
         <Route path="/logout" element={<Logout />}></Route>
         <Route path="/addTeacher" element={<AddTeacher />}></Route>
         <Route path="/addStudent" element={<AddStudent />}></Route>
+        <Route path="/studentList" element={<StudentList />}></Route>
+
         <Route path="/SignIn" element={<SignIn />}></Route>
         <Route path="/admin" element={<AdminDashboard />}></Route>
         <Route path="/teacher" element={<TeacherDashboard />}></Route>

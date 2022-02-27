@@ -33,6 +33,13 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
+  title: "Student-List",
+    path: "/studentList",
+    role: "Admin",
+    icon: <AiIcons.AiFillHome />,
+    cName: "nav-text",
+  },
+  {
     title: "Quiz-Maker",
     path: "/messages",
     role: "Teacher",
