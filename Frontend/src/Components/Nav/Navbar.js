@@ -7,6 +7,7 @@ import "./Navbar.css";
 import { IconContext } from "react-icons";
 import axios from "axios";
 
+
 function Navbar() {
   const [isLog, SetLog] = useState("false");
   const [User, SetUser] = useState({
@@ -83,7 +84,7 @@ function Navbar() {
             <div className="navbar">
               <Link to="/">
                 {" "}
-                <AiIcons.AiFillHome className="home-icon"></AiIcons.AiFillHome>
+                <AiIcons.AiFillHome icon-2x className="home-icon"></AiIcons.AiFillHome>
               </Link>
 
               <Link to="/SignIn" className="menu-bars">

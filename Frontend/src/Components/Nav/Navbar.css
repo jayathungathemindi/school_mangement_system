@@ -100,6 +100,21 @@ span {
   
 }
 
+.nav-item1{
+  display: inline-block;
+  padding: 15px 25px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #060b26;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
 .nav-item2{
   display: inline-block;
   padding: 15px 25px;
@@ -113,4 +128,9 @@ span {
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;
+}
+
+.home-icon{
+  width: 1500;
+  height: 1000;
 }

@@ -33,6 +33,13 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
+    title: "Teacher-List",
+    path: "/teacherList",
+    role: "Admin",
+    icon: <IoIcons.IoMdPeople />,
+    cName: "nav-text",
+  },
+  {
   title: "Student-List",
     path: "/studentList",
     role: "Admin",
@@ -66,5 +73,17 @@ export const SidebarData = [
     role: "Student",
     icon: <IoIcons.IoMdHelpCircle />,
     cName: "nav-text",
+
+    
+  },
+
+  {
+    title: "Add-Feedback",
+    path: "/support",
+    role: "Student",
+    icon: <IoIcons.IoMdHelpCircle />,
+    cName: "nav-text",
+
+    
   },
 ];

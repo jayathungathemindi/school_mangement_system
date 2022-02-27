@@ -4,6 +4,7 @@ import Home from "./Components/Home/Home";
 import SignIn from "./Components/SignIn/SignIn";
 import { SignUp } from "./Components/SignUp/SignUp.js";
 import { EditProfile } from "./Components/EditProfile/EditProfile";
+
 import "./App.css";
 import AdminDashboard from "./Components/DashBoard/AdminDashboard/AdminDashboard";
 import TeacherDashboard from "./Components/DashBoard/TeacherDashboard/TeacherDashboard";
@@ -13,6 +14,8 @@ import { AddStudent } from "./Components/AddStudent/AddStudent";
 import Navbar from "./Components/Nav/Navbar";
 import Logout from "./Components/Logout/Logout";
 import StudentList from "./Components/StudentList/StudentList";
+import StudentListGrade from "./Components/StudentListGrade/StudentListGrade";
+import TeacherList from "./Components/TeacherList/TeacherList";
 
 const App = () => {
   return (
@@ -25,12 +28,15 @@ const App = () => {
         <Route path="/addTeacher" element={<AddTeacher />}></Route>
         <Route path="/addStudent" element={<AddStudent />}></Route>
         <Route path="/studentList" element={<StudentList/>}></Route>
+        <Route path="/studentList/grade" element={<StudentListGrade/>}></Route>
        
      <Route path="/SignIn" element={<SignIn />}></Route>
         <Route path="/admin" element={<AdminDashboard />}></Route>
         <Route path="/teacher" element={<TeacherDashboard />}></Route>
         <Route path="/student" element={<StudentDashboard />}></Route>
         <Route path="/editProfile/:id" element={<EditProfile />}></Route>
+        <Route path="/teacherList" element={<TeacherList/>}></Route>
+        
       </Routes>
     </div>
   );

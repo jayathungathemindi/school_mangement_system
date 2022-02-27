@@ -38,7 +38,7 @@ const SignIn = (props) => {
       {" "}
 <div className="sub-main">
       <img src="/image/signup.png" alt=""  />
-      <div className="container">
+      <div className="containerr">
       
         <div className={styles.login_container}>
           <div className={styles.login_form_container}>
