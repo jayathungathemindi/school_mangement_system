@@ -78,7 +78,7 @@ export const AddStudent = () => {
                 <TextField label="First Name" name="firstName" type="text" />
                 <TextField label="last Name" name="lastName" type="text" />
                 <TextField label="Email" name="email" type="email" />
-                <TextField label="Register No" name="registerNo" type="text" />
+                <TextField label="User Name" name="userName" type="text" />
                 <TextField label="Address" name="address" type="text" />
                 <TextField label="password" name="password" type="password" />
                 <TextField

@@ -17,7 +17,7 @@ module.exports = {
       password: req.body.password,
       role: "Student",
       date: req.body.date,
-      registerNo: req.body.registerNo,
+      userName: req.body.userName,
       address: req.body.address,
       gender: req.body.gender,
     });
@@ -84,8 +84,7 @@ module.exports = {
       password: req.body.password,
       role: "Teacher",
       date: req.body.date,
-      date: req.body.date,
-      registerNo: req.body.registerNo,
+      userName: req.body.userName,
       address: req.body.address,
       gender: req.body.gender,
     });
@@ -160,6 +159,9 @@ module.exports = {
       password: req.body.password,
       role: "Admin",
       date: req.body.date,
+      userName: req.body.userName,
+      address: req.body.address,
+      gender: req.body.gender,
     });
 
     User.find({ email: req.body.email })
@@ -211,7 +213,7 @@ module.exports = {
       });
   },
   login: async (req, res) => {
-    User.findOne({ email: req.body.email })
+    User.findOne({ userName: req.body.userName })
       .exec()
       .then((user) => {
         if (user.length < 1) {
@@ -227,10 +229,10 @@ module.exports = {
             const token = jwt.sign(
               {
                 firstName: user.firstName,
-                lastName: user.lastName,
                 role: user.role,
                 email: user.email,
                 userId: user._id,
+                userName: user.userName,
               },
               process.env.SECRET_KEY,
               {

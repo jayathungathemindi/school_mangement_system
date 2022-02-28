@@ -91,7 +91,7 @@ export const EditProfile = () => {
             <div>
               <h1 className="my-4 font-weight-bold .display-4">Edit Profile</h1>
               <Form>
-                <TextField
+                {/* <TextField
                   label="First Name"
                   name="firstName"
                   type="text"
@@ -103,7 +103,7 @@ export const EditProfile = () => {
                   name="lastName"
                   type="text"
                   placeholder={User.lastName}
-                />
+                /> */}
                 <TextField
                   label="Email"
                   name="email"
