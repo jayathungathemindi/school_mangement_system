@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
 const StudentSchema = new mongoose.Schema({
+  u_id: { type: String },
   grade: { type: String },
   NameOfTrustee: { type: String },
-  Nic_Trust: { typeof: String },
+  NIC_TRUST: { type: String },
   TP: { type: Number },
 });
 

@@ -13,7 +13,7 @@ const Loginsaga = {
 
     try {
       const { data, status } = yield call(getUserDetails, params);
-
+      console.log(status);
       if (status === 200) {
         localStorage.setItem("id", data.user._id);
         localStorage.setItem("login", true);
@@ -35,16 +35,10 @@ const Loginsaga = {
         }
       }
     } catch (error) {
-      window.location = "/";
-      alert("Sign In Faild");
+      alert("Sign In Faild - Enter correct UserName and Password");
       yield put(Login.fail(error));
     }
   },
 };
 
-// function* watcherUserSaga() {
-//   yield takeEvery(ActionTypes.LOGIN, Loginsaga.getloginDetails);
-// }
-
-// export default watcherUserSaga;
 export default [takeLatest(ActionTypes.LOGIN, Loginsaga.getloginDetails)];

@@ -8,7 +8,6 @@ process.env.SECRET_KEY = "secret";
 
 module.exports = {
   addStudent: async (req, res) => {
-    console.log(req.body);
     var userData = new User({
       _id: new mongoose.Types.ObjectId(),
       firstName: req.body.firstName,
@@ -22,7 +21,7 @@ module.exports = {
       gender: req.body.gender,
     });
 
-    User.find({ email: req.body.email })
+    User.find({ userName: req.body.userName })
       .exec()
       .then((user) => {
         if (user.length >= 1) {
@@ -36,12 +35,14 @@ module.exports = {
           userData.save((err, doc) => {
             if (!err) {
               var student = new Student({
-                _id: userData._id,
+                _id: new mongoose.Types.ObjectId(),
+                u_id: userData._id,
                 grade: req.body.grade,
                 NameOfTrustee: req.body.trust,
-                Nic_Trust: req.body.nic,
+                NIC_TRUST: req.body.nic,
                 TP: req.body.telephone,
               });
+
               student.save((err, doc) => {
                 if (!err) {
                   // res.json({
@@ -75,7 +76,6 @@ module.exports = {
       });
   },
   addTeacher: async (req, res) => {
-    console.log(req.body);
     var userData = new User({
       _id: new mongoose.Types.ObjectId(),
       firstName: req.body.firstName,
@@ -89,7 +89,7 @@ module.exports = {
       gender: req.body.gender,
     });
 
-    User.find({ email: req.body.email })
+    User.find({ userName: req.body.userName })
       .exec()
       .then((user) => {
         if (user.length >= 1) {
@@ -112,8 +112,9 @@ module.exports = {
                 console.log(myArray);
               }
               var teacher = new Teacher({
-                _id: userData._id,
-                Nic: req.body.nic,
+                _id: new mongoose.Types.ObjectId(),
+                u_id: userData._id,
+                NIC: req.body.nic,
                 grades: myArray,
               });
               teacher.save((err, doc) => {
@@ -251,6 +252,12 @@ module.exports = {
             });
           }
         });
+      })
+      .catch(() => {
+        return res.status(403).json({
+          success: false,
+          message: "*** Sign in failed-Enter valid User Name ***",
+        });
       });
   },
 
@@ -259,8 +266,6 @@ module.exports = {
       User.findOne({ _id: req.params.userId })
         .exec()
         .then((user) => {
-          console.log(user);
-
           switch (user.role) {
             case "Admin": {
               return res.status(200).json({
@@ -301,7 +306,7 @@ module.exports = {
           }
         });
     } catch (error) {
-      res.json({
+      return res.json({
         success: false,
         message: "*** Error occurd can not find a user  ***",
       });
@@ -383,7 +388,6 @@ module.exports = {
       User.findOne({ role: req.params.role })
         .exec()
         .then((user) => {
-          console.log(user);
           return res.status(200).json({
             message: "User find",
             user: user,
