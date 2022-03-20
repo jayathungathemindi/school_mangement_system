@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
+import axios from "axios";
+import "../../App.css";
+import { useParams } from "react-router-dom";
 
 function StudentListGrade() {
   const { grade } = useParams();
