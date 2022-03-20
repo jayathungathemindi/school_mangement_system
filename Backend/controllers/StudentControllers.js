@@ -22,7 +22,7 @@ module.exports = {
               console.log(students);
               return res.json({
                 success: true,
-                users: user,
+                users: users,
                 students: students,
               });
             });

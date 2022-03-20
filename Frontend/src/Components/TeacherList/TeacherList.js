@@ -4,7 +4,7 @@ import axios from "axios";
 import "./TeacherList.css";
 function TeacherList() {
   const [User, SetUser] = useState([]);
-  const [Teacher, SetTeacher] = useState([]);
+
   useEffect(() => {
     axios.get(`http://localhost:3000/user/getTeacher`).then((res) => {
       console.log(res.data);

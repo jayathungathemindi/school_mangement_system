@@ -6,68 +6,51 @@ import { useParams } from "react-router-dom";
 
 function StudentListGrade() {
   const { grade } = useParams();
-  const [User, SetUser] = useState([
-    {
-      firstName: "",
-      lastName: "",
-      email: "",
-      address: "",
-      gender: "",
-    },
-  ]);
+  const [User, SetUser] = useState([]);
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000//user/getByGrade/${grade}}`)
-      .then((res) => {
-        console.log(res);
+    axios.get(`http://localhost:3000/user/getByGrade/${grade}}`).then((res) => {
+      const users = res.data.users;
+      const students = res.data.students;
+      users.map((user) => {
+        students.map((student) => {
+          if (student.u_id == user._id) {
+            SetUser((User) => [...User, { user: user, student: student }]);
+          }
+        });
       });
+    });
   }, []);
-
+  console.log(User);
   return (
     <div className="contrains">
       <Table striped bordered hover variant="dark">
         <thead>
           <tr>
-            <th>Register-ID</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Birthday</th>
-            <th>Gender</th>
-
             <th>Address</th>
+            <th>Gender</th>
             <th>Grade</th>
             <th>Name of Trustee</th>
-            <th>NIC</th>
-            <th>phone-number</th>
+            <th> Trust phone-number</th>
           </tr>
+
+          {User.map((studentData) => {
+            return (
+              <tr>
+                <td>{studentData.user.firstName}</td>
+                <td>{studentData.user.lastName}</td>
+                <td>{studentData.user.email}</td>
+
+                <td>{studentData.user.address}</td>
+                <td>{studentData.user.gender}</td>
+                <td>{studentData.student.NameOfTrustee}</td>
+                <td>{studentData.student.TP}</td>
+              </tr>
+            );
+          })}
         </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td colSpan={2}>Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
-        </tbody>
+        <tbody></tbody>
       </Table>
     </div>
   );
