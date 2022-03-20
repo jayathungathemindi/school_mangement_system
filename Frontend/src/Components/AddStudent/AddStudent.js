@@ -13,7 +13,7 @@ import axios from "axios";
 import "../../App.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./AddStudent.css"
+import "./AddStudent.css";
 const DatePickerField = ({ ...props }) => {
   const { setFieldValue } = useFormikContext();
   const [field] = useField(props);
@@ -48,13 +48,12 @@ export const AddStudent = () => {
 
   return (
     <>
-      
       <img
-          src="/image/20220302_133836.jpg"
-          alt=""
-          width="1515px"
-          height="1150px"
-        />
+        src="/image/20220302_133836.jpg"
+        alt=""
+        width="1515px"
+        height="1150px"
+      />
       <div className="blok">
         <Formik
           initialValues={{
@@ -93,12 +92,13 @@ export const AddStudent = () => {
                   name="confirmPassword"
                   type="password"
                 />
-                <label >Birthday</label>
+                <label>Birthday</label>
                 <DatePickerField name="date" />
                 {/* <br></br> */}
                 <label className="mt-2">Grade</label>
                 {/* <br></br> */}
                 <Field as="select" name="grade" className="grade">
+                  <option value=""></option>
                   <option value="6">6</option>
                   <option value="7">7</option>
                   <option value="8">8</option>
@@ -110,29 +110,31 @@ export const AddStudent = () => {
                 <label className="mt-2"> Gender</label>
 
                 <Field as="select" name="gender" className="gender">
+                  <option value=""></option>
                   <option value="Female">Female</option>
                   <option value="Male">Male</option>
                 </Field>
-               <div className="mt-2">
-               <TextField label="Name of Trust" name="trust" type="text"  />
-               </div>
-                
+                <div className="mt-2">
+                  <TextField label="Name of Trust" name="trust" type="text" />
+                </div>
+
                 <TextField label="Trust NIC" name="nic" type="text" />
                 <TextField
                   label="Trust Telephone"
                   name="telephone"
                   type="text"
                 />
-                <div className="regiButton"> <button className="btn btn-dark  center mt-5 " type="submit">
-                  Register
-                </button></div>
-               
+                <div className="regiButton">
+                  {" "}
+                  <button className="btn btn-dark  center mt-5 " type="submit">
+                    Register
+                  </button>
+                </div>
               </Form>
             </div>
           )}
         />
-        </div>
-       
+      </div>
     </>
   );
 };

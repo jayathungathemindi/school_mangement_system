@@ -56,86 +56,90 @@ class Fileupload extends React.Component {
 }    
 export default Fileupload    */
 
+import React, { useState } from "react";
 
-import React, { useState } from 'react';
+import axios from "axios";
 
-import axios from 'axios';
+function FileUpload() {
+  const [data, setdata] = useState({
+    grade: "",
+    filename: "",
+    file: "",
+  });
 
+  function submit(e) {
+    e.preventDefault();
+    console.log("hello");
 
-function FileUpload (){
+    const formData = new FormData();
 
-    const [data, setdata] = useState({
-            
-        name: "",
-        grade:"",
-        filename:"",
-        file:""
-    })  
+    formData.append("grade", data.grade);
+    formData.append("filename", data.filename);
+    formData.append("document", data.file);
+    formData.append("tid", localStorage.getItem("id"));
 
-    function submit(e){
-e.preventDefault();
-console.log("hello")
+    axios
+      .post("http://localhost:3000/add/document", formData)
 
+      .then((res) => {
+        console.log(res.data);
+      });
+  }
+  const onChangeFile = (e) => {
+    console.log(e.target.files[0]);
+    setdata({ ...data, file: e.target.files[0] });
+  };
+  function handle(e) {
+    const newdata = { ...data };
+    newdata[e.target.id] = e.target.value;
+    setdata(newdata);
+    console.log(newdata);
+  }
 
-const formData=new FormData();
-formData.append("name",data.name)
-formData.append("grade",data.grade)
-formData.append("filename",data.filename)
-formData.append("document",data.file)
-
-axios.post("http://localhost:3000/add/document",formData
-)
-
-.then(res=>{
-    console.log(res.data)
-})
-    }
-    const onChangeFile = (e) => {
-        console.log(e.target.files[0])
-         setdata({...data,file:e.target.files[0]});
-      };
-    function handle(e){
-
-        const newdata={...data}
-        newdata[e.target.id] = e.target.value
-        setdata(newdata)
-        console.log(newdata)
-
-
-    }
-
-return (
+  return (
     <div>
-        <from >
-            <input  onChange={(e) =>handle(e)}  id="name" value={data.name} type="name" placeholder='File Name'></input>
-            
-            <div> <label for="filename" > File Name</label>
-            <input  onChange={(e) =>handle(e)}   id="filename" value={data.filename} type="text" placeholder='FileName' name="Filename" required></input></div>
-            <div>
-                <input
-              type="file"
-              placeholder="Upload Document"
-              filename="file"
-              onChange={onChangeFile}
-             
-            />
-            </div>
-            <div>
-
-<label for="filename" >Grade</label><p></p>
- <select  onChange={(e) =>handle(e)}  id="grade" value={data.grade} type="grade">
-    <option value="6">6</option>
-    <option value="6">7</option>
-    <option value="6">8</option>
-    <option value="6">9</option>
-    <option value="6">10</option>
-  </select>
-</div>
-        <button onClick={(e)=> submit(e)} >submit</button>
-        </from>
+      <from>
+        <div>
+          {" "}
+          <label for="filename"> File Name</label>
+          <input
+            onChange={(e) => handle(e)}
+            id="filename"
+            value={data.filename}
+            type="text"
+            placeholder="FileName"
+            name="Filename"
+            required
+          ></input>
+        </div>
+        <div>
+          <input
+            type="file"
+            placeholder="Upload Document"
+            filename="file"
+            onChange={onChangeFile}
+          />
+        </div>
+        <div>
+          <label for="filename">Grade</label>
+          <p></p>
+          <select
+            onChange={(e) => handle(e)}
+            id="grade"
+            value={data.grade}
+            type="grade"
+          >
+            <option value="">Select</option>
+            <option value="6">6</option>
+            <option value="6">7</option>
+            <option value="6">8</option>
+            <option value="6">9</option>
+            <option value="6">10</option>
+          </select>
+        </div>
+        <button onClick={(e) => submit(e)}>submit</button>
+      </from>
     </div>
-);
-
-
+  );
 }
- export default FileUpload;
+export default FileUpload;
