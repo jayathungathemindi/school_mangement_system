@@ -5,8 +5,9 @@ const mongoose = require("mongoose");
 module.exports = {
   getByGrade: async (req, res) => {
     try {
+      console.log(req.params);
       const dataArr = new Array();
-      Student.find({ grade: req.body.grade }) //studenttable.find({grade:req.body.grade}).exec().then((students)=>{console.log(students)})//=--->for()-->one by one run student-->user table ekatag ghn -->user id parameter-->
+      Student.find({ grade: req.params.grade }) //studenttable.find({grade:req.body.grade}).exec().then((students)=>{console.log(students)})//=--->for()-->one by one run student-->user table ekatag ghn -->user id parameter-->
         .exec()
         .then((students) => {
           console.log(students);

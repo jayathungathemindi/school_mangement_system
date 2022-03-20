@@ -8,7 +8,7 @@ function StudentListGrade() {
   const { grade } = useParams();
   const [User, SetUser] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:3000/user/getByGrade/${grade}}`).then((res) => {
+    axios.get(`http://localhost:3000/user/getByGrade/${grade}`).then((res) => {
       const users = res.data.users;
       const students = res.data.students;
       users.map((user) => {
