@@ -18,11 +18,12 @@ module.exports = {
 
           User.find({ _id: { $in: dataArr } })
             .exec()
-            .then((teachers) => {
-              console.log(teachers);
+            .then((users) => {
+              console.log(users);
               return res.json({
                 success: true,
                 teachers: teachers,
+                users: users,
               });
             });
         });

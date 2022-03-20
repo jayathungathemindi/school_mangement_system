@@ -13,7 +13,7 @@ import axios from "axios";
 import "../../App.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./AddTeacher.css"
+import "./AddTeacher.css";
 const DatePickerField = ({ ...props }) => {
   const { setFieldValue } = useFormikContext();
   const [field] = useField(props);
@@ -48,16 +48,13 @@ export const AddTeacher = () => {
 
   return (
     <>
-
-   
-     <img
-          src="/image/20220302_133836.jpg"
-          alt=""
-          width="1515px"
-          height="1100px"
-        />
+      <img
+        src="/image/20220302_133836.jpg"
+        alt=""
+        width="1515px"
+        height="1100px"
+      />
       <div className="blok">
-     
         <Formik
           initialValues={{
             firstName: "",
@@ -84,10 +81,12 @@ export const AddTeacher = () => {
           render={({ values }) => (
             <div>
               <h1 className="my-4 font-weight-bold .display-4">Add Teacher</h1>
-              <Form  >
+              <Form>
                 <TextField label="First Name" name="firstName" type="text" />
                 <TextField label="Last Name" name="lastName" type="text" />
-               <div className="t"><TextField label="Email" name="email" type="email" /></div> 
+                <div className="t">
+                  <TextField label="Email" name="email" type="email" />
+                </div>
                 <TextField label="User Name" name="userName" type="text" />
                 <TextField label="Address" name="address" type="text" />
                 <TextField label="NIC" name="nic" type="text" />
@@ -137,27 +136,21 @@ export const AddTeacher = () => {
                 <label> Gender</label>
 
                 <Field as="select" name="gender" className="gender">
+                  <option value=""></option>
                   <option value="Female">Female</option>
                   <option value="Male">Male</option>
                 </Field>
                 <br></br>
                 <div className="regiButton">
-                <button className="btn btn-dark mt-5 " type="submit">
-                  Register
-                </button>
+                  <button className="btn btn-dark mt-5 " type="submit">
+                    Register
+                  </button>
                 </div>
-                
               </Form>
             </div>
           )}
-
         />
-       
-      
       </div>
-       
-    
-     
     </>
   );
 };
