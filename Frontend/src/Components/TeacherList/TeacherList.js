@@ -1,53 +1,29 @@
-import React from 'react'
-import Table from 'react-bootstrap/Table';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-function TeacherList() {
-  return (
-    <div className='contrains'>
-      <Table striped bordered hover variant="dark">
-  <thead>
-    <tr>
-     
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Birthday</th>
-      <th>Gender</th>
-      <th>Address</th>
-      <th>Grade</th>
-      <th>NIC</th>
-      <th>phone-number</th>
 
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>Mark</td>
-     
-    </tr>
-    <tr>
-    <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-      <td>Mark</td>
-      
+export const TeacherList =()=>{
+const [User, SetUser] = useState({
+  firstName: "",
+  lastName: "",
+  email: "",
+  
+});
+
+
+
+useEffect(() => {
+  axios.get(`http://localhost:3000/user/getByTeacher`).then((res) => {
+    const user = res.data.user;
+
+    SetUser({
+      ...User,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
     
-    </tr>
-   
-  </tbody>
-</Table>
-    </div>
-  )
-}
+    });
+  });
+}, []);
 
-export default TeacherList
+}
