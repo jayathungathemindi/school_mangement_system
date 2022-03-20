@@ -3,21 +3,14 @@ import Table from "react-bootstrap/Table";
 import axios from "axios";
 
 function TeacherList() {
-  const [User, SetUser] = useState([{
-    firstName: "",
-    lastName: "",
-    email: "",
-    address:"",
-    gender:""
-    
-  }]);
+  const [User, SetUser] = useState([]);
   useEffect(() => {
     axios.get(`http://localhost:3000/user/getTeacher`).then((res) => {
-      console.log(res)
+    
        const teachers = res.data.teachers;
 teachers.map((teacher)=>{
 
-SetUser({...User,firstName:teacher.firstName,lastName:teacher.lastName})
+SetUser((User)=>[...User,teacher])
 
 })
       // SetUser({
@@ -46,26 +39,21 @@ SetUser({...User,firstName:teacher.firstName,lastName:teacher.lastName})
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-          </tr>
+         
+         {User.map((teacher)=>{
+           return(
+
+           <tr>
+<td>{teacher.firstName}</td>
+<td>{teacher.lastName}</td>
+<td>{teacher.email}</td>
+
+<td>{teacher.address}</td>
+<td>{teacher.gender}</td>
+
+           </tr>
+           )
+         })}
         </tbody>
       </Table>
     </div>
