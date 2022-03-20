@@ -28,10 +28,12 @@ function StudentListGrade() {
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
+            <th>Email</th>
             <th>Address</th>
             <th>Gender</th>
-            <th>Grade</th>
+
             <th>Name of Trustee</th>
+            <th>NIC of Trustee</th>
             <th> Trust phone-number</th>
           </tr>
 
@@ -44,7 +46,9 @@ function StudentListGrade() {
 
                 <td>{studentData.user.address}</td>
                 <td>{studentData.user.gender}</td>
+
                 <td>{studentData.student.NameOfTrustee}</td>
+                <td>{studentData.student.NIC_TRUST}</td>
                 <td>{studentData.student.TP}</td>
               </tr>
             );
