@@ -1,3 +1,30 @@
-.error {
-  color: crimson;
+
+
+.gender{
+
+  margin-left: 22px;
+}
+.regiButton{
+
+  /* margin-left: 100px; */
+  text-align: center;
+}
+/* .img{
+  position: relative;
+  text-align: center;
+  color: white;
+} */
+.blok{
+
+
+
+  position: absolute;
+  top:100px;
+  left: 600px;
+  bottom: 20px;
+  right: 200px;
+
+
+  padding-left: 20px;
+  padding-right: 20px;
 }

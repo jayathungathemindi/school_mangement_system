@@ -30,7 +30,8 @@ const Home = () => {
         
  
 
-        <img
+        <img className="img-fluid
+"
           src="/image/book.jpg"
           alt=""
           width="1515px"

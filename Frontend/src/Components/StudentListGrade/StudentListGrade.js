@@ -31,8 +31,7 @@ function StudentListGrade() {
       <td>Otto</td>
       <td>@mdo</td>
       <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+     
     </tr>
     <tr>
     <td>1</td>
@@ -43,8 +42,7 @@ function StudentListGrade() {
       <td>Otto</td>
       <td>@mdo</td>
       <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+     
     </tr>
     <tr>
       <td>3</td>

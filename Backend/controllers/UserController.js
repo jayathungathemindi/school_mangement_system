@@ -263,7 +263,7 @@ module.exports = {
 
   getById: async (req, res) => {
     try {
-      User.findOne({ _id: req.params.userId })
+      User.findOne({ _id: req.params.userId })//${}
         .exec()
         .then((user) => {
           switch (user.role) {
@@ -274,7 +274,7 @@ module.exports = {
               });
             }
             case "Student": {
-              Student.findOne({ _id: user._id })
+              Student.findOne({u_id: user._id })
                 .exec()
                 .then((student) => {
                   console.log(student);
@@ -288,7 +288,7 @@ module.exports = {
             }
 
             case "Teacher": {
-              Teacher.findOne({ _id: user._id })
+              Teacher.findOne({ u_id: user._id })
                 .exec()
                 .then((teacher) => {
                   console.log(teacher);
@@ -312,6 +312,8 @@ module.exports = {
       });
     }
   },
+
+  
   editProfile: async (req, res) => {
     try {
       User.findOne({ _id: req.params.userId })

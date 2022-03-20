@@ -55,7 +55,7 @@ export const SidebarData = [
   },
   {
     title: "Add-file",
-    path: "/support",
+    path: "/fileUpload",
     role: "Teacher",
     icon: <IoIcons.IoMdHelpCircle />,
     cName: "nav-text",

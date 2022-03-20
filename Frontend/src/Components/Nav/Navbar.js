@@ -23,7 +23,14 @@ function Navbar() {
         console.log(user);
         SetUser({ ...User, role: user.role, id: user._id });
       });
-    SetLog({ ...isLog, login: localStorage.getItem("login") });
+
+      if(localStorage.getItem("id")==null){
+        SetLog({ ...isLog, login:"false" });
+      }else{
+        SetLog({ ...isLog, login: localStorage.getItem("login") });
+      }
+
+   
   }, []);
 
   const [sidebar, setSidebar] = useState(false);

@@ -13,7 +13,7 @@ import axios from "axios";
 import "../../App.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import "./AddStudent.css"
 const DatePickerField = ({ ...props }) => {
   const { setFieldValue } = useFormikContext();
   const [field] = useField(props);
@@ -48,7 +48,14 @@ export const AddStudent = () => {
 
   return (
     <>
-      <div className="container">
+      
+      <img
+          src="/image/20220302_133836.jpg"
+          alt=""
+          width="1515px"
+          height="1150px"
+        />
+      <div className="blok">
         <Formik
           initialValues={{
             firstName: "",
@@ -74,7 +81,7 @@ export const AddStudent = () => {
           render={({ values }) => (
             <div>
               <h1 className="my-4 font-weight-bold .display-4">Add Student</h1>
-              <Form>
+              <Form className="form-inline">
                 <TextField label="First Name" name="firstName" type="text" />
                 <TextField label="last Name" name="lastName" type="text" />
                 <TextField label="Email" name="email" type="email" />
@@ -86,12 +93,12 @@ export const AddStudent = () => {
                   name="confirmPassword"
                   type="password"
                 />
-                <label htmlFor="birthday">Birthday</label>
+                <label >Birthday</label>
                 <DatePickerField name="date" />
-                <br></br>
-                <label>Grade</label>
-                <br></br>
-                <Field as="select" name="grade">
+                {/* <br></br> */}
+                <label className="mt-2">Grade</label>
+                {/* <br></br> */}
+                <Field as="select" name="grade" className="grade">
                   <option value="6">6</option>
                   <option value="7">7</option>
                   <option value="8">8</option>
@@ -100,29 +107,32 @@ export const AddStudent = () => {
                   <option value="11">11</option>
                 </Field>
                 <br></br>
-                <label> Gender</label>
+                <label className="mt-2"> Gender</label>
 
-                <Field as="select" name="gender">
+                <Field as="select" name="gender" className="gender">
                   <option value="Female">Female</option>
                   <option value="Male">Male</option>
                 </Field>
-                <br></br>
-                <br></br>
-                <TextField label="Name of Trust" name="trust" type="text" />
+               <div className="mt-2">
+               <TextField label="Name of Trust" name="trust" type="text"  />
+               </div>
+                
                 <TextField label="Trust NIC" name="nic" type="text" />
                 <TextField
                   label="Trust Telephone"
                   name="telephone"
                   type="text"
                 />
-                <button className="btn btn-dark mt-5 " type="submit">
+                <div className="regiButton"> <button className="btn btn-dark  center mt-5 " type="submit">
                   Register
-                </button>
+                </button></div>
+               
               </Form>
             </div>
           )}
         />
-      </div>
+        </div>
+       
     </>
   );
 };
