@@ -9,7 +9,7 @@ import {
   MDBCol,
   MDBBtn,
 } from "mdb-react-ui-kit";
-
+import { Link } from "react-router-dom";
 export default function App() {
   return (
     <div className="container">
@@ -23,7 +23,9 @@ export default function App() {
               height="100px"
             />
             <MDBCardBody>
-              <MDBBtn href="#">Go</MDBBtn>
+              <Link to={`/studentList/${6}`}>
+                <button className=" ">Go</button>
+              </Link>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
@@ -31,7 +33,9 @@ export default function App() {
           <MDBCard className="w-400  card_Size">
             <img src="/image/7th.png" alt="" width="100px" height="100px" />
             <MDBCardBody>
-              <MDBBtn href="#">Go</MDBBtn>
+              <Link to={`/studentList/${7}`}>
+                <button className=" ">Go</button>
+              </Link>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
@@ -39,7 +43,9 @@ export default function App() {
           <MDBCard className="w-400 card_Size">
             <img src="/image/8th.png" alt="" width="100x" height="100px" />
             <MDBCardBody>
-              <MDBBtn href="#">Go </MDBBtn>
+              <Link to={`/studentList/${8}`}>
+                <button className=" ">Go</button>
+              </Link>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
@@ -47,7 +53,9 @@ export default function App() {
           <MDBCard className="w-400  card_Size">
             <img src="/image/9th.png" alt="" width="100px" height="100px" />
             <MDBCardBody>
-              <MDBBtn href="#">Go</MDBBtn>
+              <Link to={`/studentList/${9}`}>
+                <button className=" ">Go</button>
+              </Link>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
@@ -60,16 +68,18 @@ export default function App() {
               height="100px"
             />
             <MDBCardBody>
-              <MDBBtn href="#">Go</MDBBtn>
+              <Link to={`/studentList/${10}`}>
+                <button className=" ">Go</button>
+              </Link>
             </MDBCardBody>
           </MDBCard>
         </MDBCol>
         <MDBCol>
           <MDBCard className="w-400  card_Size">
             <img src="/image/plus.png" alt="" width="100px" height="100px" />
-            <MDBCardBody>
+            {/* <MDBCardBody>
               <MDBBtn href="#">Go</MDBBtn>
-            </MDBCardBody>
+            </MDBCardBody> */}
           </MDBCard>
         </MDBCol>
       </MDBRow>
