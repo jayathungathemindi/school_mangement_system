@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const DocumentSchema =new mongoose.Schema({
 tid:{type:String},
-grade:{type:String|Number},
+grade:{type:String},
 documentName:{type:String},
 documentPath: { type: String, required: true },
  

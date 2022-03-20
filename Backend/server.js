@@ -37,7 +37,7 @@ var app = express();
 //Cors Middleware
 app.use(cors());
 
-app.use('/add/documet', express.static(path.join('documents')));
+app.use('/add/document', express.static(path.join('documents')));
 //Body-Parser Middleware
 app.use(express.json());
 app.use(

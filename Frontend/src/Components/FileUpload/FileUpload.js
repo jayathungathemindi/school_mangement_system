@@ -69,12 +69,21 @@ function FileUpload (){
         name: "",
         grade:"",
         filename:"",
-        file:{}
+        file:""
     })  
 
     function submit(e){
 e.preventDefault();
-axios.post("http://localhost:3000/add/document",data
+console.log("hello")
+
+
+const formData=new FormData();
+formData.append("name",data.name)
+formData.append("grade",data.grade)
+formData.append("filename",data.filename)
+formData.append("document",data.file)
+
+axios.post("http://localhost:3000/add/document",formData
 )
 
 .then(res=>{
@@ -82,7 +91,8 @@ axios.post("http://localhost:3000/add/document",data
 })
     }
     const onChangeFile = (e) => {
-        setdata(...data,{file:e.target.files});
+        console.log(e.target.files[0])
+         setdata({...data,file:e.target.files[0]});
       };
     function handle(e){
 
@@ -96,7 +106,7 @@ axios.post("http://localhost:3000/add/document",data
 
 return (
     <div>
-        <from onSubmit={(e)=> submit(e)}>
+        <from >
             <input  onChange={(e) =>handle(e)}  id="name" value={data.name} type="name" placeholder='File Name'></input>
             
             <div> <label for="filename" > File Name</label>
@@ -121,7 +131,7 @@ return (
     <option value="6">10</option>
   </select>
 </div>
-        <button>submit</button>
+        <button onClick={(e)=> submit(e)} >submit</button>
         </from>
     </div>
 );
