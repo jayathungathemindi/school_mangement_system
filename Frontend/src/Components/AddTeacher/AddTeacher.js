@@ -90,6 +90,7 @@ export const AddTeacher = () => {
                 <TextField label="User Name" name="userName" type="text" />
                 <TextField label="Address" name="address" type="text" />
                 <TextField label="NIC" name="nic" type="text" />
+                <TextField label="Phone Number" name="tp" type="number" />
                 <TextField label="password" name="password" type="password" />
                 <TextField
                   label="Confirm Password"

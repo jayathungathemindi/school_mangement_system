@@ -55,7 +55,7 @@ function TeacherList() {
                 <td>{teacherData.user.address}</td>
                 <td>{teacherData.user.gender}</td>
                 <td>{teacherData.teacher.NIC}</td>
-                <td>089764346</td>
+                <td>{teacherData.teacher.tp}</td>
 
                 <td>
                   {teacherData.teacher.grades.map((value) => {

@@ -75,6 +75,10 @@ module.exports = {
         });
       });
   },
+
+
+
+  
   addTeacher: async (req, res) => {
     var userData = new User({
       _id: new mongoose.Types.ObjectId(),
@@ -115,6 +119,7 @@ module.exports = {
                 _id: new mongoose.Types.ObjectId(),
                 u_id: userData._id,
                 NIC: req.body.nic,
+                tp:req.body.tp,
                 grades: myArray,
               });
               teacher.save((err, doc) => {
@@ -152,6 +157,7 @@ module.exports = {
       });
   },
   addAdmin: async (req, res) => {
+    console.log(req.body)
     var userData = new User({
       _id: new mongoose.Types.ObjectId(),
       firstName: req.body.firstName,
@@ -176,7 +182,7 @@ module.exports = {
         } else {
           const hash = bcrypt.hashSync(userData.password, 10);
           userData.password = hash;
-
+console.log(userData)
           userData.save((err, doc) => {
             if (!err) {
               res.json({
