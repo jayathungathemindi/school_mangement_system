@@ -3,24 +3,36 @@ import React from "react";
 import "../../../App.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import{useState, useEffect} from "react"
 function AdminDashboard() {
-  // const [User, SetUser] = useState({
-  //   role: "",
-  // });
-  // const { id } = useParams();
+  const[count,setCount]=useState(0)
+  useEffect( ()=>{
 
-  // console.log(id);
-  // useEffect(() => {
-  //   axios.get(`http://localhost:3000/user/getById/${id}`).then((res) => {
-  //     const user = res.data.user;
-  //     SetUser({ ...User, role: user.role });
-  //   });
-  // }, []);
+    axios.get(`http://localhost:3000/user/getStudentCount`).then((res)=>{
+      console.log(res.data.count);
+      setCount(res.data.count)
+    })
+  }
+    
+    
+    
+  )
 
+
+
+  
   return (
     <div>
       <div className="container">
-        <h1>Admin</h1>
+      <div class="card" style={{width: "18rem"}}>
+  <div class="card-header">
+    count
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{count}</li>
+    
+  </ul>
+</div>
       </div>
     </div>
   );

@@ -42,4 +42,37 @@ module.exports = {
       });
     }
   },
+
+
+  getStudentCount : async(req,res ) =>{
+
+    try{
+    
+     Student.count().then((count)=>{  
+      res.json({
+      successs:true,
+     count:count
+  })})
+     
+     
+    
+   
+        
+    }
+
+    catch(error){
+           
+      res.json({
+          successs:false,
+          message:"faile"
+      })
+  }
+  }
+
+
+
+
+
+
+
 };
