@@ -53,11 +53,7 @@ module.exports = {
       successs:true,
      count:count
   })})
-     
-     
-    
-   
-        
+         
     }
 
     catch(error){
@@ -68,11 +64,5 @@ module.exports = {
       })
   }
   }
-
-
-
-
-
-
 
 };

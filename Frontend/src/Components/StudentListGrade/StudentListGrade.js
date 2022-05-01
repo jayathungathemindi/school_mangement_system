@@ -23,7 +23,10 @@ function StudentListGrade() {
   console.log(User);
   return (
     <div className="contrains">
-      <Table striped bordered hover variant="dark">
+      
+      <div className="mainteacherlist">
+        <div className="subteacherlist">
+      <Table striped bordered hover variant="green">
         <thead>
           <tr>
             <th>First Name</th>
@@ -56,6 +59,7 @@ function StudentListGrade() {
         </thead>
         <tbody></tbody>
       </Table>
+    </div></div>
     </div>
   );
 }

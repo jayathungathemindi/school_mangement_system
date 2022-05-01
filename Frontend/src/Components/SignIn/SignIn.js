@@ -35,15 +35,19 @@ const SignIn = (props) => {
     <div className="main">
       {" "}
       <div className="sub-main">
-        <img src="/image/signup.png" alt="" />
+        <img src="/image/josefa-ndiaz-IzmdWT2lW5Q-unsplash.jpg" alt=""   
+          width="1550px"
+          height="750px" />
         <div className="containerr">
           <div className={styles.login_container}>
-            <div className={styles.login_form_container}>
+            <div className="formContent">
               <div className={styles.left}>
+               <div >
+               <form  onSubmit={handleSubmit}>
+                
                
-               
-                <form className={styles.form_container} onSubmit={handleSubmit}>
-                  <h1>Login to Your Account</h1><p></p><p></p>
+                <h3 className="logintext">Login to Your Account</h3> 
+                
                   <div className="form-inner">
                     <div className="form-group">
                       <label htmlFor="email"><h4>User Name</h4></label><p></p>
@@ -60,7 +64,7 @@ const SignIn = (props) => {
                     </div>
                     <div className="form-group">
                      
-                      <label htmlFor="password"><h4>Password</h4></label> <p></p>
+                      <label htmlFor="password"  ><h4 >Password</h4></label> <p></p>
                       <input
                         type="password"
                         placeholder="Password"
@@ -71,12 +75,17 @@ const SignIn = (props) => {
                         className={styles.input}
                       />
                     </div>{" "}
-                  </div> <p></p>
+                  </div> <br/>
+                  
                   {error && <div className={styles.error_msg}>{error}</div>}
-                  <button type="submit" className="btn btn-primary btn-block">
+                  <button type="submit" className="btn btn-primary ">
                     Sing In
                   </button>
+                 
                 </form>
+               </div>
+               
+               
               </div>
             </div>
           </div>

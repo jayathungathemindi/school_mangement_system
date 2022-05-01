@@ -1,111 +1,33 @@
-/*import React from "react";
-import {
-  MDBCard,
-  MDBCardImage,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-  MDBRow,
-  MDBCol,
-  MDBBtn,
-} from "mdb-react-ui-kit";
-import { Link } from "react-router-dom";
-export default function App() {
-  return (
 
-    
-    <div className="container">
-      
-      <MDBRow className="row-cols-1 row-cols-md-4 g-5">
-        <MDBCol>
-        <img
-        src="/image/20220302_133836.jpg"
-        alt=""
-        width="1515px"
-        height="1150px"
-      />
-          <MDBCard className="w-400   ">
-            <img
-              src="/image/6thGrade.png"
-              alt=""
-              width="100px"
-              height="100px"
-            />
-            <MDBCardBody>
-              <Link to={`/studentList/${6}`}>
-                <button className=" ">Go</button>
-              </Link>
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-        <MDBCol>
-          <MDBCard className="w-400  card_Size">
-            
-            <img src="/image/7th.png" alt="" width="100px" height="100px" />
-            <MDBCardBody>
-              <Link to={`/studentList/${7}`}>
-                <button className=" ">Go</button>
-              </Link>
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-        <MDBCol>
-          <MDBCard className="w-400 card_Size">
-            <img src="/image/8th.png" alt="" width="100x" height="100px" />
-            <MDBCardBody>
-              <Link to={`/studentList/${8}`}>
-                <button className=" ">Go</button>
-              </Link>
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-        <MDBCol>
-          <MDBCard className="w-400  card_Size">
-            <img src="/image/9th.png" alt="" width="100px" height="100px" />
-            <MDBCardBody>
-              <Link to={`/studentList/${9}`}>
-                <button className=" ">Go</button>
-              </Link>
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-        <MDBCol>
-          <MDBCard className="w-400  card_Size">
-            <img
-              src="/image/Grade-10-v2.png"
-              alt=""
-              width="100px"
-              height="100px"
-            />
-            <MDBCardBody>
-              <Link to={`/studentList/${10}`}>
-                <button className=" ">Go</button>
-              </Link>
-            </MDBCardBody>
-          </MDBCard>
-        </MDBCol>
-       
-      </MDBRow>
-    </div>
-  );
-}*/
 import CardGroup from 'react-bootstrap/CardGroup';
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import React from "react";
 import { Col, Row, Form } from "react-bootstrap";
-
+import "./StudentList.css";
 export default function App() {
 return (
-	<>
+  <>
+	<div className='contrains'>
 
-<div className='blok'>
-<Row   className="row-cols-2 row-cols-md-3 g-2    ">
+
+ 
+  <img className="scl
+"
+          src="/image/m-monk-E813FON0wDQ-unsplash.jpg"
+          alt=""
+          width="1550px"
+          height="1000px"
+        />
+         <div className="mainstudent">
+        <div className="substudentlist">
+       
+<Row   className="row-cols-3 row-cols-md-3 g-3    ">
   
     <Col >
 <Card style={{
           
-          backgroundColor: "#d5bff9",
+          backgroundColor: "transparent",
         }}>
     
      
@@ -124,7 +46,7 @@ return (
 
   <Card style={{
           
-          backgroundColor: "#d5bff9",
+          backgroundColor: "transparent",
         }}>
      
      
@@ -139,13 +61,16 @@ return (
 
   <br/>
 
+ 
+
+
 <Col>
 
 
 
 <Card style={{
           
-          backgroundColor: "#d5bff9",
+          backgroundColor: "transparent",
         }}>
      
   
@@ -164,7 +89,7 @@ return (
   <Col>
   <Card  style={{
           
-          backgroundColor: "#d5bff9",
+          backgroundColor: "transparent",
         }}>
      
     <Link to={`/studentList/${9}`}>
@@ -174,16 +99,19 @@ return (
 
    
   </Card>
-  </Col>
   
-</Row></div>
+  </Col>
 
-<img className='slist'
-        src="/image/—Pngtree—flowers behind 3d frame on_1162813.png"
-        alt=""
-        width="1520px"
-        height="700px"
-      />
-	</>
+  
+  
+</Row>
+
+
+
+</div>
+
+
+	</div></div>
+  </>
 );
 }

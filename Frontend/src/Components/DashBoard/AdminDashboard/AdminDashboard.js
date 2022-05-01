@@ -1,40 +1,65 @@
 import React from "react";
-
+import "./AdminDashboad.css"
 import "../../../App.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import{useState, useEffect} from "react"
+import{useState, useEffect} from "react";
+
 function AdminDashboard() {
-  const[count,setCount]=useState(0)
+  const[teacherCount,setTeacherCount]=useState(0)
+  const[studentCount,setStudentCount]=useState(0)
   useEffect( ()=>{
 
     axios.get(`http://localhost:3000/user/getStudentCount`).then((res)=>{
       console.log(res.data.count);
-      setCount(res.data.count)
+      setStudentCount(res.data.count)
+    });
+
+   axios.get(`http://localhost:3000/user/getTeacherCount`).then((res)=>{
+      console.log(res.data.count);
+      setTeacherCount(res.data.count)
     })
   }
     
     
     
-  )
+  ,[])
+
+    
+    
+  
 
 
 
   
   return (
-    <div>
+    <>
       <div className="container">
+        <div className="admindashboad">
       <div class="card" style={{width: "18rem"}}>
   <div class="card-header">
-    count
+    Student Count
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">{count}</li>
+    <li class="list-group-item">{studentCount}</li>
+    
+  </ul>
+</div>
+
+<div class="card" style={{width: "18rem"}}>
+  <div class="card-header">
+    Teacher Count
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{teacherCount}</li>
     
   </ul>
 </div>
       </div>
-    </div>
+      </div>
+    </>
+
+
   );
 }
 

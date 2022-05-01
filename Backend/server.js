@@ -23,18 +23,6 @@ mongoose.connect(
 module.exports = mongoose;
 var app = express();
 
-//Database Connect
-//mongoose.connect(config.database);
-// On connection
-// mongoose.connection.on('connected', () => {
-//     console.log('Connected to database '+ config.database);
-// });
-// // On error
-// mongoose.connection.on('error', (err) => {
-//     console.log('database error '+ err);
-// });
-
-//Cors Middleware
 app.use(cors());
 
 app.use('/add/document', express.static(path.join('documents')));
@@ -70,9 +58,3 @@ app.listen(port, function () {
   console.log("Server is running on port " + port);
 });
 
-// router.post('/create/form',FormController.createForm);  // create a form
-// router.get('/form/:slug',FormController.FormBySlug);   // show selected form
-// router.get('/forms',FormController.getForms);      // show all the forms
-// router.post('/form/response',FormController.saveFormResponse); // fill and submit the form
-// router.get('/form/:slug/responses',FormController.getFormResponses); // view responses for a particular form
-// module.exports = router;
