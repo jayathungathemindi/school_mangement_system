@@ -76,9 +76,6 @@ module.exports = {
       });
   },
 
-
-
-  
   addTeacher: async (req, res) => {
     var userData = new User({
       _id: new mongoose.Types.ObjectId(),
@@ -104,12 +101,12 @@ module.exports = {
         } else {
           const hash = bcrypt.hashSync(userData.password, 10);
           userData.password = hash;
-
+          // console.log(userData);
           userData.save((err, doc) => {
             if (!err) {
               const myArray = new Array({});
               let j = req.body.grade.length;
-              console.log(j);
+              // console.log(j);
 
               for (let i = 0; i < j; i++) {
                 (grade = req.body.grade[i]), (myArray[i] = { grade });
@@ -119,9 +116,11 @@ module.exports = {
                 _id: new mongoose.Types.ObjectId(),
                 u_id: userData._id,
                 NIC: req.body.nic,
-                tp:req.body.tp,
+                tp: req.body.tp,
                 grades: myArray,
+                subject: req.body.subject,
               });
+              // console.log(teacher);
               teacher.save((err, doc) => {
                 if (!err) {
                   // res.json({
@@ -157,7 +156,7 @@ module.exports = {
       });
   },
   addAdmin: async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body);
     var userData = new User({
       _id: new mongoose.Types.ObjectId(),
       firstName: req.body.firstName,
@@ -182,7 +181,7 @@ module.exports = {
         } else {
           const hash = bcrypt.hashSync(userData.password, 10);
           userData.password = hash;
-console.log(userData)
+          // console.log(userData);
           userData.save((err, doc) => {
             if (!err) {
               res.json({
@@ -269,7 +268,7 @@ console.log(userData)
 
   getById: async (req, res) => {
     try {
-      User.findOne({ _id: req.params.userId })//${}
+      User.findOne({ _id: req.params.userId }) //${}
         .exec()
         .then((user) => {
           switch (user.role) {
@@ -280,14 +279,14 @@ console.log(userData)
               });
             }
             case "Student": {
-              Student.findOne({u_id: user._id })
+              Student.findOne({ u_id: user._id })
                 .exec()
                 .then((student) => {
-                  console.log(student);
+                  // console.log(student);
                   return res.status(200).json({
                     message: "User find",
                     user: user,
-                    student: student,
+                    userData: student,
                   });
                 });
               break;
@@ -297,11 +296,11 @@ console.log(userData)
               Teacher.findOne({ u_id: user._id })
                 .exec()
                 .then((teacher) => {
-                  console.log(teacher);
+                  // console.log(teacher);
                   return res.status(200).json({
                     message: "User find",
                     user: user,
-                    teacher: teacher,
+                    userData: teacher,
                   });
                 });
               break;
@@ -319,7 +318,6 @@ console.log(userData)
     }
   },
 
-  
   editProfile: async (req, res) => {
     try {
       User.findOne({ _id: req.params.userId })

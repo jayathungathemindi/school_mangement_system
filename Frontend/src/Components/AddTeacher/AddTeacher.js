@@ -7,7 +7,7 @@ import {
   Field,
   FieldArray,
 } from "formik";
-import { TextField } from "./TextField";
+import { TextField } from "../TextField/TextField";
 import * as Yup from "yup";
 import axios from "axios";
 import "../../App.css";
@@ -62,7 +62,7 @@ export const AddTeacher = () => {
             email: "",
             password: "",
             confirmPassword: "",
-            grade: ["6", "7", "8", "9", "10", "11"],
+            grade: [],
           }}
           validationSchema={validate}
           onSubmit={(values) => {
@@ -100,7 +100,52 @@ export const AddTeacher = () => {
                 <label htmlFor="birthday">Birthday</label>
                 <DatePickerField name="date" />
                 <label className="mt-3">Grade</label>
-                <FieldArray
+
+                <div role="group" aria-labelledby="checkbox-group">
+                  <label>
+                    <Field type="checkbox" name="grade" value="6" />6
+                  </label>
+                  <label>
+                    <Field type="checkbox" name="grade" value="7" />7
+                  </label>
+                  <label>
+                    <Field type="checkbox" name="grade" value="8" />8
+                  </label>
+                  <label>
+                    <Field type="checkbox" name="grade" value="9" />9
+                  </label>
+                  <label>
+                    <Field type="checkbox" name="grade" value="10" />
+                    10
+                  </label>
+                  <label>
+                    <Field type="checkbox" name="grade" value="11" />
+                    11
+                  </label>
+                </div>
+
+                <div>
+                  <label> Subject</label>
+
+                  <Field as="select" name="subject" className="subject">
+                    <option value=""></option>
+                    <option value="Sinhala">Sinhala</option>
+                    <option value="Maths">Maths</option>
+                    <option value="English">English</option>
+                    <option value="Science">Science</option>
+                    <option value="History">History</option>
+                    <option value="Commers">Commers</option>
+                    <option value="Music">Music</option>
+                    <option value="Hindi">Hindi</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Dance">Dance</option>
+                    <option value="Art">Art</option>
+                    <option value="Health">Health</option>
+                  </Field>
+                  <br></br>
+                </div>
+
+                {/* <FieldArray
                   name="grade"
                   render={(arrayHelpers) => (
                     <div>
@@ -132,7 +177,7 @@ export const AddTeacher = () => {
                       )}
                     </div>
                   )}
-                />
+                /> */}
                 <br></br>
                 <label> Gender</label>
 

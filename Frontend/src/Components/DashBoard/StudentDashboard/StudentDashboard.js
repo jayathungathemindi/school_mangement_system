@@ -1,26 +1,73 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "../../../App.css";
-import { useParams } from "react-router-dom";
 import axios from "axios";
 function StudentDashboard() {
-  // const [User, SetUser] = useState({
-  //   role: "",
-  // });
-  // const { id } = useParams();
+  const [User, SetUser] = useState({
+    user: {},
+    enroll_Subject: [],
+  });
 
-  // console.log(id);
-  // useEffect(() => {
-  //   axios.get(`http://localhost:3000/user/getById/${id}`).then((res) => {
-  //     const user = res.data.user;
-  //     SetUser({ ...User, role: user.role });
-  //   });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/user/getById/${localStorage.getItem("id")}`)
+      .then((res) => {
+        const user = res.data.userData;
+        SetUser({ ...User, user: user, enroll_Subject: user.Enroll_subjects });
+      });
+  }, []);
+  // console.log(User);
+  const Subject = [
+    "Sinhala",
+    "English",
+    "Science",
+    "Maths",
+    "Commers",
+    "History",
+  ];
 
+  const quiz = "quiz";
+  const document = "document";
   return (
     <div>
       <div className="container">
         <h1>Student</h1>
+        {Subject.map((subject) => {
+          return (
+            <div>
+              <div class="card" style={{ width: "18rem" }}>
+                <div class="card-body">
+                  <h5 class="card-title">{subject}</h5>
+                  <p class="card-text">Default Subject</p>
+                  <a href="#" class="btn btn-primary">
+                    Go somewhere
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+        {User.enroll_Subject.map((enroll_sub) => {
+          return (
+            <div>
+              <div class="card" style={{ width: "18rem" }}>
+                <div class="card-body">
+                  <h5 class="card-title">{enroll_sub.subject}</h5>
+                  <p class="card-text">Enrolled Subject</p>
+                  <a href="#" class="btn btn-primary">
+                    Go somewhere
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+
+        <div>
+          <Link to={`/enroll`} className="menu-bars">
+            <button className="btn btn-primary ">Enroll +</button>
+          </Link>
+        </div>
       </div>
     </div>
   );

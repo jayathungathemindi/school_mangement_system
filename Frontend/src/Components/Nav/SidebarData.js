@@ -40,7 +40,7 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-  title: "Student-List",
+    title: "Student-List",
     path: "/studentList",
     role: "Admin",
     icon: <AiIcons.AiFillHome />,
@@ -48,7 +48,7 @@ export const SidebarData = [
   },
   {
     title: "Quiz-Maker",
-    path: "/messages",
+    path: "/addQuiz",
     role: "Teacher",
     icon: <FaIcons.FaEnvelopeOpenText />,
     cName: "nav-text",
@@ -73,8 +73,6 @@ export const SidebarData = [
     role: "Student",
     icon: <IoIcons.IoMdHelpCircle />,
     cName: "nav-text",
-
-    
   },
 
   {
@@ -83,7 +81,13 @@ export const SidebarData = [
     role: "Student",
     icon: <IoIcons.IoMdHelpCircle />,
     cName: "nav-text",
+  },
 
-    
+  {
+    title: "Enroll",
+    path: "/enroll",
+    role: "Student",
+    icon: <IoIcons.IoMdHelpCircle />,
+    cName: "nav-text",
   },
 ];

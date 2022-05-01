@@ -3,7 +3,7 @@ const Document = require("../models/Document");
 
 module.exports = {
   saveDocument: async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     const documentPath =
       "http://localhost:3000/add/document" + req.file.filename; // Note: set path dynamically
     var document = new Document({
@@ -13,7 +13,7 @@ module.exports = {
       documentName: req.bodyfilename,
       documentPath: documentPath,
     });
-    console.log(document);
+    // console.log(document);
     document.save((err) => {
       if (!err) {
         return res.json({

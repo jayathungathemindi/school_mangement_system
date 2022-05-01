@@ -18,6 +18,9 @@ import StudentList from "./Components/StudentList/StudentList";
 import StudentListGrade from "./Components/StudentListGrade/StudentListGrade";
 import TeacherList from "./Components/TeacherList/TeacherList";
 import FileUpload from "./Components/FileUpload/FileUpload";
+import AddQuestion from "./Components/QuizMaker/AddQuestion";
+import QuizMaker from "./Components/QuizMaker/QuizMaker";
+import Enrolement from "./Components/Enrolment/Enrolement";
 
 const App = () => {
   return (
@@ -41,9 +44,12 @@ const App = () => {
         <Route path="/teacher" element={<TeacherDashboard />}></Route>
         <Route path="/student" element={<StudentDashboard />}></Route>
         <Route path="/editProfile/:id" element={<EditProfile />}></Route>
-        <Route path="/fileUpload" element={<FileUpload />}></Route>
+        <Route path="/fileUpload/:grade" element={<FileUpload />}></Route>
         <Route path="/test" element={<Test />}></Route>
         <Route path="/teacherList" element={<TeacherList />}></Route>
+        <Route path="/addQuiz/:grade" element={<AddQuestion />}></Route>
+        <Route path="/quiz" element={<QuizMaker />}></Route>
+        <Route path="/enroll" element={<Enrolement />}></Route>
       </Routes>
     </div>
   );

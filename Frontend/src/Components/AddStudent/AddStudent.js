@@ -7,7 +7,7 @@ import {
   Field,
   FieldArray,
 } from "formik";
-import { TextField } from "./TextField";
+import { TextField } from "../TextField/TextField";
 import * as Yup from "yup";
 import axios from "axios";
 import "../../App.css";

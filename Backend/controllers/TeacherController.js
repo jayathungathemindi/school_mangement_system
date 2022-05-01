@@ -9,7 +9,7 @@ module.exports = {
       Teacher.find()
         .exec()
         .then((teachers) => {
-          console.log(teachers);
+          // console.log(teachers);
 
           teachers.map(async (teacher) => {
             dataArr.push(teacher.u_id);
@@ -19,7 +19,7 @@ module.exports = {
           User.find({ _id: { $in: dataArr } })
             .exec()
             .then((users) => {
-              console.log(users);
+              // console.log(users);
               return res.json({
                 success: true,
                 teachers: teachers,

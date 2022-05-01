@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import axios from "axios";
-import styles from "./SignIn.css";
+import "./SignIn.css";
 import { connect } from "react-redux";
 import * as Action from "../../Action";
 import { bindActionCreators } from "redux";
@@ -37,30 +37,35 @@ const SignIn = (props) => {
       <div className="sub-main">
         <img src="/image/signup.png" alt="" />
         <div className="containerr">
-          <div className={styles.login_container}>
-            <div className={styles.login_form_container}>
-              <div className={styles.left}>
-               
-               
-                <form className={styles.form_container} onSubmit={handleSubmit}>
-                  <h1>Login to Your Account</h1><p></p><p></p>
+          <div className="login_container">
+            <div className="login_form_container">
+              <div className="left">
+                <form className="form_container" onSubmit={handleSubmit}>
+                  <h1>Login to Your Account</h1>
+                  <p></p>
+                  <p></p>
                   <div className="form-inner">
                     <div className="form-group">
-                      <label htmlFor="email"><h4>User Name</h4></label><p></p>
+                      <label htmlFor="email">
+                        <h4>User Name</h4>
+                      </label>
+                      <p></p>
                       <input
                         type="userName"
                         placeholder="User Name"
                         name="userName"
-                        onChange={handleChange}//((e)=>setname(e.target.value))
+                        onChange={handleChange} //((e)=>setname(e.target.value))
                         value={data.userName}
                         required
-                        className={styles.input}
+                        className="input"
                       />
                       <p></p>
                     </div>
                     <div className="form-group">
-                     
-                      <label htmlFor="password"><h4>Password</h4></label> <p></p>
+                      <label htmlFor="password">
+                        <h4>Password</h4>
+                      </label>{" "}
+                      <p></p>
                       <input
                         type="password"
                         placeholder="Password"
@@ -68,11 +73,12 @@ const SignIn = (props) => {
                         onChange={handleChange}
                         value={data.password}
                         required
-                        className={styles.input}
+                        className="input"
                       />
                     </div>{" "}
-                  </div> <p></p>
-                  {error && <div className={styles.error_msg}>{error}</div>}
+                  </div>{" "}
+                  <p></p>
+                  {error && <div className="error_msg">{error}</div>}
                   <button type="submit" className="btn btn-primary btn-block">
                     Sing In
                   </button>

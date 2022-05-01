@@ -5,6 +5,7 @@ const StudentController = require("../controllers/StudentControllers");
 const EmployeeController = require("../controllers/EmployeeController");
 const TeacherController = require("../controllers/TeacherController");
 const DocumentsController = require("../controllers/DocumentsController");
+const QuizControllerr = require("../controllers/QuizController");
 
 const documentStroge = require("../helpers/documentStroge");
 //import studentcontroller
@@ -27,6 +28,8 @@ router.patch("/user/putByStudent/:userid", EmployeeController.putByStudent);
 router.get("/user/getTeacher", TeacherController.getTeacher);
 
 router.post("/add/document", documentStroge, DocumentsController.saveDocument);
+router.post("/add/quiz", QuizControllerr.addQuiz);
+router.post("/user/student/enroll", StudentController.enroll);
 
 //api =localhost3000/user/getStudentByGrade/:grade
 //create the studentController

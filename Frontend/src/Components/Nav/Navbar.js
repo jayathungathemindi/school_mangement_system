@@ -7,32 +7,38 @@ import "./Navbar.css";
 import { IconContext } from "react-icons";
 import axios from "axios";
 
-
 function Navbar() {
   const [isLog, SetLog] = useState("false");
   const [User, SetUser] = useState({
     role: "",
     id: "",
   });
+  const [UserData, SetUserData] = useState("");
+
   useEffect(() => {
     console.log(localStorage.getItem("id"));
     axios
       .get(`http://localhost:3000/user/getById/${localStorage.getItem("id")}`)
       .then((res) => {
         const user = res.data.user;
-        console.log(user);
+        const userData = res.data.userData;
+        // console.log(user);
+        // console.log(userData);
+
+        if (res.data.user.role == "Teacher") {
+          SetUserData({ ...UserData, grade: userData.grades });
+        }
+
         SetUser({ ...User, role: user.role, id: user._id });
       });
 
-      if(localStorage.getItem("id")==null){
-        SetLog({ ...isLog, login:"false" });
-      }else{
-        SetLog({ ...isLog, login: localStorage.getItem("login") });
-      }
-
-   
+    if (localStorage.getItem("id") == null) {
+      SetLog({ ...isLog, login: "false" });
+    } else {
+      SetLog({ ...isLog, login: localStorage.getItem("login") });
+    }
   }, []);
-
+  // console.log(UserData);
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => {
@@ -68,14 +74,38 @@ function Navbar() {
                   {SidebarData.map((item, index) => {
                     switch (item.role) {
                       case User.role: {
-                        return (
-                          <li key={index} className={item.cName}>
-                            <Link to={item.path}>
-                              {item.icon}
-                              <span>{item.title}</span>
-                            </Link>
-                          </li>
-                        );
+                        if (User.role == "Teacher") {
+                          return (
+                            <>
+                              <li key={index} className="nav_teacher">
+                                {item.icon}
+                                <span>{item.title}</span>
+                              </li>
+                              ;
+                              {UserData.grade.map((grade, _id) => {
+                                return (
+                                  <>
+                                    <li key={index} className={item.cName}>
+                                      <Link to={item.path + "/" + grade.grade}>
+                                        <span>{grade.grade}</span>
+                                      </Link>
+                                    </li>
+                                  </>
+                                );
+                              })}
+                              ;
+                            </>
+                          );
+                        } else {
+                          return (
+                            <li key={index} className={item.cName}>
+                              <Link to={item.path}>
+                                {item.icon}
+                                <span>{item.title}</span>
+                              </Link>
+                            </li>
+                          );
+                        }
                       }
                     }
                   })}
@@ -93,7 +123,10 @@ function Navbar() {
             <div className="navbar">
               <Link to="/">
                 {" "}
-                <AiIcons.AiFillHome icon-2x className="home-icon"></AiIcons.AiFillHome>
+                <AiIcons.AiFillHome
+                  icon-2x
+                  className="home-icon"
+                ></AiIcons.AiFillHome>
               </Link>
 
               <Link to="/SignIn" className="menu-bars">
