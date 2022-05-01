@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import axios from "axios";
 import "./TeacherList.css";
 function TeacherList() {
+  
   const [User, SetUser] = useState([]);
 
   useEffect(() => {
@@ -31,7 +32,12 @@ function TeacherList() {
 
   return (
     <div className="contrains">
-      <Table striped bordered hover variant="dark">
+
+
+      <div className="mainteacherlist">
+        
+        <div className="subteacherlist">
+      <Table striped bordered hover variant="white">
         <thead>
           <tr>
             <th>First Name</th>
@@ -67,6 +73,7 @@ function TeacherList() {
           })}
         </tbody>
       </Table>
+    </div></div>
     </div>
   );
 }

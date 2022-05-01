@@ -9,22 +9,49 @@
   /* margin-left: 100px; */
   text-align: center;
 }
-/* .img{
-  position: relative;
+
+
+.mainteacher{
+  
   text-align: center;
-  color: white;
-} */
-.blok{
+  
+  justify-content: center;
+ /* full form left,right*/
+  display: flex;
+ /* padding: 50px 0 0px 0; form up down */
+ padding-top: 0;
+ padding-left: 200px;
+  background-color: 	white;
 
+  align-items: center;
+  
+  
+}
 
+.subteacher{
+  align-items: center;
+  justify-content: center;
+  padding-top: 39px;
+ 
+ align-items: center;
+ text-align: center;
+ display: flex;
+ justify-content: center;
+ height: 1110px;
+ width: 800px;
+ box-shadow: 11px 13px 13px rgb(32, 28, 32);
+ padding-top: 20px;
+ border-radius: 90px;
+ position: absolute;
+ background-color: #e6e7e8;  
+ top: 150px;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
 
-  position: absolute;
-  top:100px;
-  left: 600px;
-  bottom: 20px;
-  right: 200px;
-
-
-  padding-left: 20px;
-  padding-right: 20px;
+ background: transparent;
+ color: black;
+}
+.attext {
+  color: #4169E1;
 }

@@ -6,6 +6,7 @@ import { SidebarData } from "./SidebarData";
 import "./Navbar.css";
 import { IconContext } from "react-icons";
 import axios from "axios";
+import { HomeOutlined } from "@ant-design/icons";
 
 function Navbar() {
   const [isLog, SetLog] = useState("false");
@@ -38,24 +39,24 @@ function Navbar() {
       SetLog({ ...isLog, login: localStorage.getItem("login") });
     }
   }, []);
-  // console.log(UserData);
-  const [sidebar, setSidebar] = useState(false);
 
-  const showSidebar = () => {
-    setSidebar(!sidebar);
-  };
-  console.log(isLog);
   const Nav = () => {
     switch (isLog.login) {
       case "true": {
         return (
           <div>
+            <Link to="/">
+              {" "}
+              <img
+                src="/image/logo.png"
+                alt=""
+                width="90px"
+                height="70px"
+                class="homeIcon"
+              />
+            </Link>
             <IconContext.Provider value={{ color: "#fff" }}>
               <div className="navbar">
-                <Link to="#" className="menu-bars">
-                  <FaIcons.FaBars onClick={showSidebar} />
-                </Link>
-
                 <Link to={`/editProfile/${User.id}`} className="menu-bars">
                   <button className="nav-item ">Edit Profile</button>
                 </Link>
@@ -64,24 +65,57 @@ function Navbar() {
                   <button className="nav-item1 ">Logout</button>
                 </Link>
               </div>
-              <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-                <ul className="nav-menu-items" onClick={showSidebar}>
-                  <li className="navbar-toggle">
-                    <Link to="#" className="menu-bars">
-                      <AiIcons.AiOutlineClose />
-                    </Link>
-                  </li>
+              <nav className="nav-menu active">
+                <ul className="nav-menu-items">
                   {SidebarData.map((item, index) => {
                     switch (item.role) {
                       case User.role: {
-                        if (User.role == "Teacher") {
+                        if (
+                          User.role == "Teacher" &&
+                          item.title == "Dashboad"
+                        ) {
+                          return (
+                            <>
+                              {/* <li key={index} className="nav_teacher">
+                                {item.icon}
+                                <span>{item.title}</span>
+                              </li> */}
+                              <li key={index} className={item.cName}>
+                                <Link to={item.path}>
+                                  {item.icon}
+                                  <span>{item.title}</span>
+                                </Link>
+                              </li>
+
+                              {UserData.grade.map((grade, _id) => {
+                                if (item.title == "Dashboad") {
+                                  return <></>;
+                                }
+                                return (
+                                  <>
+                                    <li key={index} className={item.cName}>
+                                      <Link to={item.path + "/" + grade.grade}>
+                                        <span>{grade.grade}</span>
+                                      </Link>
+                                    </li>
+                                  </>
+                                );
+                              })}
+                            </>
+                          );
+                        } else if (User.role == "Teacher") {
                           return (
                             <>
                               <li key={index} className="nav_teacher">
                                 {item.icon}
                                 <span>{item.title}</span>
                               </li>
-                              ;
+                              {/* <li key={index} className={item.cName}>
+                              <Link to={item.path}>
+                                {item.icon}
+                                <span>{item.title}</span>
+                              </Link>
+                            </li> */}
                               {UserData.grade.map((grade, _id) => {
                                 return (
                                   <>
@@ -123,10 +157,13 @@ function Navbar() {
             <div className="navbar">
               <Link to="/">
                 {" "}
-                <AiIcons.AiFillHome
-                  icon-2x
-                  className="home-icon"
-                ></AiIcons.AiFillHome>
+                <img
+                  src="/image/logo.png"
+                  alt=""
+                  width="90px"
+                  height="70px"
+                  class="homeIcon"
+                />
               </Link>
 
               <Link to="/SignIn" className="menu-bars">

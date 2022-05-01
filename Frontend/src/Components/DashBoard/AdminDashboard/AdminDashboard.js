@@ -1,28 +1,65 @@
 import React from "react";
-
+import "./AdminDashboad.css"
 import "../../../App.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import{useState, useEffect} from "react";
+
 function AdminDashboard() {
-  // const [User, SetUser] = useState({
-  //   role: "",
-  // });
-  // const { id } = useParams();
+  const[teacherCount,setTeacherCount]=useState(0)
+  const[studentCount,setStudentCount]=useState(0)
+  useEffect( ()=>{
 
-  // console.log(id);
-  // useEffect(() => {
-  //   axios.get(`http://localhost:3000/user/getById/${id}`).then((res) => {
-  //     const user = res.data.user;
-  //     SetUser({ ...User, role: user.role });
-  //   });
-  // }, []);
+    axios.get(`http://localhost:3000/user/getStudentCount`).then((res)=>{
+      console.log(res.data.count);
+      setStudentCount(res.data.count)
+    });
 
+   axios.get(`http://localhost:3000/user/getTeacherCount`).then((res)=>{
+      console.log(res.data.count);
+      setTeacherCount(res.data.count)
+    })
+  }
+    
+    
+    
+  ,[])
+
+    
+    
+  
+
+
+
+  
   return (
-    <div>
+    <>
       <div className="container">
-        <h1>Admin</h1>
+        <div className="admindashboad">
+      <div class="card" style={{width: "18rem"}}>
+  <div class="card-header">
+    Student Count
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{studentCount}</li>
+    
+  </ul>
+</div>
+
+<div class="card" style={{width: "18rem"}}>
+  <div class="card-header">
+    Teacher Count
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{teacherCount}</li>
+    
+  </ul>
+</div>
       </div>
-    </div>
+      </div>
+    </>
+
+
   );
 }
 

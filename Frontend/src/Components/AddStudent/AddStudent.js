@@ -48,13 +48,14 @@ export const AddStudent = () => {
 
   return (
     <>
-      <img
-        src="/image/20220302_133836.jpg"
-        alt=""
-        width="1515px"
-        height="1150px"
-      />
-      <div className="blok">
+          <img className="scl"
+          src="/image/—Pngtree—school season school starting school_953746.jpg"
+          alt=""
+          width="1550px"
+          height="1250px"
+        />
+    
+      <div className="mainstudent">
         <Formik
           initialValues={{
             firstName: "",
@@ -78,9 +79,10 @@ export const AddStudent = () => {
             window.location = `/admin`;
           }}
           render={({ values }) => (
-            <div>
-              <h1 className="my-4 font-weight-bold .display-4">Add Student</h1>
-              <Form className="form-inline">
+            <div className="substudent">
+              
+              <Form >
+              <h1 className="attext">Add Student</h1>
                 <TextField label="First Name" name="firstName" type="text" />
                 <TextField label="last Name" name="lastName" type="text" />
                 <TextField label="Email" name="email" type="email" />

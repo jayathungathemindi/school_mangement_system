@@ -48,13 +48,16 @@ export const AddTeacher = () => {
 
   return (
     <>
-      <img
-        src="/image/20220302_133836.jpg"
-        alt=""
-        width="1515px"
-        height="1100px"
-      />
-      <div className="blok">
+     
+     
+           <img className="scl
+"
+          src="/image/—Pngtree—teachers day poster teachers day_953401.jpg"
+          alt=""
+          width="1550px"
+          height="1350px"
+        />
+         <div className="mainteacher">
         <Formik
           initialValues={{
             firstName: "",
@@ -79,9 +82,12 @@ export const AddTeacher = () => {
             window.location = `/admin`;
           }}
           render={({ values }) => (
-            <div>
-              <h1 className="my-4 font-weight-bold .display-4">Add Teacher</h1>
+            <div className="subteacher" >
+             
               <Form>
+
+              <h1 className="attext ">Add Teacher</h1>
+              <br/>
                 <TextField label="First Name" name="firstName" type="text" />
                 <TextField label="Last Name" name="lastName" type="text" />
                 <div className="t">

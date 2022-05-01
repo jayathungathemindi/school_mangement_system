@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../App.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
+import "./AddQuestion.css";
 export default function AddQuestion() {
   const { grade } = useParams();
   const [drawer, setDrawer] = useState(false);
@@ -353,7 +353,7 @@ export default function AddQuestion() {
     <>
       <div className="container">
         <form>
-          <div>
+          <div className="quizContent">
             {" "}
             <label htmlFor="quizName" className="mt-3">
               Quiz Name

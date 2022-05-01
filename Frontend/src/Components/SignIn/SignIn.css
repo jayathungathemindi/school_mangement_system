@@ -1,7 +1,6 @@
 .login_container {
   width: 100%;
   min-height: 100vh;
-  /* background-color: #f5f5f5; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,7 +21,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: white; */
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
@@ -92,16 +90,24 @@
 }
 
 .green_btn {
-  background-color: #3bb19b;
+  background-color: #3f00ff;
   color: white;
   margin: 10px;
 }
 .sub-main {
-  text-align: center;
-  justify-content: center;
   display: flex;
-  padding: 90px 0 90px 0;
-  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 20;
+  right: 0;
+  bottom: 0;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Copperplate", sans-serif;
+  background: transparent;
+  color: black;
 }
 
 .containerr {
@@ -109,10 +115,12 @@
   justify-content: center;
   height: 650px;
   width: 35%;
-  /* box-shadow: 11px 12px 13px white; */
+  /* background-color: #ccccff; */
+  box-shadow: #777372;
   padding-top: 30px;
   border-radius: 60px;
-  background-color: #ccccff;
+
+  position: absolute;
 }
 
 .form-group h2 {
@@ -129,6 +137,10 @@ from.form-inner {
   padding: 30px;
   z-index: 2;
 }
+.logintext {
+  color: #3f00ff;
+  margin-top: 20px;
+}
 
 form.form-inner h4 {
   color: #f34646;
@@ -141,4 +153,11 @@ from.form-inner .form-group {
   display: block;
   width: 300px;
   margin-bottom: 15px;
+}
+.formContent {
+  background-color: white;
+  opacity: 0.8;
+  height: 340px;
+  width: 400px;
+  border-radius: 3rem;
 }

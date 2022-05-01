@@ -1,0 +1,35 @@
+.mainn{
+  
+    text-align: center;
+    justify-content: center;/* full form left,right*/
+    display: flex;
+    padding: 50px 0 0px 0;/* form up down */
+    background-color: rgba(221, 219, 230, 0.911);
+    
+    
+  }
+
+  .subb{
+
+    display: flex;
+    justify-content: center;
+    height: 1170px;
+    width: 800px;
+    box-shadow: 11px 12px 13px rgb(32, 28, 32);
+    padding-top: 40px;
+   
+    border-radius: 90px;
+    background-color: white;
+  }
+
+  .fileupload{
+    position: relative;
+    width: 400px;
+    height: 200px;
+    border: 2px dashed #010105;
+    border-radius: 20px;
+
+  }
+.btn btn-primary btn-block{
+  background-color: #555555;
+}

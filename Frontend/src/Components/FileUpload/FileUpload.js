@@ -1,62 +1,5 @@
-/*import React from 'react';    
-import { post } from 'axios';    
-class Fileupload extends React.Component {    
-        constructor(props) {    
-                super(props);    
-                this.state = {    
-                        file: '',    
-            };    
-        }    
-        async submit(e) {    
-                e.preventDefault();    
-                const url = `http://localhost:61331/api/Uploadfiles/Uploadfile`;    
-                const formData = new FormData();    
-                formData.append('body', this.state.file);    
-                const config = {    
-                        headers: {    
-                                'content-type': 'multipart/form-data',    
-                        },    
-                };    
-                return post(url, formData, config);    
-        }    
-        setFile(e) {    
-                this.setState({ file: e.target.files[0]});    
-        }    
-        render() {    
-                return (    
-                        <div className="container-fluid">    
-                                <form onSubmit={e => this.submit(e)}>    
-                                        
-                                        <h1>File Upload</h1>    
-                                       <div> <label for="filename" > File Name</label>
-                                        <input type="text" placeholder='FileName' name="Filename" required></input></div>
-                                        <div><p></p>
-                                        <p></p>
-                                        <div>
-
-                                        <label for="filename" >Grade</label><p></p>
-                                         <select>
-                                            <option value="6">6</option>
-                                            <option value="6">6</option>
-                                            <option value="6">6</option>
-                                            <option value="6">6</option>
-                                          </select>
-                                        </div>
-                                        <div> <input type="file" onChange={e => this.setFile(e)} /> </div> 
-                                        <button className="btn btn-primary" type="submit">Upload</button>   </div> <br/>
-
-                                       
-
-                                </form>  
-
-
-                        </div>    
-                )    
-        }    
-}    
-export default Fileupload    */
-
 import React, { useState } from "react";
+import "./FileUpload.css";
 
 import axios from "axios";
 
@@ -97,48 +40,69 @@ function FileUpload() {
   }
 
   return (
-    <div>
-      <from>
-        <div>
-          {" "}
-          <label for="filename"> File Name</label>
-          <input
-            onChange={(e) => handle(e)}
-            id="filename"
-            value={data.filename}
-            type="text"
-            placeholder="FileName"
-            name="Filename"
-            required
-          ></input>
-        </div>
-        <div>
-          <input
-            type="file"
-            placeholder="Upload Document"
-            filename="file"
-            onChange={onChangeFile}
-          />
-        </div>
-        <div>
-          <label for="filename">Grade</label>
-          <p></p>
-          <select
-            onChange={(e) => handle(e)}
-            id="grade"
-            value={data.grade}
-            type="grade"
+    <div class="mainn">
+      <div className="subb">
+        <from>
+          <div>
+            {" "}
+            <label for="filename">
+              {" "}
+              <h4>File Name</h4>
+            </label>
+            <input
+              onChange={(e) => handle(e)}
+              id="filename"
+              value={data.filename}
+              type="text"
+              placeholder="FileName"
+              name="Filename"
+              required
+            ></input>
+          </div>
+          <br></br>
+          <div className="fileupload">
+            <img
+              src="/image/fileuplad.png"
+              alt=""
+              width="130px"
+              height="100px"
+            />
+            <input
+              type="file"
+              placeholder="Upload Document"
+              filename="file"
+              onChange={onChangeFile}
+            />
+          </div>
+
+          <div>
+            <label for="filename">
+              <h4>Grade</h4>
+            </label>
+            <p></p>
+            <select
+              onChange={(e) => handle(e)}
+              id="grade"
+              value={data.grade}
+              type="grade"
+            >
+              <option value="">Select</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+          <br></br>
+          <button
+            className="btn btn-primary btn-block"
+            onClick={(e) => submit(e)}
           >
-            <option value="">Select</option>
-            <option value="6">6</option>
-            <option value="6">7</option>
-            <option value="6">8</option>
-            <option value="6">9</option>
-            <option value="6">10</option>
-          </select>
-        </div>
-        <button onClick={(e) => submit(e)}>submit</button>
-      </from>
+            submit
+          </button>
+        </from>
+      </div>
     </div>
   );
 }
