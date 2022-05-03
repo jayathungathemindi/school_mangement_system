@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 
-export default function Logout() {
+const Logout = () => {
   useEffect(() => {
-    localStorage.setItem("login", false);
-    localStorage.setItem("logout", true);
     localStorage.setItem("id", null);
     localStorage.setItem("L_ID", -1);
+    localStorage.setItem("login", false);
+    localStorage.setItem("logout", true);
     window.location = `/`;
-  });
+  }, []);
 
   return <div></div>;
-}
+};
+
+export default Logout;

@@ -57,11 +57,16 @@ const App = () => {
         });
       });
   }, []);
-  // console.log(localStorage.getItem("logout"));
-  if (localStorage.getItem("id") !== null) {
-    localStorage.setItem("login", true);
-  }
+  console.log(localStorage.getItem("login"));
+  console.log(localStorage.getItem("id"));
 
+  if (localStorage.getItem("id") == "null") {
+    console.log("hai");
+    localStorage.setItem("login", false);
+  } else {
+    localStorage.setItem("login", true);
+    console.log("hee");
+  }
   return (
     <div className="App ">
       <Navbar isLog={isLog} UserData={UserData} User={User} />

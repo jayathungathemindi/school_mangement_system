@@ -7,15 +7,6 @@ import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 
 const Home = () => {
-  useEffect(() => {
-    localStorage.setItem("login", false);
-  }, []);
-
-  // if (localStorage.getItem("refresh") == "true") {
-  //   window.location.reload();
-  //   localStorage.setItem("refresh", false);
-  // }
-  // console.log(localStorage.getItem("icon"));
   return (
     <>
       <div className="Home">
