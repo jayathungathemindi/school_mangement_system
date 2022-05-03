@@ -17,6 +17,9 @@ const Loginsaga = {
       if (status === 200) {
         localStorage.setItem("id", data.user._id);
         localStorage.setItem("login", true);
+        localStorage.setItem("role", data.user.role);
+        localStorage.setItem("logout", false);
+        localStorage.setItem("refresh", true);
         yield put(Login.sucess(data, true));
 
         switch (data.user.role) {

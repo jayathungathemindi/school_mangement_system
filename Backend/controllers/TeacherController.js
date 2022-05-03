@@ -35,25 +35,19 @@ module.exports = {
     }
   },
 
-  getTeacherCount : async(req,res ) =>{
-
-    try{
-    
-     Teacher.count().then((count)=>{  
+  getTeacherCount: async (req, res) => {
+    try {
+      Teacher.count().then((count) => {
+        res.json({
+          successs: true,
+          count: count,
+        });
+      });
+    } catch (error) {
       res.json({
-      successs:true,
-     count:count
-  })})
-         
+        successs: false,
+        message: "faile",
+      });
     }
-
-    catch(error){
-           
-      res.json({
-          successs:false,
-          message:"faile"
-      })
-  }
-  }
-
+  },
 };

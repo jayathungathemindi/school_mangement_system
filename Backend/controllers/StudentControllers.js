@@ -27,13 +27,6 @@ module.exports = {
                 students: students,
               });
             });
-
-          // setTimeout(()=>{console.log(dataArr)},2000)
-
-          // console.log(dataArr)
-
-          //forloop
-          //one by one user id eka aran User.findone({}).........exec().then((stu)=>console.log(stu));
         });
     } catch (error) {
       res.json({
@@ -45,9 +38,6 @@ module.exports = {
 
   enroll: async (req, res) => {
     try {
-      // console.log(req.body);
-
-      //Enroll_subjects
       Student.findOne({ u_id: req.body.UserID })
         .exec()
         .then((student) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Home.css";
 import Typed from "react-typed";
 import "../../App.css";
@@ -7,6 +7,15 @@ import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 
 const Home = () => {
+  useEffect(() => {
+    localStorage.setItem("login", false);
+  }, []);
+
+  // if (localStorage.getItem("refresh") == "true") {
+  //   window.location.reload();
+  //   localStorage.setItem("refresh", false);
+  // }
+  // console.log(localStorage.getItem("icon"));
   return (
     <>
       <div className="Home">
@@ -20,7 +29,7 @@ const Home = () => {
             loop
           />
 
-          <h3>Themindi Hansani</h3>
+          <h3>Hiriwadunna M.V</h3>
 
           <img
             src="/image/login.png"

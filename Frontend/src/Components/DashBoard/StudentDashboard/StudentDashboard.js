@@ -2,20 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../../../App.css";
 import axios from "axios";
-function StudentDashboard() {
-  const [User, SetUser] = useState({
-    user: {},
-    enroll_Subject: [],
-  });
+function StudentDashboard(props) {
+  const User = props.User;
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3000/user/getById/${localStorage.getItem("id")}`)
-      .then((res) => {
-        const user = res.data.userData;
-        SetUser({ ...User, user: user, enroll_Subject: user.Enroll_subjects });
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:3000/user/getById/${localStorage.getItem("id")}`)
+  //     .then((res) => {
+  //       const user = res.data.userData;
+  //       SetUser({ ...User, user: user, enroll_Subject: user.Enroll_subjects });
+  //     });
+  // }, []);
   // console.log(User);
   const Subject = [
     "Sinhala",

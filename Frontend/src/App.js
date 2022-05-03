@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { Redirect } from "react-router";
 import Home from "./Components/Home/Home";
 import SignIn from "./Components/SignIn/SignIn";
 import { SignUp } from "./Components/SignUp/SignUp.js";
 import { EditProfile } from "./Components/EditProfile/EditProfile";
-
+import axios from "axios";
 import "./App.css";
 import AdminDashboard from "./Components/DashBoard/AdminDashboard/AdminDashboard";
 import TeacherDashboard from "./Components/DashBoard/TeacherDashboard/TeacherDashboard";
@@ -23,11 +24,52 @@ import QuizMaker from "./Components/QuizMaker/QuizMaker";
 import Enrolement from "./Components/Enrolment/Enrolement";
 
 const App = () => {
+  const [isLog, SetLog] = useState("false");
+  const [User, SetUser] = useState({
+    role: "",
+    id: "",
+    user: {},
+    enroll_Subject: [],
+  });
+  const [UserData, SetUserData] = useState("");
+  useEffect(() => {
+    if (localStorage.getItem("login") == "false") {
+      SetLog({ ...isLog, login: localStorage.getItem("login") });
+    } else {
+      SetLog({ ...isLog, login: localStorage.getItem("login") });
+    }
+    axios
+      .get(`http://localhost:3000/user/getById/${localStorage.getItem("id")}`)
+      .then((res) => {
+        const user = res.data.user;
+        const userData = res.data.userData;
+        // console.log(user);
+        // console.log(userData);
+
+        if (res.data.user.role == "Teacher") {
+          SetUserData({ ...UserData, grade: userData.grades });
+        }
+
+        SetUser({
+          ...User,
+          role: user.role,
+          id: user._id,
+        });
+      });
+  }, []);
+  // console.log(localStorage.getItem("logout"));
+  if (localStorage.getItem("id") !== null) {
+    localStorage.setItem("login", true);
+  }
+
   return (
     <div className="App ">
-      <Navbar />
+      <Navbar isLog={isLog} UserData={UserData} User={User} />
+      {/* {test(isLog)} */}
+
       <Routes>
         <Route path="/" element={<Home />}></Route>
+
         <Route path="/SignUp" element={<SignUp />}></Route>
         <Route path="/logout" element={<Logout />}></Route>
         <Route path="/addTeacher" element={<AddTeacher />}></Route>
@@ -40,7 +82,7 @@ const App = () => {
         ></Route>
 
         <Route path="/SignIn" element={<SignIn />}></Route>
-        <Route path="/admin" element={<AdminDashboard/>}></Route>
+        <Route path="/admin" element={<AdminDashboard />}></Route>
         <Route path="/teacher" element={<TeacherDashboard />}></Route>
         <Route path="/student" element={<StudentDashboard />}></Route>
         <Route path="/editProfile/:id" element={<EditProfile />}></Route>

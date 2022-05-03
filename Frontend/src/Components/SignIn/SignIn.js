@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./SignIn.css";
 import { connect } from "react-redux";
@@ -10,6 +10,9 @@ const SignIn = (props) => {
   const [data, setData] = useState({ userName: "", password: "" });
 
   const [error, setError] = useState("");
+  useEffect(() => {
+    localStorage.setItem("login", false);
+  }, []);
 
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
@@ -102,7 +105,7 @@ const { LoginAction } = Action;
 const mapStateToProps = (state) => {
   //no need this component
   const { LoginReducer } = state;
-  console.log(state);
+  // console.log(state);
   return {
     LoginReducer,
   };

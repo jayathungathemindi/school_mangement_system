@@ -8,262 +8,284 @@ process.env.SECRET_KEY = "secret";
 
 module.exports = {
   addStudent: async (req, res) => {
-    var userData = new User({
-      _id: new mongoose.Types.ObjectId(),
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-      role: "Student",
-      date: req.body.date,
-      userName: req.body.userName,
-      address: req.body.address,
-      gender: req.body.gender,
-    });
+    try {
+      var userData = new User({
+        _id: new mongoose.Types.ObjectId(),
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        role: "Student",
+        date: req.body.date,
+        userName: req.body.userName,
+        address: req.body.address,
+        gender: req.body.gender,
+      });
 
-    User.find({ userName: req.body.userName })
-      .exec()
-      .then((user) => {
-        if (user.length >= 1) {
+      User.find({ userName: req.body.userName })
+        .exec()
+        .then((user) => {
+          if (user.length >= 1) {
+            res.json({
+              success: false,
+              message: "*** A User already registered for this email ***",
+            });
+          } else {
+            const hash = bcrypt.hashSync(userData.password, 10);
+            userData.password = hash;
+            userData.save((err, doc) => {
+              if (!err) {
+                var student = new Student({
+                  _id: new mongoose.Types.ObjectId(),
+                  u_id: userData._id,
+                  grade: req.body.grade,
+                  NameOfTrustee: req.body.trust,
+                  NIC_TRUST: req.body.nic,
+                  TP: req.body.telephone,
+                });
+
+                student.save((err, doc) => {
+                  if (!err) {
+                    // res.json({
+                    //   success: true,
+                    // });
+                  } else {
+                    // res.json({
+                    //   success: false,
+                    // });
+                  }
+                });
+                res.json({
+                  success: true,
+                  message: "User registered successfully",
+                });
+              } else {
+                res.json({
+                  success: false,
+                  message: "*** Student register failed ***",
+                });
+              }
+            });
+          }
+        })
+        .catch((err) => {
           res.json({
             success: false,
-            message: "*** A User already registered for this email ***",
+            message: "*** Student register failed ***",
+            err: err,
           });
-        } else {
-          const hash = bcrypt.hashSync(userData.password, 10);
-          userData.password = hash;
-          userData.save((err, doc) => {
-            if (!err) {
-              var student = new Student({
-                _id: new mongoose.Types.ObjectId(),
-                u_id: userData._id,
-                grade: req.body.grade,
-                NameOfTrustee: req.body.trust,
-                NIC_TRUST: req.body.nic,
-                TP: req.body.telephone,
-              });
-
-              student.save((err, doc) => {
-                if (!err) {
-                  // res.json({
-                  //   success: true,
-                  // });
-                } else {
-                  // res.json({
-                  //   success: false,
-                  // });
-                }
-              });
-              res.json({
-                success: true,
-                message: "User registered successfully",
-              });
-            } else {
-              res.json({
-                success: false,
-                message: "*** Student register failed ***",
-              });
-            }
-          });
-        }
-      })
-      .catch((err) => {
-        res.json({
-          success: false,
-          message: "*** Student register failed ***",
-          err: err,
         });
-      });
+    } catch (err) {
+      console.log(err);
+    }
   },
 
   addTeacher: async (req, res) => {
-    var userData = new User({
-      _id: new mongoose.Types.ObjectId(),
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-      role: "Teacher",
-      date: req.body.date,
-      userName: req.body.userName,
-      address: req.body.address,
-      gender: req.body.gender,
-    });
+    try {
+      var userData = new User({
+        _id: new mongoose.Types.ObjectId(),
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        role: "Teacher",
+        date: req.body.date,
+        userName: req.body.userName,
+        address: req.body.address,
+        gender: req.body.gender,
+      });
 
-    User.find({ userName: req.body.userName })
-      .exec()
-      .then((user) => {
-        if (user.length >= 1) {
+      User.find({ userName: req.body.userName })
+        .exec()
+        .then((user) => {
+          if (user.length >= 1) {
+            res.json({
+              success: false,
+              message: "*** A Teacher already registered for this email ***",
+            });
+          } else {
+            const hash = bcrypt.hashSync(userData.password, 10);
+            userData.password = hash;
+            // console.log(userData);
+            userData.save((err, doc) => {
+              if (!err) {
+                const myArray = new Array({});
+                let j = req.body.grade.length;
+                // console.log(j);
+
+                for (let i = 0; i < j; i++) {
+                  (grade = req.body.grade[i]), (myArray[i] = { grade });
+                  console.log(myArray);
+                }
+                var teacher = new Teacher({
+                  _id: new mongoose.Types.ObjectId(),
+                  u_id: userData._id,
+                  NIC: req.body.nic,
+                  tp: req.body.tp,
+                  grades: myArray,
+                  subject: req.body.subject,
+                });
+                // console.log(teacher);
+                teacher.save((err, doc) => {
+                  if (!err) {
+                    // res.json({
+                    //   success: true,
+                    // });
+                  } else {
+                    // res.json({
+                    //   success: false,
+                    //   err: err,
+                    // });
+                  }
+                });
+                res.json({
+                  success: true,
+                  message: "Teacher registered successfully",
+                });
+              } else {
+                res.json({
+                  success: false,
+                  message: "*** Teacher register failed ***",
+                  err: err,
+                });
+              }
+            });
+          }
+        })
+        .catch((err) => {
           res.json({
             success: false,
-            message: "*** A Teacher already registered for this email ***",
+            message: "*** Teacher register failed ***",
+            err: err,
           });
-        } else {
-          const hash = bcrypt.hashSync(userData.password, 10);
-          userData.password = hash;
-          // console.log(userData);
-          userData.save((err, doc) => {
-            if (!err) {
-              const myArray = new Array({});
-              let j = req.body.grade.length;
-              // console.log(j);
-
-              for (let i = 0; i < j; i++) {
-                (grade = req.body.grade[i]), (myArray[i] = { grade });
-                console.log(myArray);
-              }
-              var teacher = new Teacher({
-                _id: new mongoose.Types.ObjectId(),
-                u_id: userData._id,
-                NIC: req.body.nic,
-                tp: req.body.tp,
-                grades: myArray,
-                subject: req.body.subject,
-              });
-              // console.log(teacher);
-              teacher.save((err, doc) => {
-                if (!err) {
-                  // res.json({
-                  //   success: true,
-                  // });
-                } else {
-                  // res.json({
-                  //   success: false,
-                  //   err: err,
-                  // });
-                }
-              });
-              res.json({
-                success: true,
-                message: "Teacher registered successfully",
-              });
-            } else {
-              res.json({
-                success: false,
-                message: "*** Teacher register failed ***",
-                err: err,
-              });
-            }
-          });
-        }
-      })
-      .catch((err) => {
-        res.json({
-          success: false,
-          message: "*** Teacher register failed ***",
-          err: err,
         });
-      });
+    } catch (err) {
+      console.log(err);
+    }
   },
   addAdmin: async (req, res) => {
-    // console.log(req.body);
-    var userData = new User({
-      _id: new mongoose.Types.ObjectId(),
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-      role: "Admin",
-      date: req.body.date,
-      userName: req.body.userName,
-      address: req.body.address,
-      gender: req.body.gender,
-    });
+    try {
+      var userData = new User({
+        _id: new mongoose.Types.ObjectId(),
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        role: "Admin",
+        date: req.body.date,
+        userName: req.body.userName,
+        address: req.body.address,
+        gender: req.body.gender,
+      });
 
-    User.find({ email: req.body.email })
-      .exec()
-      .then((user) => {
-        if (user.length >= 1) {
+      User.find({ email: req.body.email })
+        .exec()
+        .then((user) => {
+          if (user.length >= 1) {
+            res.json({
+              success: false,
+              message: "*** An Admin already registered for this email ***",
+            });
+          } else {
+            const hash = bcrypt.hashSync(userData.password, 10);
+            userData.password = hash;
+            // console.log(userData);
+            userData.save((err, doc) => {
+              if (!err) {
+                res.json({
+                  success: true,
+                  message: "Admin registered successfully ",
+                });
+              } else {
+                res.json({
+                  success: false,
+                  message: "*** Admin register failed ***",
+                });
+              }
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
           res.json({
             success: false,
-            message: "*** An Admin already registered for this email ***",
+            message: "*** Admin register failed ***",
           });
-        } else {
-          const hash = bcrypt.hashSync(userData.password, 10);
-          userData.password = hash;
-          // console.log(userData);
-          userData.save((err, doc) => {
-            if (!err) {
-              res.json({
-                success: true,
-                message: "Admin registered successfully ",
-              });
-            } else {
-              res.json({
-                success: false,
-                message: "*** Admin register failed ***",
-              });
-            }
-          });
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        res.json({ success: false, message: "*** Admin register failed ***" });
-      });
+        });
+    } catch (err) {
+      console.log(err);
+    }
   },
 
   deleteAdmin: async (req, res) => {
-    User.remove({ _id: req.params.userId })
-      .exec()
-      .then((result) => {
-        res.status(200).json({
-          message: "User deleted",
+    try {
+      User.remove({ _id: req.params.userId })
+        .exec()
+        .then((result) => {
+          res.status(200).json({
+            message: "User deleted",
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(500).json({
+            error: err,
+          });
         });
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json({
-          error: err,
-        });
-      });
+    } catch (err) {
+      console.log(err);
+    }
   },
   login: async (req, res) => {
-    User.findOne({ userName: req.body.userName })
-      .exec()
-      .then((user) => {
-        if (user.length < 1) {
-          return res.status(401).json({
-            message: "Auth failed",
-          });
-        }
-
-        bcrypt.compare(req.body.password, user.password, (err, result) => {
-          if (result) {
-            // console.log(user[0]);
-            // console.log(user[0]._id);
-            const token = jwt.sign(
-              {
-                firstName: user.firstName,
-                role: user.role,
-                email: user.email,
-                userId: user._id,
-                userName: user.userName,
-              },
-              process.env.SECRET_KEY,
-              {
-                expiresIn: "1h",
-              }
-            );
-
-            return res.status(200).json({
-              message: "Auth successful",
-              token: token,
-              user: user,
-            });
-          } else {
+    try {
+      User.findOne({ userName: req.body.userName })
+        .exec()
+        .then((user) => {
+          if (user.length < 1) {
             return res.status(401).json({
               message: "Auth failed",
             });
           }
+
+          bcrypt.compare(req.body.password, user.password, (err, result) => {
+            if (result) {
+              // console.log(user[0]);
+              // console.log(user[0]._id);
+              const token = jwt.sign(
+                {
+                  firstName: user.firstName,
+                  role: user.role,
+                  email: user.email,
+                  userId: user._id,
+                  userName: user.userName,
+                },
+                process.env.SECRET_KEY,
+                {
+                  expiresIn: "1h",
+                }
+              );
+
+              return res.status(200).json({
+                message: "Auth successful",
+                token: token,
+                user: user,
+              });
+            } else {
+              return res.status(401).json({
+                message: "Auth failed",
+              });
+            }
+          });
+        })
+        .catch(() => {
+          return res.status(403).json({
+            success: false,
+            message: "*** Sign in failed-Enter valid User Name ***",
+          });
         });
-      })
-      .catch(() => {
-        return res.status(403).json({
-          success: false,
-          message: "*** Sign in failed-Enter valid User Name ***",
-        });
-      });
+    } catch (err) {
+      console.log(err);
+    }
   },
 
   getById: async (req, res) => {

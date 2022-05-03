@@ -31,7 +31,6 @@
   transition: 850ms;
   padding-top: 10px;
   margin-top: 100px;
-
   z-index: 1;
 }
 
@@ -74,7 +73,7 @@ span {
   margin-left: 16px;
 }
 .nav-item {
-  margin-left: 1000px;
+  margin-left: 1020px;
 }
 .nav-item1 {
   margin-left: 20px;
@@ -131,6 +130,7 @@ span {
 .home-icon {
   width: 1500;
   height: 1000;
+  z-index: 1;
 }
 
 .nav_teacher {
