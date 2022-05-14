@@ -22,8 +22,9 @@ import FileUpload from "./Components/FileUpload/FileUpload";
 import AddQuestion from "./Components/QuizMaker/AddQuestion";
 import QuizMaker from "./Components/QuizMaker/QuizMaker";
 import Enrolement from "./Components/Enrolment/Enrolement";
+import SubjectView from "./Components/SubjectView/SubjectView";
 
-const App = () => {
+const App = React.memo(() => {
   const [isLog, SetLog] = useState("false");
   const [User, SetUser] = useState({
     role: "",
@@ -57,15 +58,13 @@ const App = () => {
         });
       });
   }, []);
-  console.log(localStorage.getItem("login"));
-  console.log(localStorage.getItem("id"));
+  // console.log(localStorage.getItem("login"));
+  // console.log(localStorage.getItem("id"));
 
-  if (localStorage.getItem("id") == "null") {
-    console.log("hai");
+  if (localStorage.getItem("logout") == "true") {
     localStorage.setItem("login", false);
   } else {
     localStorage.setItem("login", true);
-    console.log("hee");
   }
   return (
     <div className="App ">
@@ -97,9 +96,10 @@ const App = () => {
         <Route path="/addQuiz/:grade" element={<AddQuestion />}></Route>
         <Route path="/quiz" element={<QuizMaker />}></Route>
         <Route path="/enroll" element={<Enrolement />}></Route>
+        <Route path="/subjectView/:subject" element={<SubjectView />}></Route>
       </Routes>
     </div>
   );
-};
+});
 
 export default App;

@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const Teacher = require("../models/Teacher");
 const Quiz = require("../models/Quiz");
+const Student = require("../models/Student");
 const mongoose = require("mongoose");
 
 module.exports = {
@@ -47,6 +48,35 @@ module.exports = {
       });
     } catch (error) {
       console.log(error);
+    }
+  },
+  getQuiz: async (req, res) => {
+    try {
+      var userData = [];
+      console.log(req.params);
+      await Student.findOne({ u_id: req.params.id })
+        .exec()
+        .then((student) => {
+          userData = student;
+        });
+
+      await Quiz.find({
+        subject: req.params.subject,
+        grade: userData.grade,
+      })
+        .exec()
+        .then((quiz) => {
+          res.json({
+            successs: true,
+            message: "sucess",
+            quiz: quiz,
+          });
+        });
+    } catch (error) {
+      res.json({
+        successs: false,
+        message: "faile",
+      });
     }
   },
 };

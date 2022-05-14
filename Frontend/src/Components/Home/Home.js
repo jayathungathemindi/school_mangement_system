@@ -6,7 +6,7 @@ import { Col, Row, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 
-const Home = () => {
+const Home = React.memo(() => {
   return (
     <>
       <div className="Home">
@@ -369,6 +369,6 @@ const Home = () => {
       </div>
     </>
   );
-};
+});
 
 export default Home;

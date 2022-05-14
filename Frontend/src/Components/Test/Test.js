@@ -1,50 +1,38 @@
-import React from "react";
+import "./Test.css";
 
-import { Formik, Form, Field } from "formik";
-import { render } from "react-dom";
-const curSelection = ["foo"];
-const availableSelection = ["foo", "bar", "john"];
+import React, { useState } from "react";
+import { Drawer, Button } from "antd";
 
 const Test = () => {
+  const [visible, setVisible] = useState(false);
+
+  const showDrawer = () => {
+    setVisible(true);
+  };
+
+  const onClose = () => {
+    setVisible(false);
+  };
+
   return (
     <>
-      <Formik
-        initialValues={{
-          names: curSelection,
-        }}
-        render={(
-          // we need to use setFieldValue from Formik
-          { values, setFieldValue }
-        ) => (
-          <Form>
-            <Field
-              component="select"
-              name="names"
-              // You need to set the new field value
-              onChange={(evt) =>
-                setFieldValue(
-                  "names",
-                  [].slice
-                    .call(evt.target.selectedOptions)
-                    .map((option) => option.value)
-                )
-              }
-              multiple={true}
-            >
-              {availableSelection.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </Field>
-
-            {/* just printing out the values */}
-            <hr />
-            <strong>{JSON.stringify(values)}</strong>
-          </Form>
-        )}
-      />
+      <div className="test">
+        <Button type="primary" onClick={showDrawer}>
+          Open
+        </Button>
+      </div>
+      <Drawer
+        title="Basic Drawer"
+        placement="right"
+        onClose={onClose}
+        visible={visible}
+      >
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+      </Drawer>
     </>
   );
 };
+
 export default Test;

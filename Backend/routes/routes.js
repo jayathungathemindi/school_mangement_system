@@ -20,8 +20,8 @@ router.get("/user/admin/:role", UserController.getByRole);
 router.post("/user/editProfile/:userId", UserController.editProfile);
 router.get("/user/getByGrade/:grade", StudentController.getByGrade);
 router.get("/user/getBystudent/:userid", EmployeeController.getBystudent);
-router.get("/user/getStudentCount",StudentController.getStudentCount);
-router.get("/user/getTeacherCount",TeacherController.getTeacherCount);
+router.get("/user/getStudentCount", StudentController.getStudentCount);
+router.get("/user/getTeacherCount", TeacherController.getTeacherCount);
 router.delete(
   "/user/deleteByStudent/:userid",
   EmployeeController.deleteByStudent
@@ -29,9 +29,11 @@ router.delete(
 router.patch("/user/putByStudent/:userid", EmployeeController.putByStudent);
 router.get("/user/getTeacher", TeacherController.getTeacher);
 
-router.post("/add/document", documentStroge, DocumentsController.saveDocument);
+router.post("/documents", documentStroge, DocumentsController.saveDocument);
 router.post("/add/quiz", QuizControllerr.addQuiz);
 router.post("/user/student/enroll", StudentController.enroll);
+router.get("/getDocuments/:id/:subject", DocumentsController.getdocumets);
+router.get("/getQuiz/:id/:subject", QuizControllerr.getQuiz);
 
 //api =localhost3000/user/getStudentByGrade/:grade
 //create the studentController

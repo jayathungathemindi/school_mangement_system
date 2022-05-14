@@ -8,35 +8,12 @@ import { IconContext } from "react-icons";
 import axios from "axios";
 import { HomeOutlined } from "@ant-design/icons";
 
-function Navbar(props) {
+const Navbar = React.memo((props) => {
   const isLog = props.isLog;
   const User = props.User;
   const UserData = props.UserData;
 
-  // useEffect(() => {
-  //   console.log(localStorage.getItem("id"));
-  //   // axios
-  //   //   .get(`http://localhost:3000/user/getById/${localStorage.getItem("id")}`)
-  //   //   .then((res) => {
-  //   //     const user = res.data.user;
-  //   //     const userData = res.data.userData;
-  //   //     // console.log(user);
-  //   //     // console.log(userData);
-
-  //   //     if (res.data.user.role == "Teacher") {
-  //   //       SetUserData({ ...UserData, grade: userData.grades });
-  //   //     }
-
-  //   //     SetUser({ ...User, role: user.role, id: user._id });
-  //   //   });
-
-  //   // if (localStorage.getItem("id") == null) {
-  //   //   SetLog({ ...isLog, login: "false" });
-  //   // } else {
-  //   //   SetLog({ ...isLog, login: localStorage.getItem("login") });
-  //   // }
-  // }, []);
-
+  const [sideBar, SetSideBar] = useState("True");
   const Nav = () => {
     switch (isLog.login) {
       case "true": {
@@ -54,15 +31,17 @@ function Navbar(props) {
                 />
               </Link>
               <IconContext.Provider value={{ color: "#fff" }}>
-                <div>
-                  <Link to={`/editProfile/${User.id}`} className="menu-bars">
-                    <button className="nav-item ">Edit Profile</button>
-                  </Link>
-
-                  <Link to="/logout" className="menu-bars">
-                    <button className="nav-item1 ">Logout</button>
+                <div className="nav-item ">
+                  <Link to={`/editProfile/${User.id}`}>
+                    <button className="btn btn btn-light">Edit Profile</button>
                   </Link>
                 </div>
+                <div className="nav-item1 ">
+                  <Link to="/logout">
+                    <button className="btn btn btn-light">Logout</button>
+                  </Link>
+                </div>
+
                 <nav className="nav-menu active">
                   <ul className="nav-menu-items">
                     {SidebarData.map((item, index) => {
@@ -129,7 +108,6 @@ function Navbar(props) {
                                     </>
                                   );
                                 })}
-                                ;
                               </>
                             );
                           } else {
@@ -169,7 +147,7 @@ function Navbar(props) {
                 />
               </Link>
 
-              <Link to="/SignIn" className="menu-bars">
+              <Link to="/SignIn">
                 <button className=" nav-item2  ">Sign In</button>
               </Link>
             </div>
@@ -187,6 +165,6 @@ function Navbar(props) {
   };
 
   return <>{Nav()}</>;
-}
+});
 
 export default Navbar;

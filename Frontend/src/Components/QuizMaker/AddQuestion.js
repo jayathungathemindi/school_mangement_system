@@ -287,7 +287,7 @@ export default function AddQuestion() {
               <input
                 type="checkbox"
                 name="true"
-                value="true"
+                value="True"
                 onChange={(e) => {
                   setAnswer(e.target.value);
                 }}
@@ -299,7 +299,7 @@ export default function AddQuestion() {
               <input
                 type="checkbox"
                 name="false"
-                value="false"
+                value="False"
                 onChange={(e) => {
                   setAnswer(e.target.value);
                 }}
@@ -337,16 +337,7 @@ export default function AddQuestion() {
         console.log(res.data);
       });
 
-    // axios.post("http://localhost:3000/add/quiz", {
-    //   quizName,
-    //   grade,
-    //   quiz,
-    //   UserID,
-    // });
-
-    // .then((res) => {
-    //   console.log("ha");
-    // });
+    window.location = `/teacher`;
   };
 
   return (

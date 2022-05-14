@@ -37,7 +37,7 @@ module.exports = {
 
   getTeacherCount: async (req, res) => {
     try {
-      Teacher.count().then((count) => {
+      Teacher.countDocuments().then((count) => {
         res.json({
           successs: true,
           count: count,

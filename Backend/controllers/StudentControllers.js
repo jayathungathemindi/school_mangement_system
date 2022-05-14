@@ -64,7 +64,7 @@ module.exports = {
   },
   getStudentCount: async (req, res) => {
     try {
-      Student.count().then((count) => {
+      Student.countDocuments().then((count) => {
         res.json({
           successs: true,
           count: count,

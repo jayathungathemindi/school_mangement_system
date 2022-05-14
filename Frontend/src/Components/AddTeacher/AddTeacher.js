@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Formik,
   Form,
@@ -29,7 +29,25 @@ const DatePickerField = ({ ...props }) => {
   );
 };
 
-export const AddTeacher = () => {
+export const AddTeacher = React.memo(() => {
+  const [teacherCount, setTeacherCount] = useState(0);
+  var Teacher = "";
+
+  if (teacherCount < 9) {
+    Teacher = "HMV00";
+  } else if (teacherCount < 99) {
+    Teacher = "HMV0";
+  } else {
+    Teacher = "HMV";
+  }
+  const UserName = Teacher + (teacherCount + 1) + "T";
+  console.log(UserName);
+  useEffect(() => {
+    axios.get(`http://localhost:3000/user/getTeacherCount`).then((res) => {
+      // console.log(res.data.count);
+      setTeacherCount(res.data.count);
+    });
+  }, []);
   const validate = Yup.object({
     firstName: Yup.string()
       .max(15, "Must be 15 characters or less")
@@ -44,20 +62,29 @@ export const AddTeacher = () => {
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], "Password must match")
       .required("Confirm password is required"),
+    userName: Yup.string()
+      .max(15, "Must be 15 characters or less")
+      .required("Required"),
+    nic: Yup.string()
+      .max(15, "Must be 15 characters or less")
+      .required("Required"),
+    tp: Yup.string()
+      .max(15, "Must be 15 characters or less")
+      .min(10, "Password must be at least 10 charaters")
+      .required("Required"),
   });
 
   return (
     <>
-     
-     
-           <img className="scl
+      <img
+        className="scl
 "
-          src="/image/—Pngtree—teachers day poster teachers day_953401.jpg"
-          alt=""
-          width="1550px"
-          height="1350px"
-        />
-         <div className="mainteacher">
+        src="/image/—Pngtree—teachers day poster teachers day_953401.jpg"
+        alt=""
+        width="1550px"
+        height="1350px"
+      />
+      <div className="mainteacher">
         <Formik
           initialValues={{
             firstName: "",
@@ -66,6 +93,7 @@ export const AddTeacher = () => {
             password: "",
             confirmPassword: "",
             grade: [],
+            userName: "",
           }}
           validationSchema={validate}
           onSubmit={(values) => {
@@ -82,18 +110,21 @@ export const AddTeacher = () => {
             window.location = `/admin`;
           }}
           render={({ values }) => (
-            <div className="subteacher" >
-             
+            <div className="subteacher">
               <Form>
-
-              <h1 className="attext ">Add Teacher</h1>
-              <br/>
+                <h1 className="attext ">Add Teacher</h1>
+                <br />
                 <TextField label="First Name" name="firstName" type="text" />
                 <TextField label="Last Name" name="lastName" type="text" />
                 <div className="t">
                   <TextField label="Email" name="email" type="email" />
                 </div>
-                <TextField label="User Name" name="userName" type="text" />
+                <TextField
+                  label="User Name"
+                  name="userName"
+                  type="text"
+                  placeHolder={UserName}
+                />
                 <TextField label="Address" name="address" type="text" />
                 <TextField label="NIC" name="nic" type="text" />
                 <TextField label="Phone Number" name="tp" type="number" />
@@ -205,4 +236,4 @@ export const AddTeacher = () => {
       </div>
     </>
   );
-};
+});

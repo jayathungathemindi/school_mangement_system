@@ -6,7 +6,7 @@ import axios from "axios";
 import "../../App.css";
 import { useParams } from "react-router-dom";
 
-export const EditProfile = () => {
+export const EditProfile = React.memo(() => {
   const { id } = useParams();
 
   const [User, SetUser] = useState({
@@ -132,4 +132,4 @@ export const EditProfile = () => {
       </div>
     </>
   );
-};
+});

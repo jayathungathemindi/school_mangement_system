@@ -264,6 +264,7 @@ module.exports = {
                   expiresIn: "1h",
                 }
               );
+              console.log(user);
 
               return res.status(200).json({
                 message: "Auth successful",

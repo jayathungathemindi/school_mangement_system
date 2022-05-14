@@ -3,7 +3,7 @@ import React from "react";
 import "../../../App.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-function TeacherDashboard() {
+const TeacherDashboard = React.memo(() => {
   // const [User, SetUser] = useState({
   //   role: "",
   // });
@@ -24,6 +24,6 @@ function TeacherDashboard() {
       </div>
     </div>
   );
-}
+});
 
 export default TeacherDashboard;

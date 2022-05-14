@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import "./FileUpload.css";
-
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
-function FileUpload() {
+const FileUpload = React.memo(() => {
   const [data, setdata] = useState({
-    grade: "",
+    // grade: "",
     filename: "",
     file: "",
   });
+  const { grade } = useParams();
 
   function submit(e) {
     e.preventDefault();
@@ -16,17 +17,19 @@ function FileUpload() {
 
     const formData = new FormData();
 
-    formData.append("grade", data.grade);
+    formData.append("grade", grade);
     formData.append("filename", data.filename);
     formData.append("document", data.file);
     formData.append("tid", localStorage.getItem("id"));
 
     axios
-      .post("http://localhost:3000/add/document", formData)
+      .post("http://localhost:3000/documents", formData, grade)
 
       .then((res) => {
         console.log(res.data);
       });
+
+    window.location = `/teacher`;
   }
   const onChangeFile = (e) => {
     console.log(e.target.files[0]);
@@ -75,7 +78,7 @@ function FileUpload() {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label for="filename">
               <h4>Grade</h4>
             </label>
@@ -93,7 +96,7 @@ function FileUpload() {
               <option value="9">9</option>
               <option value="10">10</option>
             </select>
-          </div>
+          </div> */}
           <br></br>
           <button
             className="btn btn-primary btn-block"
@@ -105,5 +108,5 @@ function FileUpload() {
       </div>
     </div>
   );
-}
+});
 export default FileUpload;
