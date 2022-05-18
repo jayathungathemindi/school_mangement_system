@@ -100,174 +100,31 @@ const SubjectView = () => {
           )}
         </div>
         <div className="mt-5 ">
-          <h4>Quiz</h4>
-          {Quiz.map((quiz, index) => {
-            return (
-              <>
-                <div className="quizname">
-                  <button
-                    className="btn btn-primary  "
-                    onClick={() => quizView(index, quiz.questions.length)}
-                    disabled={quizSelect}
-                  >
-                    {quiz.quizName}{" "}
-                  </button>
-                </div>
-              </>
-            );
-          })}
-        </div>
-        <div>
-          {quizview == true ? (
-            <div className="quizView">
+          {Quiz.length == 0 ? (
+            <>
+              <h4>No Quiz</h4>
+            </>
+          ) : (
+            <>
               <div>
-                {" "}
-                <button className="btn btn-light" onClick={() => quizBak()}>
-                  <ArrowLeftOutlined />
-                  <label className="back">back</label>
-                </button>
-              </div>
-
-              <h4>{Quiz[quizIndex].quizName}</h4>
-              <div>
-                {subDisable == true ? (
-                  <div>
-                    correct answer = {answerCount}/{questionCount}
-                  </div>
-                ) : null}
-              </div>
-
-              {Quiz[quizIndex].questions.map((question, index) => {
-                return (
-                  <>
-                    {question.questionType == "mcq" ? (
-                      <div>
-                        <div class="card mt-5" style={{ width: "18rem" }}>
-                          <div class="card-header">
+                <h4>Quiz</h4>
+                {Quiz.map((quiz, index) => {
+                  return (
+                    <>
+                      <div className="quizname">
+                        <Link to={`/quizView/${subject}/${quiz.quizName}`}>
+                          <button className="btn btn btn-light">
                             {" "}
-                            {index + 1} {question.question.questionName}
-                          </div>
-
-                          <ul class="list-group list-group-flush">
-                            <div class="list-group-item">
-                              {" "}
-                              <input
-                                name={index}
-                                type="radio"
-                                value={question.question.option_1}
-                                onChange={(e) => {
-                                  chekAnswer(e.target.value, question.answer);
-                                }}
-                              />{" "}
-                              <label></label>
-                              {question.question.option_1}
-                            </div>
-                            <div class="list-group-item">
-                              {" "}
-                              <input
-                                name={index}
-                                type="radio"
-                                value={question.question.option_2}
-                                onChange={(e) => {
-                                  chekAnswer(e.target.value, question.answer);
-                                }}
-                              />{" "}
-                              <label></label>
-                              {question.question.option_2}
-                            </div>
-
-                            <div class="list-group-item">
-                              {" "}
-                              <input
-                                name={index}
-                                type="radio"
-                                value={question.question.option_3}
-                                onChange={(e) => {
-                                  chekAnswer(e.target.value, question.answer);
-                                }}
-                              />{" "}
-                              <label></label>
-                              {question.question.option_3}
-                            </div>
-
-                            <div class="list-group-item">
-                              {" "}
-                              <input
-                                name={index}
-                                type="radio"
-                                value={question.question.option_4}
-                                onChange={(e) => {
-                                  chekAnswer(e.target.value, question.answer);
-                                }}
-                              />{" "}
-                              <label></label>
-                              {question.question.option_4}
-                            </div>
-                          </ul>
-                        </div>
+                            {quiz.quizName}{" "}
+                          </button>
+                        </Link>
                       </div>
-                    ) : (
-                      <div>
-                        <div class="card mt-5" style={{ width: "18rem" }}>
-                          <div class="card-header">
-                            {" "}
-                            {index + 1} {question.question.questionName}
-                          </div>
-
-                          <ul class="list-group list-group-flush">
-                            <div class="list-group-item">
-                              {" "}
-                              <input
-                                name={index}
-                                type="radio"
-                                value={question.question.option_1}
-                                onChange={(e) => {
-                                  chekAnswer(e.target.value, question.answer);
-                                }}
-                              />{" "}
-                              <label></label>
-                              {question.question.option_1}
-                            </div>
-                            <div class="list-group-item">
-                              {" "}
-                              <input
-                                name={index}
-                                type="radio"
-                                value={question.question.option_2}
-                                onChange={(e) => {
-                                  chekAnswer(e.target.value, question.answer);
-                                }}
-                              />{" "}
-                              <label></label>
-                              {question.question.option_2}
-                            </div>
-                          </ul>
-                        </div>
-                      </div>
-                    )}
-
-                    <div>
-                      {checkAnswer == true ? (
-                        <div className="correctAnswer">
-                          {" "}
-                          answer : {question.answer}{" "}
-                        </div>
-                      ) : null}
-                    </div>
-                  </>
-                );
-              })}
-              <br></br>
-              <button
-                className="btn btn-primary"
-                disabled={subDisable}
-                onClick={() => SubmitAnswer()}
-              >
-                {" "}
-                submit
-              </button>
-            </div>
-          ) : null}
+                    </>
+                  );
+                })}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

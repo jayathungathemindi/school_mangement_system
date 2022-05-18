@@ -69,7 +69,7 @@ const StudentDashboard = React.memo(() => {
         })}
 
         <div>
-          <Link to={`/enroll`} className="menu-bars">
+          <Link to={`/enroll`}>
             <button className="btn btn-primary ">Enroll +</button>
           </Link>
         </div>
