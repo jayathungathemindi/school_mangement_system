@@ -27,6 +27,7 @@ export default function AddQuestion() {
   const [answer, setAnswer] = useState("");
 
   const [UserID, SetUserID] = useState("");
+  const [qIndex, setQindex] = useState(0);
 
   useEffect(() => {
     SetUserID(localStorage.getItem("id"));
@@ -82,43 +83,61 @@ export default function AddQuestion() {
     }
   };
 
-  const remove = (id) => {
-    SetQuiz(quiz.filter((quiz) => quiz._id !== id));
+  const remove = (e, id) => {
+    e.preventDefault();
+    console.log(id);
+    SetQuiz(quiz.filter((quiz) => quiz.id !== id));
+    if (id == 1) {
+      setQindex(0);
+    } else {
+      setQindex(qIndex - 1);
+    }
+
+    setCount(count - 1);
   };
 
   const quizView = () => {
-    return quiz.map((questions, index) => {
-      return (
-        <>
-          {questionType == "mcq" ? (
+    return (
+      <>
+        <div>
+          {quiz[qIndex].questionType == "mcq" ? (
             <div class="card mt-5" style={{ width: "18rem" }}>
               <div class="card-header">
                 {" "}
-                {index + 1} {questions.question.questionName}
+                ({qIndex + 1}) {quiz[qIndex].question.questionName}
               </div>
 
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">{questions.question.option_1}</li>
-                <li class="list-group-item">{questions.question.option_2}</li>
-                <li class="list-group-item">{questions.question.option_3}</li>
-                <li class="list-group-item">{questions.question.option_4}</li>
+                <li class="list-group-item">
+                  a. {quiz[qIndex].question.option_1}
+                </li>
+                <li class="list-group-item">
+                  b. {quiz[qIndex].question.option_2}
+                </li>
+                <li class="list-group-item">
+                  c. {quiz[qIndex].question.option_3}
+                </li>
+                <li class="list-group-item">
+                  d.{quiz[qIndex].question.option_4}
+                </li>
               </ul>
 
               <button
                 type="button"
-                className="secondary"
-                onClick={() => remove(questions._id)}
+                className="btn btn-danger"
+                onClick={(e) => remove(e, quiz[qIndex].id)}
               >
                 X
               </button>
             </div>
           ) : null}
-
-          {questionType == "boolean" ? (
+        </div>
+        <div>
+          {quiz[qIndex].questionType == "boolean" ? (
             <div class="card mt-5" style={{ width: "18rem" }}>
               <div class="card-header">
                 {" "}
-                {index + 1} {questions.question.questionName}
+                ({qIndex + 1}) {quiz[qIndex].question.questionName}
               </div>
 
               <ul class="list-group list-group-flush">
@@ -127,25 +146,25 @@ export default function AddQuestion() {
               </ul>
               <button
                 type="button"
-                className="secondary"
-                onClick={() => remove(questions._id)}
+                className="btn btn-danger"
+                onClick={(e) => remove(e, quiz[qIndex].id)}
               >
                 X
               </button>
             </div>
           ) : null}
-        </>
-      );
-    });
+        </div>
+      </>
+    );
   };
   const drawerInfo = () => {
     return (
-      <div>
+      <div className="select_Q_type">
         <label>Select Question Type</label>
 
         <div className="mt-3">
           <select
-            class="form-select"
+            class="QuestionType_select"
             aria-label="select type"
             name="type"
             onChange={(e) => setQuestionType(e.target.value)}
@@ -157,162 +176,209 @@ export default function AddQuestion() {
         </div>
 
         {questionType == "mcq" ? (
-          <div>
-            <div>
-              <div className="mt-3">
-                {" "}
-                <label className="ml-3">Question {count}</label>
-              </div>
-              <label className="ml-3 mt-3">Enter Your question</label>
-              <div className="mt-3">
-                <input
+          <div className="question_content">
+            <div className="question_Subcontent">
+              <div>
+                <div className="mt-3">
+                  {" "}
+                  <label className="ml-3">Question {count}</label>
+                </div>
+                <label className="ml-3 mt-3">Enter Your question</label>
+                <div className="mt-3">
+                  {/* <input
                   type="text "
                   name={`questionName`}
                   placeholder="Enter Your Question"
                   onChange={Add}
-                />
+                /> */}
+                  <textarea
+                    type="text "
+                    name={`questionName`}
+                    placeholder="Enter Your Question"
+                    onChange={Add}
+                    className="question_Name"
+                  ></textarea>
+                </div>
               </div>
-            </div>
-            <div className="mt-3">
-              {" "}
-              <input
+              <div className="mt-3">
+                {" "}
+                {/* <input
                 type="text "
                 name={`option_1`}
                 onChange={Add}
                 placeholder="Option 1"
-              />
-              <input
-                type="checkbox"
-                className="ml-1"
-                name={answer}
-                value={question_Mcq.option_1}
-                onChange={(e) => {
-                  setAnswer(e.target.value);
-                }}
-              />
-            </div>
-            <div className="mt-3">
-              {" "}
-              <input
+              /> */}
+                <textarea
+                  type="text "
+                  name={`option_1`}
+                  onChange={Add}
+                  placeholder="Option 1"
+                  className="Option_input"
+                ></textarea>
+                <input
+                  type="checkbox"
+                  className="ml-1"
+                  name={answer}
+                  value={question_Mcq.option_1}
+                  onChange={(e) => {
+                    setAnswer(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="mt-3">
+                {" "}
+                {/* <input
                 type="text "
                 name={`option_2`}
                 onChange={Add}
                 placeholder="Option 2"
-              />
-              <input
-                type="checkbox"
-                className="ml-3"
-                name={answer}
-                value={question_Mcq.option_2}
-                onChange={(e) => {
-                  setAnswer(e.target.value);
-                }}
-              />
-            </div>
-            <div className="mt-3">
-              {" "}
-              <input
+              /> */}
+                <textarea
+                  type="text "
+                  name={`option_2`}
+                  onChange={Add}
+                  placeholder="Option 2"
+                  className="Option_input"
+                ></textarea>
+                <input
+                  type="checkbox"
+                  className="ml-3"
+                  name={answer}
+                  value={question_Mcq.option_2}
+                  onChange={(e) => {
+                    setAnswer(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="mt-3">
+                {" "}
+                {/* <input
                 type="text "
                 name={`option_3`}
                 onChange={Add}
                 placeholder="Option 3"
-              />
-              <input
-                type="checkbox"
-                className="ml-3"
-                name={answer}
-                value={question_Mcq.option_3}
-                onChange={(e) => {
-                  setAnswer(e.target.value);
-                }}
-              />
-            </div>
-            <div className="mt-3">
-              {" "}
-              <input
+              /> */}
+                <textarea
+                  type="text "
+                  name={`option_3`}
+                  onChange={Add}
+                  placeholder="Option 3"
+                  className="Option_input"
+                ></textarea>
+                <input
+                  type="checkbox"
+                  className="ml-3"
+                  name={answer}
+                  value={question_Mcq.option_3}
+                  onChange={(e) => {
+                    setAnswer(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="mt-3">
+                {" "}
+                {/* <input
                 type="text "
                 name={`option_4`}
                 onChange={Add}
                 placeholder="Option 4"
-              />
-              <input
-                type="checkbox"
-                className="ml-3"
-                name={answer}
-                value={question_Mcq.option_4}
-                onChange={(e) => {
-                  setAnswer(e.target.value);
-                }}
-              />
-            </div>
-            <div className="mt-3">
-              <button
-                onClick={(e) => {
-                  upload(e);
-                }}
-              >
-                Upload
-              </button>{" "}
-            </div>
-          </div>
-        ) : null}
-
-        {questionType == "boolean" ? (
-          <div>
-            <div>
-              <div>
-                {" "}
-                <label className="mt-3">Question {count}</label>
-              </div>
-              <div className="mt-3">
-                {" "}
-                <label className="ml-3">Enter Your question</label>
-              </div>
-              <div className="mt-3">
-                {" "}
-                <input
+              /> */}
+                <textarea
                   type="text "
-                  name={`questionName`}
-                  placeholder="Enter Your Question"
+                  name={`option_4`}
                   onChange={Add}
+                  placeholder="Option 4"
+                  className="Option_input"
+                ></textarea>
+                <input
+                  type="checkbox"
+                  className="ml-3"
+                  name={answer}
+                  value={question_Mcq.option_4}
+                  onChange={(e) => {
+                    setAnswer(e.target.value);
+                  }}
                 />
               </div>
-            </div>
-
-            <div>
-              <div>
-                {" "}
-                <label className="mt-3">True</label>
-              </div>
-              <input
-                type="checkbox"
-                name="true"
-                value="True"
-                onChange={(e) => {
-                  setAnswer(e.target.value);
-                }}
-              />
-              <div>
-                {" "}
-                <label className="mt-3">False</label>
-              </div>
-              <input
-                type="checkbox"
-                name="false"
-                value="False"
-                onChange={(e) => {
-                  setAnswer(e.target.value);
-                }}
-              />
               <div className="mt-3">
-                {" "}
                 <button
                   onClick={(e) => {
                     upload(e);
                   }}
                 >
                   Upload
-                </button>
+                </button>{" "}
+              </div>
+            </div>
+          </div>
+        ) : null}
+
+        {questionType == "boolean" ? (
+          <div className="question_content">
+            <div className="question_Subcontent">
+              <div>
+                <div>
+                  {" "}
+                  <label className="mt-3">Question {count}</label>
+                </div>
+                <div className="mt-3">
+                  {" "}
+                  <label className="ml-3">Enter Your question</label>
+                </div>
+                <div className="mt-3">
+                  {" "}
+                  {/* <input
+                  type="text "
+                  name={`questionName`}
+                  placeholder="Enter Your Question"
+                  onChange={Add}
+                /> */}
+                  <textarea
+                    type="text "
+                    name={`questionName`}
+                    placeholder="Enter Your Question"
+                    onChange={Add}
+                    className="question_Name"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div>
+                <div>
+                  {" "}
+                  <label className="mt-3">True</label>
+                </div>
+                <input
+                  type="checkbox"
+                  name="true"
+                  value="True"
+                  onChange={(e) => {
+                    setAnswer(e.target.value);
+                  }}
+                />
+                <div>
+                  {" "}
+                  <label className="mt-3">False</label>
+                </div>
+                <input
+                  type="checkbox"
+                  name="false"
+                  value="False"
+                  onChange={(e) => {
+                    setAnswer(e.target.value);
+                  }}
+                />
+                <div className="mt-3">
+                  {" "}
+                  <button
+                    className="btn btn-light"
+                    onClick={(e) => {
+                      upload(e);
+                    }}
+                  >
+                    Upload
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -355,29 +421,55 @@ export default function AddQuestion() {
                 type="text "
                 name="quizName"
                 onChange={(e) => setName(e.target.value)}
-                className="mt-3"
+                className="quizName_Input"
               />
             </div>
           </div>
-          {quizView()}
-          {drawer ? drawerInfo() : null}
 
           <div>
+            {quiz.length == 0 ? null : (
+              <div className="qIndex">
+                {quiz.map((id, index) => {
+                  return (
+                    <button
+                      className="btn btn-primary qIndex_button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setQindex(index);
+                      }}
+                    >
+                      {index + 1}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          <div className="add_question">
             {" "}
             <button
               onClick={(e) => {
                 e.preventDefault();
                 setDrawer(true);
               }}
-              className="mt-3"
+              className="mt-3 btn btn-light"
             >
+              <img src="/image/plus.png" alt="" width="20px" height="20px" />
               Add Question
             </button>
           </div>
-          <div>
+          <div className="quiz_submit">
             {" "}
-            <button onClick={(e) => handleSubmit(e)}>submit</button>
+            <button
+              className="btn btn-primary"
+              onClick={(e) => handleSubmit(e)}
+            >
+              submit
+            </button>
           </div>
+          {quiz.length == 0 ? null : quizView()}
+          {drawer ? drawerInfo() : null}
         </form>
       </div>
       ;

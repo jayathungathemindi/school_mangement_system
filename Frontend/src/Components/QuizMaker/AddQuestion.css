@@ -1,3 +1,43 @@
 .quizContent {
   margin-top: 100px;
 }
+/* .add_question {
+  margin-left: 250px;
+  margin-top: -55px;
+} */
+.quizName_Input {
+  margin-top: 20px;
+  width: 400px;
+  height: 40px;
+}
+.quiz_submit {
+  margin-top: -40px;
+  margin-left: 200px;
+}
+.qIndex_button {
+  margin-left: 10px;
+}
+.qIndex {
+  margin-top: 30px;
+}
+.question_Name {
+  width: 600px;
+  height: 70px;
+}
+.Option_input {
+  margin-top: 20px;
+  width: 500px;
+  height: 50px;
+}
+.QuestionType_select {
+  width: 200px;
+  border-radius: 10px;
+  background-color: aqua;
+}
+.select_Q_type {
+  margin-top: 20px;
+}
+.question_content {
+}
+.question_Subcontent {
+}
