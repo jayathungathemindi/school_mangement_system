@@ -155,10 +155,10 @@ from.form-inner .form-group {
   margin-bottom: 15px;
 }
 .formContent {
-  background-color: white;
+  background-color: #87ceeb;
   opacity: 0.8;
-  height: 340px;
+  height: 300px;
   width: 400px;
   border-radius: 3rem;
-  margin-top: 150px;
+  margin-top: 90px;
 }

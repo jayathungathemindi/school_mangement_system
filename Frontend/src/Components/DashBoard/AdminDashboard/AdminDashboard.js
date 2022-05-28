@@ -22,24 +22,36 @@ const AdminDashboard = React.memo(() => {
 
   return (
     <>
+      <img
+        className="imghome1
+"
+        src="/image/—Pngtree—student book advertising background_970588.jpg"
+        alt=""
+        width="1551px"
+        height="630px"
+      />
       <div className="container">
         <div className="admindashboad">
-          <div class="card" style={{ width: "18rem" }}>
-            <div class="card-header">Student Count</div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">{studentCount}</li>
-            </ul>
-          </div>
+          <div class="row">
+            <div class="card1" style={{ width: "18rem", height: "8rem" }}>
+              <p>
+                {" "}
+                <div class="card-header">Student Count</div>{" "}
+              </p>
+              {studentCount}
+            </div>
 
-          <div class="card" style={{ width: "18rem" }}>
-            <div class="card-header">Teacher Count</div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">{teacherCount}</li>
-            </ul>
+            <div class="card1" style={{ width: "18rem", height: "8rem" }}>
+              <p>
+                {" "}
+                <div class="card-header">Teacher Count</div>{" "}
+              </p>
+              {teacherCount}
+            </div>
           </div>
         </div>
       </div>
-    </>
+    </> //  {teacherCount}
   );
 });
 

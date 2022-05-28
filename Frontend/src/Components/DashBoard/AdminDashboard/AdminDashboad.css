@@ -1,0 +1,29 @@
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+.admindashboad {
+  display: flex;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 400px;
+  bottom: 300px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  font-family: "Copperplate", sans-serif;
+}
+
+.Home {
+  position: relative;
+  background-size: cover;
+  height: 650px;
+  margin-top: 100px;
+}
+
+.card1 {
+  text-align: center;
+}
+
+.card2 {
+  text-align: center;
+}

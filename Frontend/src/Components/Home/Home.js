@@ -11,33 +11,29 @@ const Home = React.memo(() => {
     <>
       <div className="Home">
         <div className="main-info">
-          <h2>Online School Management System</h2>
-          <Typed
-            className="typed-text"
-            strings={["Integrity,Honesty,Trust,Compassion"]}
-            typeSpeed={40}
-            backSpeed={60}
-            loop
-          />
+          <div>
+            <h2>Online School Management System</h2>
+          </div>
+          <div>
+            <Typed
+              className="typed-text"
+              strings={["Integrity,Honesty,Trust,Compassion"]}
+              typeSpeed={40}
+              backSpeed={60}
+              loop
+            />
+          </div>
 
           <h3>Hiriwadunna M.V</h3>
-
-          <img
-            src="/image/login.png"
-            alt=""
-            width="500px"
-            height="400px"
-            class="vert-move"
-          />
         </div>
 
         <img
           className="imghome1
 "
-          src="/image/computer-g6e4d6ec70_1920.jpg"
+          src="/image/—Pngtree—student book advertising background_970588.jpg"
           alt=""
           width="1551px"
-          height="550px"
+          height="630px"
         />
         <br />
         <br />
