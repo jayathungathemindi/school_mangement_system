@@ -1,6 +1,6 @@
 import React from "react";
 import "./AdminDashboad.css";
-import "../../../App.css";
+
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";

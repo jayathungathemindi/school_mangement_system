@@ -3,6 +3,7 @@ import "../../App.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./AddQuestion.css";
+import Swal from "sweetalert2";
 export default function AddQuestion() {
   const { grade } = useParams();
   const [drawer, setDrawer] = useState(false);
@@ -402,7 +403,13 @@ export default function AddQuestion() {
       .then((res) => {
         console.log(res.data);
       });
-
+    Swal.fire({
+      title: "Quiz Addded",
+      type: "success",
+      text: "Sucessfully Quiz Added.",
+      confirmButtonColor: "#3bb19b",
+      timer: 8500,
+    });
     window.location = `/teacher`;
   };
 

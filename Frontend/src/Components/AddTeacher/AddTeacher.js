@@ -14,6 +14,7 @@ import "../../App.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./AddTeacher.css";
+import Swal from "sweetalert2";
 const DatePickerField = ({ ...props }) => {
   const { setFieldValue } = useFormikContext();
   const [field] = useField(props);
@@ -106,7 +107,13 @@ export const AddTeacher = React.memo(() => {
                 console.log(error);
               }
             );
-
+            Swal.fire({
+              title: "Teacher Addded",
+              type: "success",
+              text: "Sucessfully Teacher Added.",
+              confirmButtonColor: "#3bb19b",
+              timer: 8500,
+            });
             window.location = `/admin`;
           }}
           render={({ values }) => (

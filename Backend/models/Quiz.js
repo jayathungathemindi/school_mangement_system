@@ -1,3 +1,4 @@
+const { Date } = require("mongoose");
 const mongoose = require("mongoose");
 
 const QuizSchema = new mongoose.Schema({
@@ -21,6 +22,7 @@ const QuizSchema = new mongoose.Schema({
       },
     },
   ],
+  date: { type: Date },
 });
 
 const Quiz = mongoose.model("Quiz", QuizSchema);
