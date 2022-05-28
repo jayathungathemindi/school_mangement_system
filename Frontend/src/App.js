@@ -24,6 +24,8 @@ import QuizMaker from "./Components/QuizMaker/QuizMaker";
 import Enrolement from "./Components/Enrolment/Enrolement";
 import SubjectView from "./Components/SubjectView/SubjectView";
 import QuizView from "./Components/QuizView/QuizView";
+import AddFeedback from "./Components/AddFeedbck/AddFeedback";
+import Feedback from "./Components/Feedback/Feedback";
 
 const App = React.memo(() => {
   const [isLog, SetLog] = useState("false");
@@ -102,6 +104,8 @@ const App = React.memo(() => {
           path="/quizView/:subject/:quizName"
           element={<QuizView />}
         ></Route>
+        <Route path="/addFeedback" element={<AddFeedback />}></Route>
+        <Route path="/Feedback" element={<Feedback />}></Route>
       </Routes>
     </div>
   );

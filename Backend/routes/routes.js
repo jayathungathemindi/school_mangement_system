@@ -6,6 +6,7 @@ const EmployeeController = require("../controllers/EmployeeController");
 const TeacherController = require("../controllers/TeacherController");
 const DocumentsController = require("../controllers/DocumentsController");
 const QuizControllerr = require("../controllers/QuizController");
+const FeedbackControllerr = require("../controllers/FeedbackController");
 
 const documentStroge = require("../helpers/documentStroge");
 //import studentcontroller
@@ -34,6 +35,10 @@ router.post("/add/quiz", QuizControllerr.addQuiz);
 router.post("/user/student/enroll", StudentController.enroll);
 router.get("/getDocuments/:id/:subject", DocumentsController.getdocumets);
 router.get("/getQuiz/:id/:subject", QuizControllerr.getQuiz);
+router.get("/getQuiz/:id/:subject", QuizControllerr.getQuiz);
+router.post("/addfeedback", FeedbackControllerr.addFeedback);
+router.get("/getfeedback", FeedbackControllerr.getFeedback);
+// router.get("/getQuiz/:id/", QuizControllerr.getNotification);
 
 //api =localhost3000/user/getStudentByGrade/:grade
 //create the studentController

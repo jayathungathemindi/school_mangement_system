@@ -30,6 +30,7 @@ module.exports = {
         grade: req.body.grade,
         subject: Teacher_Data.subject,
         questions: myArray,
+        date: new Date(),
       });
       // console.log(myArray);
       quiz.save((err, doc) => {
@@ -79,4 +80,42 @@ module.exports = {
       });
     }
   },
+  // getNotification: async (req, res) => {
+  //   try {
+  //     var userData = [];
+  //     var count;
+  //     console.log(req.params);
+  //     await Student.findOne({ u_id: req.params.id })
+  //       .exec()
+  //       .then((student) => {
+  //         userData = student;
+  //       });
+
+  //     await Quiz.find({
+  //       grade: userData.grade,
+  //     })
+  //       .exec()
+  //       .then((quiz) => {
+
+  //         res.json({
+  //           successs: true,
+  //           message: "sucess",
+  //           quiz: quiz,
+  //         });
+  //       });
+  //   // await  Quiz.countDocuments({
+  //   //     grade: userData.grade,
+  //   //   }).then((count) => {
+  //   //     res.json({
+  //   //       successs: true,
+  //   //       count: count,
+  //   //     });
+  //   //   });
+  //   } catch (error) {
+  //     res.json({
+  //       successs: false,
+  //       message: "faile",
+  //     });
+  //   }
+  // },
 };

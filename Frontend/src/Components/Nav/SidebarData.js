@@ -33,7 +33,7 @@ export const SidebarData = [
   },
   {
     title: "Feedbacks",
-    path: "/Products",
+    path: "/Feedback",
     role: "Admin",
     icon: <MessageOutlined />,
     cName: "nav-text",
@@ -87,24 +87,10 @@ export const SidebarData = [
     icon: <IoIcons.IoMdHelpCircle />,
     cName: "nav-text",
   },
-  {
-    title: "Subjects",
-    path: "/support",
-    role: "Student",
-    icon: <IoIcons.IoMdHelpCircle />,
-    cName: "nav-text",
-  },
-  {
-    title: "Add-Feedback",
-    path: "/support",
-    role: "Student",
-    icon: <IoIcons.IoMdHelpCircle />,
-    cName: "nav-text",
-  },
 
   {
     title: "Add-Feedback",
-    path: "/support",
+    path: "/addFeedback",
     role: "Student",
     icon: <IoIcons.IoMdHelpCircle />,
     cName: "nav-text",
