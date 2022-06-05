@@ -1,0 +1,28 @@
+.cardT1 {
+  /* position: absolute; */
+  margin-top: 100px;
+  margin-left: 1150px;
+}
+.cardT2 {
+  margin-left: 230px;
+  margin-top: -20px;
+}
+.cardT4 {
+  margin-left: 952px;
+  margin-top: -20px;
+}
+.cardT3 {
+  margin-left: 640px;
+  margin-top: -610px;
+}
+
+.teacherdashboad {
+  background-color: #87cefa;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+.prestange {
+  margin-left: 680px;
+  margin-top: -270px;
+}

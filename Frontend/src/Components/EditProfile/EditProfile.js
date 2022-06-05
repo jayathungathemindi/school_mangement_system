@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import axios from "axios";
 import "../../App.css";
 import { useParams } from "react-router-dom";
+import "./EditProfile.css";
 
 export const EditProfile = React.memo(() => {
   const { id } = useParams();
@@ -55,43 +56,55 @@ export const EditProfile = React.memo(() => {
 
   return (
     <>
-      <div className="container">
-        <Formik
-          initialValues={{ ...User }}
-          validationSchema={validate}
-          onSubmit={(values) => {
-            console.log(values);
-            axios
-              .post(`http://localhost:3000/user/editProfile/${id}`, values)
-              .then(
-                (response) => {
-                  console.log(response);
-                },
-                (error) => {
-                  console.log(error);
+      <div className="img6663">
+        <img
+          src="/image/Female designer working late in room flat vector illustration.jpg"
+          alt=""
+          width="850px"
+          height="730px"
+        />
+      </div>
+
+      <div className="maineditprofile">
+        <div className="subeditprofile">
+          <Formik
+            initialValues={{ ...User }}
+            validationSchema={validate}
+            onSubmit={(values) => {
+              console.log(values);
+              axios
+                .post(`http://localhost:3000/user/editProfile/${id}`, values)
+                .then(
+                  (response) => {
+                    console.log(response);
+                  },
+                  (error) => {
+                    console.log(error);
+                  }
+                );
+              switch (User.role) {
+                case "Admin": {
+                  window.location = `/admin`;
+                  break;
                 }
-              );
-            switch (User.role) {
-              case "Admin": {
-                window.location = `/admin`;
-                break;
+                case "Teacher": {
+                  window.location = `/teacher`;
+                  break;
+                }
+                case "Student": {
+                  window.location = `/student`;
+                  break;
+                }
               }
-              case "Teacher": {
-                window.location = `/teacher`;
-                break;
-              }
-              case "Student": {
-                window.location = `/student`;
-                break;
-              }
-            }
-          }}
-        >
-          {(fomik) => (
-            <div>
-              <h1 className="my-4 font-weight-bold .display-4">Edit Profile</h1>
-              <Form>
-                {/* <TextField
+            }}
+          >
+            {(fomik) => (
+              <div>
+                <h1 className="my-4 font-weight-bold .display-4">
+                  Edit Profile
+                </h1>
+                <Form>
+                  {/* <TextField
                   label="First Name"
                   name="firstName"
                   type="text"
@@ -104,31 +117,32 @@ export const EditProfile = React.memo(() => {
                   type="text"
                   placeholder={User.lastName}
                 /> */}
-                <TextField
-                  label="Email"
-                  name="email"
-                  type="email"
-                  placeholder={User.email}
-                />
-                <TextField
-                  label="Password"
-                  name="password"
-                  type="password"
-                  placeholder="Change password"
-                />
-                <TextField
-                  label="Confirm Password"
-                  name="confirmPassword"
-                  type="password"
-                  placeholder="Confirm password"
-                />
-                <button className="btn btn-dark mt-3" type="submit">
-                  Update
-                </button>
-              </Form>
-            </div>
-          )}
-        </Formik>
+                  <TextField
+                    label="Email"
+                    name="email"
+                    type="email"
+                    placeholder={User.email}
+                  />
+                  <TextField
+                    label="Password"
+                    name="password"
+                    type="password"
+                    placeholder="Change password"
+                  />
+                  <TextField
+                    label="Confirm Password"
+                    name="confirmPassword"
+                    type="password"
+                    placeholder="Confirm password"
+                  />
+                  <button className="btn btn-dark mt-3" type="submit">
+                    Update
+                  </button>
+                </Form>
+              </div>
+            )}
+          </Formik>
+        </div>
       </div>
     </>
   );

@@ -80,7 +80,7 @@ export const AddStudent = React.memo(() => {
     <>
       <img
         className="scl"
-        src="/image/—Pngtree—school season school starting school_953746.jpg"
+        src="/image/studentadd.jpg"
         alt=""
         width="1550px"
         height="1250px"

@@ -44,8 +44,20 @@ const FileUpload = React.memo(() => {
 
   return (
     <div class="mainn">
+      <img
+        className="scl"
+        src="/image/quiz.jpg"
+        alt=""
+        width="1530px"
+        height="745px"
+      />
+
       <div className="subb">
         <from>
+          <div>
+            {" "}
+            <h1 className="titleupload">File Upload</h1>{" "}
+          </div>
           <div>
             {" "}
             <label for="filename">
@@ -65,7 +77,7 @@ const FileUpload = React.memo(() => {
           <br></br>
           <div className="fileupload">
             <img
-              src="/image/fileuplad.png"
+              src="/image/upload-file.png"
               alt=""
               width="130px"
               height="100px"

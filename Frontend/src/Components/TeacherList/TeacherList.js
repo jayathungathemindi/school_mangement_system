@@ -3,7 +3,6 @@ import Table from "react-bootstrap/Table";
 import axios from "axios";
 import "./TeacherList.css";
 function TeacherList() {
-  
   const [User, SetUser] = useState([]);
 
   useEffect(() => {
@@ -32,48 +31,46 @@ function TeacherList() {
 
   return (
     <div className="contrains">
-
-
       <div className="mainteacherlist">
-        
         <div className="subteacherlist">
-      <Table striped bordered hover variant="white">
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Gender</th>
-            <th>NIC</th>
-            <th>phone-number</th>
-            <th>Grade</th>
-          </tr>
-        </thead>
-        <tbody>
-          {User.map((teacherData) => {
-            return (
+          <Table striped bordered hover variant="sky blue">
+            <thead>
               <tr>
-                <td>{teacherData.user.firstName}</td>
-                <td>{teacherData.user.lastName}</td>
-                <td>{teacherData.user.email}</td>
-
-                <td>{teacherData.user.address}</td>
-                <td>{teacherData.user.gender}</td>
-                <td>{teacherData.teacher.NIC}</td>
-                <td>089764346</td>
-
-                <td>
-                  {teacherData.teacher.grades.map((value) => {
-                    return <label className="grade">{value.grade}</label>;
-                  })}
-                </td>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Gender</th>
+                <th>NIC</th>
+                <th>phone-number</th>
+                <th>Grade</th>
               </tr>
-            );
-          })}
-        </tbody>
-      </Table>
-    </div></div>
+            </thead>
+            <tbody>
+              {User.map((teacherData) => {
+                return (
+                  <tr>
+                    <td>{teacherData.user.firstName}</td>
+                    <td>{teacherData.user.lastName}</td>
+                    <td>{teacherData.user.email}</td>
+
+                    <td>{teacherData.user.address}</td>
+                    <td>{teacherData.user.gender}</td>
+                    <td>{teacherData.teacher.NIC}</td>
+                    <td>089764346</td>
+
+                    <td>
+                      {teacherData.teacher.grades.map((value) => {
+                        return <label className="grade">{value.grade}</label>;
+                      })}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </Table>
+        </div>
+      </div>
     </div>
   );
 }

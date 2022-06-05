@@ -22,8 +22,34 @@
 
 .card1 {
   text-align: center;
+
+  margin-top: -400px;
 }
 
 .card2 {
   text-align: center;
+  margin-top: -400px;
+}
+.adminDetails {
+  margin-top: 200px;
+  z-index: 1;
+  margin-left: 1350px;
+  background: transparent;
+}
+
+.adminImage {
+  z-index: 1;
+  border-radius: 50%;
+  margin-left: 50px;
+  margin-top: 30px;
+}
+.AdminDetail {
+  margin-top: 50px;
+}
+
+.admincalneder {
+  height: 200px;
+  width: 300px;
+  margin-top: -200px;
+  margin-right: 50px;
 }

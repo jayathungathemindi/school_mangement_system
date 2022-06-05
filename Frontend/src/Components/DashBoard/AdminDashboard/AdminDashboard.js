@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./AdminDashboad.css";
-
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect } from "react";
 
 const AdminDashboard = React.memo(() => {
   const [teacherCount, setTeacherCount] = useState(0);
@@ -19,20 +19,42 @@ const AdminDashboard = React.memo(() => {
       setTeacherCount(res.data.count);
     });
   }, []);
-
+  const [value, onChange] = useState(new Date());
   return (
     <>
       <img
         className="imghome1
 "
-        src="/image/—Pngtree—student book advertising background_970588.jpg"
+        src="/image/admindashboad.jpg"
         alt=""
-        width="1551px"
-        height="630px"
+        width="1535px"
+        height="745px"
       />
-      <div className="container">
+      <div>
         <div className="admindashboad">
-          <div class="row">
+          <div className="row adminDetails ">
+            <div className="col-sm-36">
+              <img
+                className="adminImage"
+                src="/image/teacher1.jpg"
+                width="160px"
+                height="150px"
+              />
+              <div className="AdminDetail">
+                {" "}
+                <h5>Themindi Jayathunga</h5>
+                <br />
+                <h5>Birth Day : 1997-12-15</h5>
+                <br />
+                <h5>Email : themindi@gmail.com</h5>
+                <br />
+                <h5>Telephone Number : 0702276345</h5>
+                <br />
+              </div>
+            </div>
+          </div>
+
+          <div class="row ">
             <div class="card1" style={{ width: "18rem", height: "8rem" }}>
               <p>
                 {" "}
@@ -41,7 +63,7 @@ const AdminDashboard = React.memo(() => {
               {studentCount}
             </div>
 
-            <div class="card1" style={{ width: "18rem", height: "8rem" }}>
+            <div class="card2" style={{ width: "18rem", height: "8rem" }}>
               <p>
                 {" "}
                 <div class="card-header">Teacher Count</div>{" "}
@@ -49,9 +71,12 @@ const AdminDashboard = React.memo(() => {
               {teacherCount}
             </div>
           </div>
+          <div className="admincalneder">
+            <Calendar onChange={onChange} value={value} />
+          </div>
         </div>
       </div>
-    </> //  {teacherCount}
+    </>
   );
 });
 

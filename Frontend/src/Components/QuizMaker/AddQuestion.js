@@ -100,60 +100,62 @@ export default function AddQuestion() {
   const quizView = () => {
     return (
       <>
-        <div>
-          {quiz[qIndex].questionType == "mcq" ? (
-            <div class="card mt-5" style={{ width: "18rem" }}>
-              <div class="card-header">
-                {" "}
-                ({qIndex + 1}) {quiz[qIndex].question.questionName}
+        <div className="view">
+          <div>
+            {quiz[qIndex].questionType == "mcq" ? (
+              <div class="card mt-5" style={{ width: "18rem" }}>
+                <div class="card-header">
+                  {" "}
+                  ({qIndex + 1}) {quiz[qIndex].question.questionName}
+                </div>
+
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    a. {quiz[qIndex].question.option_1}
+                  </li>
+                  <li class="list-group-item">
+                    b. {quiz[qIndex].question.option_2}
+                  </li>
+                  <li class="list-group-item">
+                    c. {quiz[qIndex].question.option_3}
+                  </li>
+                  <li class="list-group-item">
+                    d.{quiz[qIndex].question.option_4}
+                  </li>
+                </ul>
+
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={(e) => remove(e, quiz[qIndex].id)}
+                >
+                  X
+                </button>
               </div>
+            ) : null}
+          </div>
+          <div>
+            {quiz[qIndex].questionType == "boolean" ? (
+              <div class="card mt-5" style={{ width: "18rem" }}>
+                <div class="card-header">
+                  {" "}
+                  ({qIndex + 1}) {quiz[qIndex].question.questionName}
+                </div>
 
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  a. {quiz[qIndex].question.option_1}
-                </li>
-                <li class="list-group-item">
-                  b. {quiz[qIndex].question.option_2}
-                </li>
-                <li class="list-group-item">
-                  c. {quiz[qIndex].question.option_3}
-                </li>
-                <li class="list-group-item">
-                  d.{quiz[qIndex].question.option_4}
-                </li>
-              </ul>
-
-              <button
-                type="button"
-                className="btn btn-danger"
-                onClick={(e) => remove(e, quiz[qIndex].id)}
-              >
-                X
-              </button>
-            </div>
-          ) : null}
-        </div>
-        <div>
-          {quiz[qIndex].questionType == "boolean" ? (
-            <div class="card mt-5" style={{ width: "18rem" }}>
-              <div class="card-header">
-                {" "}
-                ({qIndex + 1}) {quiz[qIndex].question.questionName}
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">True</li>
+                  <li class="list-group-item">False</li>
+                </ul>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={(e) => remove(e, quiz[qIndex].id)}
+                >
+                  X
+                </button>
               </div>
-
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">True</li>
-                <li class="list-group-item">False</li>
-              </ul>
-              <button
-                type="button"
-                className="btn btn-danger"
-                onClick={(e) => remove(e, quiz[qIndex].id)}
-              >
-                X
-              </button>
-            </div>
-          ) : null}
+            ) : null}
+          </div>
         </div>
       </>
     );
@@ -178,8 +180,8 @@ export default function AddQuestion() {
 
         {questionType == "mcq" ? (
           <div className="question_content">
-            <div className="question_Subcontent">
-              <div>
+            <div className="question_SubMcqcontent">
+              <div className="mcqcontent">
                 <div className="mt-3">
                   {" "}
                   <label className="ml-3">Question {count}</label>
@@ -303,6 +305,7 @@ export default function AddQuestion() {
               </div>
               <div className="mt-3">
                 <button
+                  className="btn btn-light  mcqButton"
                   onClick={(e) => {
                     upload(e);
                   }}
@@ -316,8 +319,8 @@ export default function AddQuestion() {
 
         {questionType == "boolean" ? (
           <div className="question_content">
-            <div className="question_Subcontent">
-              <div>
+            <div className="question_SubBoolcontent">
+              <div className="boolcontent">
                 <div>
                   {" "}
                   <label className="mt-3">Question {count}</label>
@@ -344,7 +347,7 @@ export default function AddQuestion() {
                 </div>
               </div>
 
-              <div>
+              <div className="boolcontent">
                 <div>
                   {" "}
                   <label className="mt-3">True</label>
@@ -416,10 +419,10 @@ export default function AddQuestion() {
   return (
     <>
       <div className="container">
-        <form>
-          <div className="quizContent">
+        <form className="quizmain">
+          <div>
             {" "}
-            <label htmlFor="quizName" className="mt-3">
+            <label htmlFor="quizName" className="mt-3 quizName">
               Quiz Name
             </label>
             <div>
@@ -453,7 +456,7 @@ export default function AddQuestion() {
             )}
           </div>
 
-          <div className="add_question">
+          <div className="addQuestion">
             {" "}
             <button
               onClick={(e) => {

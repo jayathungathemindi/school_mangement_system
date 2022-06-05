@@ -5,10 +5,18 @@
   margin-left: 250px;
   margin-top: -55px;
 } */
+
+.addQuestion {
+  margin-left: 50px;
+}
+.quizName {
+  margin-left: 50px;
+}
 .quizName_Input {
   margin-top: 20px;
   width: 400px;
   height: 40px;
+  margin-left: 50px;
 }
 .quiz_submit {
   margin-top: -40px;
@@ -19,6 +27,7 @@
 }
 .qIndex {
   margin-top: 30px;
+  margin-left: 40px;
 }
 .question_Name {
   width: 600px;
@@ -32,12 +41,44 @@
 .QuestionType_select {
   width: 200px;
   border-radius: 10px;
-  background-color: aqua;
+  background-color: #73c2fb;
 }
 .select_Q_type {
   margin-top: 20px;
 }
-.question_content {
+
+.question_SubBoolcontent {
+  margin-top: 10px;
+  background-color: #73c2fb;
+  height: auto;
+  width: 700px;
+  /* border-radius: 5rem; */
 }
-.question_Subcontent {
+.boolcontent {
+  margin-left: 50px;
+}
+.question_SubMcqcontent {
+  margin-top: 10px;
+  background-color: #87cefa;
+  height: auto;
+  width: 700px;
+}
+.mcqcontent {
+  margin-left: 50px;
+}
+.Option_input {
+  margin-left: 50px;
+}
+.mcqButton {
+  margin-left: 300px;
+}
+.quizmain {
+  background-color: #73c2fb;
+  margin-top: 100px;
+  height: 600px;
+  width: 700px;
+  border-radius: 2rem;
+}
+.view {
+  margin-left: 50px;
 }

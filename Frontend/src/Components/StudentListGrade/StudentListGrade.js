@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import axios from "axios";
 import "../../App.css";
 import { useParams } from "react-router-dom";
+import "./StudentList.css";
 
 function StudentListGrade() {
   const { grade } = useParams();
@@ -23,43 +24,43 @@ function StudentListGrade() {
   console.log(User);
   return (
     <div className="contrains">
-      
       <div className="mainteacherlist">
         <div className="subteacherlist">
-      <Table striped bordered hover variant="green">
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Address</th>
-            <th>Gender</th>
-
-            <th>Name of Trustee</th>
-            <th>NIC of Trustee</th>
-            <th> Trust phone-number</th>
-          </tr>
-
-          {User.map((studentData) => {
-            return (
+          <Table striped bordered hover variant="black">
+            <thead>
               <tr>
-                <td>{studentData.user.firstName}</td>
-                <td>{studentData.user.lastName}</td>
-                <td>{studentData.user.email}</td>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Gender</th>
 
-                <td>{studentData.user.address}</td>
-                <td>{studentData.user.gender}</td>
-
-                <td>{studentData.student.NameOfTrustee}</td>
-                <td>{studentData.student.NIC_TRUST}</td>
-                <td>{studentData.student.TP}</td>
+                <th>Name of Trustee</th>
+                <th>NIC of Trustee</th>
+                <th> Trust phone-number</th>
               </tr>
-            );
-          })}
-        </thead>
-        <tbody></tbody>
-      </Table>
-    </div></div>
+
+              {User.map((studentData) => {
+                return (
+                  <tr>
+                    <td>{studentData.user.firstName}</td>
+                    <td>{studentData.user.lastName}</td>
+                    <td>{studentData.user.email}</td>
+
+                    <td>{studentData.user.address}</td>
+                    <td>{studentData.user.gender}</td>
+
+                    <td>{studentData.student.NameOfTrustee}</td>
+                    <td>{studentData.student.NIC_TRUST}</td>
+                    <td>{studentData.student.TP}</td>
+                  </tr>
+                );
+              })}
+            </thead>
+            <tbody></tbody>
+          </Table>
+        </div>
+      </div>
     </div>
   );
 }

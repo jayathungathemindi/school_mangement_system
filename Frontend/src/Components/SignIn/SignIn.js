@@ -42,7 +42,7 @@ const SignIn = (props) => {
           src="/image/josefa-ndiaz-IzmdWT2lW5Q-unsplash.jpg"
           alt=""
           width="1550px"
-          height="700px"
+          height="745px"
         />
         <div className="containerr">
           <div className={styles.login_container}>

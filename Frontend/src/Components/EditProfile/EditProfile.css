@@ -1,0 +1,47 @@
+.subeditprofile {
+  align-items: center;
+  justify-content: center;
+  padding-top: 39px;
+
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  height: 510px;
+  width: 800px;
+  box-shadow: 11px 13px 13px rgb(32, 28, 32);
+  padding-top: 20px;
+  border-radius: 90px;
+  position: absolute;
+  background-color: #e6e7e8;
+  top: 150px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background: transparent;
+  color: black;
+}
+
+.img6663 {
+  margin-left: 10px;
+}
+
+.secoundimg {
+  margin-left: 800px;
+  margin-bottom: 200px;
+}
+
+.maineditprofile {
+  text-align: center;
+
+  justify-content: center;
+  /* full form left,right*/
+  display: flex;
+  /* padding: 50px 0 0px 0; form up down */
+  padding-top: 0;
+  padding-left: 200px;
+  background-color: white;
+
+  align-items: center;
+}

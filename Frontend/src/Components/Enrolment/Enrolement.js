@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import "../../App.css";
+import "./Enrolement.css";
 
 const Enrolement = React.memo(() => {
   const [User, SetUser] = useState({
@@ -79,96 +80,90 @@ const Enrolement = React.memo(() => {
     window.location = `/student`;
   };
   return (
-    <>
-      <div className="container">
-        Enrolement
-        {current_subjects == 0
-          ? null
-          : current_subjects.map((enrol_sub) => {
-              Subject.filter(
-                (sub) => sub.subject_name == enrol_sub.subject
-              ).map((cur) => {
+    <div className="container">
+      Enrolement
+      {current_subjects == 0
+        ? null
+        : current_subjects.map((enrol_sub) => {
+            Subject.filter((sub) => sub.subject_name == enrol_sub.subject).map(
+              (cur) => {
                 SetSubject(
                   Subject.filter((s) => s.subject_name !== cur.subject_name)
                 );
-              });
+              }
+            );
+          })}
+      <div>
+        {current_subjects == 0
+          ? Subject.map((subject) => {
+              return (
+                <div>
+                  {subject.grade.map((grade) => {
+                    // console.log(grade);
+                    if (current_subjects == 0 && User.user.grade == grade) {
+                      // console.log(User.user.grade);
+                      console.log("hai");
+                      return (
+                        <>
+                          <div class="card" style={{ width: "18rem" }}>
+                            <div class="card-body">
+                              <h5 class="card-title">{subject.subject_name}</h5>
+                              <p class="card-text">
+                                <span>{subject.subject_name}</span> subject has
+                                to enroll first
+                              </p>
+                              <button
+                                class="btn btn-primary"
+                                onClick={() => {
+                                  enroll(subject.subject_name);
+                                }}
+                              >
+                                Enrolement
+                              </button>
+                            </div>
+                          </div>
+                        </>
+                      );
+                    }
+                  })}
+                </div>
+              );
+            })
+          : Subject.map((subject) => {
+              return (
+                <div>
+                  {subject.grade.map((grade) => {
+                    // console.log(grade);
+                    if (User.user.grade == grade) {
+                      // console.log(subject.subject_name);
+                      return (
+                        <>
+                          <div class="card" style={{ width: "18rem" }}>
+                            <div class="card-body">
+                              <h5 class="card-title">{subject.subject_name}</h5>
+                              <p class="card-text">
+                                <span>{subject.subject_name}</span> subject has
+                                to enroll first
+                              </p>
+                              <button
+                                class="btn btn-primary"
+                                onClick={() => {
+                                  enroll(subject.subject_name);
+                                }}
+                              >
+                                Enrolement
+                              </button>
+                            </div>
+                          </div>
+                        </>
+                      );
+                    }
+                  })}
+                </div>
+              );
             })}
-        <div>
-          {current_subjects == 0
-            ? Subject.map((subject) => {
-                return (
-                  <div>
-                    {subject.grade.map((grade) => {
-                      // console.log(grade);
-                      if (current_subjects == 0 && User.user.grade == grade) {
-                        // console.log(User.user.grade);
-                        console.log("hai");
-                        return (
-                          <>
-                            <div class="card" style={{ width: "18rem" }}>
-                              <div class="card-body">
-                                <h5 class="card-title">
-                                  {subject.subject_name}
-                                </h5>
-                                <p class="card-text">
-                                  <span>{subject.subject_name}</span> subject
-                                  has to enroll first
-                                </p>
-                                <button
-                                  class="btn btn-primary"
-                                  onClick={() => {
-                                    enroll(subject.subject_name);
-                                  }}
-                                >
-                                  Enrolement
-                                </button>
-                              </div>
-                            </div>
-                          </>
-                        );
-                      }
-                    })}
-                  </div>
-                );
-              })
-            : Subject.map((subject) => {
-                return (
-                  <div>
-                    {subject.grade.map((grade) => {
-                      // console.log(grade);
-                      if (User.user.grade == grade) {
-                        // console.log(subject.subject_name);
-                        return (
-                          <>
-                            <div class="card" style={{ width: "18rem" }}>
-                              <div class="card-body">
-                                <h5 class="card-title">
-                                  {subject.subject_name}
-                                </h5>
-                                <p class="card-text">
-                                  <span>{subject.subject_name}</span> subject
-                                  has to enroll first
-                                </p>
-                                <button
-                                  class="btn btn-primary"
-                                  onClick={() => {
-                                    enroll(subject.subject_name);
-                                  }}
-                                >
-                                  Enrolement
-                                </button>
-                              </div>
-                            </div>
-                          </>
-                        );
-                      }
-                    })}
-                  </div>
-                );
-              })}
-        </div>
       </div>
-    </>
+    </div>
   );
 });
 export default Enrolement;

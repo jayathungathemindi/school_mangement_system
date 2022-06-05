@@ -1,52 +1,44 @@
-.blok{
+.blok {
+  position: absolute;
+  top: 500px;
+  left: 500px;
+  bottom: 500px;
+  right: 200px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
-    position: absolute;
-    top:500px;
-    left: 500px;
-    bottom: 500px;
-    right: 200px;
-      padding-left: 20px;
-    padding-right: 20px;
-  }
+.mainstudent {
+  text-align: center;
+  padding-top: 10px;
+  padding-left: 200px;
+}
 
+.substudentlist {
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
 
-  .mainstudent{
-  
-    text-align: center;
-   padding-top: 10px;
-   padding-left: 200px;
-  
-    
-    
-    
-  }
-  
-  .substudentlist{
-  
-    align-items: center;
-    justify-content: center;
-    padding-top: 20px;
-    
-   align-items: center;
-   text-align: center;
-   display: flex;
-   justify-content: center;
-   height: 770px;
-   width: 1000px;
-   box-shadow: 11px 12px 13px rgb(32, 28, 32);
-   padding-top: 20px;
-   border-radius: 90px;
-   position: absolute;
-   background-color: #e6e7e8;  
-   top: 120px;
-   justify-content: center;
-   align-items: center;
-   text-align: center;
-  
-   background: transparent;
-   color: black;
-  }
+  align-items: center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  height: 670px;
+  width: 1000px;
+  box-shadow: 11px 12px 13px rgb(32, 28, 32);
+  padding-top: 20px;
+  border-radius: 90px;
+  position: absolute;
+  background-color: #e6e7e8;
+  top: 120px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
-  .imglist{
-    justify-content: right;
-  }
+  background: transparent;
+  color: black;
+}
+
+.imglist {
+  justify-content: right;
+}

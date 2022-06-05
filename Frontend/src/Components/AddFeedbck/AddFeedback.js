@@ -25,27 +25,45 @@ const AddFeedback = () => {
   };
   return (
     <div className="feedback">
-      <form>
-        <div>
-          {" "}
-          <label>Add Your Fedback</label>
+      <img
+        className="imghome1
+"
+        src="/image/feedback.webp"
+        alt=""
+        width="1550px"
+        height="745px"
+      />
+      <div className="feedbackmain">
+        <div className="subfeedback">
+          <form>
+            <div>
+              {" "}
+              <label>
+                <h1 className="addfeedback">Add Your Fedback</h1>
+              </label>
+              <br />
+            </div>
+            <div>
+              {" "}
+              <textarea
+                type="text "
+                name={feedback}
+                onChange={(e) => setFeedback(e.target.value)}
+                placeholder="Add Feedback"
+              ></textarea>
+            </div>
+            <div>
+              {" "}
+              <button
+                className="btn btn-dark  center mt-5"
+                onClick={(e) => add(e)}
+              >
+                Add
+              </button>
+            </div>
+          </form>
         </div>
-        <div>
-          {" "}
-          <textarea
-            type="text "
-            name={feedback}
-            onChange={(e) => setFeedback(e.target.value)}
-            placeholder="Add Feedback"
-          ></textarea>
-        </div>
-        <div>
-          {" "}
-          <button className="btn btn-light" onClick={(e) => add(e)}>
-            Add
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
   );
 };

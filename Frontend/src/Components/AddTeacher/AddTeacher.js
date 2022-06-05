@@ -80,7 +80,7 @@ export const AddTeacher = React.memo(() => {
       <img
         className="scl
 "
-        src="/image/—Pngtree—teachers day poster teachers day_953401.jpg"
+        src="/image/teacher.jpg"
         alt=""
         width="1550px"
         height="1350px"
@@ -189,39 +189,7 @@ export const AddTeacher = React.memo(() => {
                   <br></br>
                 </div>
 
-                {/* <FieldArray
-                  name="grade"
-                  render={(arrayHelpers) => (
-                    <div>
-                      {values.grade && values.grade.length > 0 ? (
-                        values.grade.map((grade, index) => (
-                          <div key={index}>
-                            <Field name={`grade.${index}`} />
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
-                            >
-                              -
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => arrayHelpers.insert(index, "")} // insert an empty string at a position
-                            >
-                              +
-                            </button>
-                          </div>
-                        ))
-                      ) : (
-                        <button
-                          type="button"
-                          onClick={() => arrayHelpers.push("")}
-                        >
-                          Add Grade
-                        </button>
-                      )}
-                    </div>
-                  )}
-                /> */}
+                {}
                 <br></br>
                 <label> Gender</label>
 

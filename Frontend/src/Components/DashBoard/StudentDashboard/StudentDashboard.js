@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./StudentDashboad.css";
 import { Link } from "react-router-dom";
 import "../../../App.css";
 import axios from "axios";
@@ -30,48 +31,52 @@ const StudentDashboard = React.memo(() => {
   const document = "document";
   return (
     <div>
-      <div className="container">
-        <h1>Student</h1>
-        {Subject.map((subject) => {
-          return (
-            <div>
-              <div class="card" style={{ width: "18rem" }}>
-                <div class="card-body">
-                  <h5 class="card-title">{subject}</h5>
-                  <p class="card-text">Default Subject</p>
-                  {/* <a href="#" class="btn btn-primary"></a> */}
-                  <Link to={`/subjectView/${subject}`}>
-                    <button className="btn btn-primary "> Click</button>
-                  </Link>
+      <div className="mainsdashboad">
+        <div className="studentdashboad">
+          <h1>.</h1>
+          {Subject.map((subject) => {
+            return (
+              <div className="cardstudent">
+                <div class="card" style={{ width: "18rem" }}>
+                  <div class="card-body">
+                    <h5 class="card-title">{subject}</h5>
+                    <p class="card-text">Default Subject</p>
+                    {/* <a href="#" class="btn btn-primary"></a> */}
+                    <Link to={`/subjectView/${subject}`}>
+                      <button className="btn btn-primary "> Click</button>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
-        {User.enroll_Subject.map((enroll_sub) => {
-          return (
-            <div>
-              <div class="card" style={{ width: "18rem" }}>
-                <div class="card-body">
-                  <h5 class="card-title">{enroll_sub.subject}</h5>
-                  <p class="card-text">Enrolled Subject</p>
-                  {/* <a href="#" class="btn btn-primary">
+            );
+          })}
+          {User.enroll_Subject.map((enroll_sub) => {
+            return (
+              <div className="cardstudent">
+                <div class="card" style={{ width: "18rem" }}>
+                  <div class="card-body">
+                    <h5 class="card-title">{enroll_sub.subject}</h5>
+                    <p class="card-text">Enrolled Subject</p>
+                    {/* <a href="#" class="btn btn-primary">
                   
                   </a> */}
 
-                  <Link to={`/subjectView/${enroll_sub.subject}`}>
-                    <button className="btn btn-primary "> Click</button>
-                  </Link>
+                    <Link to={`/subjectView/${enroll_sub.subject}`}>
+                      <button className="btn btn-primary "> Click</button>
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
 
-        <div>
-          <Link to={`/enroll`}>
-            <button className="btn btn-primary ">Enroll +</button>
-          </Link>
+          <div className="enrollsubject">
+            <Link to={`/enroll`}>
+              <button className="btn btn-secondary btn-lg btn-block">
+                Enroll +
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

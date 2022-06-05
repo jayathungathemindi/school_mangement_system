@@ -11,7 +11,7 @@ export default function App() {
         <img
           className="scl
 "
-          src="/image/m-monk-E813FON0wDQ-unsplash.jpg"
+          src="/image/School teacher explaining geography lesson.jpg"
           alt=""
           width="1550px"
           height="1000px"

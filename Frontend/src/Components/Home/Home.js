@@ -10,38 +10,46 @@ const Home = React.memo(() => {
   return (
     <>
       <div className="Home">
-        <div className="main-info">
-          <div>
-            <h2>Online School Management System</h2>
-          </div>
-          <div>
-            <Typed
-              className="typed-text"
-              strings={["Integrity,Honesty,Trust,Compassion"]}
-              typeSpeed={40}
-              backSpeed={60}
-              loop
-            />
+        <div className="whiteblackground">
+          <div className="main-info">
+            <div>
+              <h2>Online School Management System</h2>
+            </div>
+            <div>
+              <Typed
+                className="typed-text"
+                strings={["Integrity,Honesty,Trust,Compassion"]}
+                typeSpeed={40}
+                backSpeed={60}
+                loop
+              />
+            </div>
+
+            <h3>Hiriwadunna M.V</h3>
+
+            <div>
+              <p className="mission">
+                <h4 className="mtitle">Mission</h4>
+                Our focus is to provide a stimulating early learning and child
+                care experience which promotes each child’s social/emotional,
+                physical and cognitive development.
+              </p>
+            </div>
           </div>
 
-          <h3>Hiriwadunna M.V</h3>
-        </div>
-
-        <img
-          className="imghome1
+          <img
+            className="imghome1
 "
-          src="/image/—Pngtree—student book advertising background_970588.jpg"
-          alt=""
-          width="1551px"
-          height="630px"
-        />
+            src="/image/homeimg.png"
+            alt=""
+            width="651px"
+            height="630px"
+          />
+        </div>
         <br />
         <br />
         <div className="mission">
-          <div className="stafftext">
-            <h1>Our Staff </h1>
-          </div>{" "}
-          <br />
+          <div className="stafftext"></div> <br />
         </div>
       </div>
 
@@ -305,6 +313,7 @@ const Home = React.memo(() => {
             </Card>
           </Col>
         </Row>
+
         <br />
         <div className="scllogo">
           <img
@@ -324,10 +333,10 @@ const Home = React.memo(() => {
           <h2>About</h2>
           <br />
           <p>
-            Our mission is to change the way education meets the future to
-            foster interdisciplinary, integrated thinking and innovative
-            leadership; to engage fully in the global community and to
-            facilitate lifelong learning
+            About is to change the way education meets the future to foster
+            interdisciplinary, integrated thinking and innovative leadership; to
+            engage fully in the global community and to facilitate lifelong
+            learning
           </p>
         </div>
         <div className="contact">

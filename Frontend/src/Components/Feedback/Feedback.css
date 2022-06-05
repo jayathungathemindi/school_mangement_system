@@ -1,4 +1,36 @@
-.feedback {
-  margin-top: 100px;
-  margin-left: 300px;
+.mainfeedback {
+  text-align: center;
+
+  justify-content: center;
+  /* full form left,right*/
+  display: flex;
+  /* padding: 50px 0 0px 0; form up down */
+  padding-top: 0;
+  padding-left: 200px;
+  background-color: white;
+
+  align-items: center;
+}
+
+.subfeedback {
+  align-items: center;
+  justify-content: center;
+  padding-top: 35px;
+
+  align-items: center;
+  text-align: left;
+  display: flex;
+  justify-content: center;
+  height: 580px;
+  width: 800px;
+  box-shadow: 11px 12px 13px rgb(32, 28, 32);
+  padding-top: 20px;
+  border-radius: 90px;
+  position: absolute;
+  background-color: #e6e7e8;
+  top: 120px;
+  justify-content: center;
+
+  background: transparent;
+  color: black;
 }
